@@ -1,0 +1,187 @@
+{{- define "title" }}{{ .Title }} | {{ .Site.Title }}{{ end -}}
+{{- define "extra_link" }}
+  {{ $image_preview_styles := resources.Get "/css/image-preview.css" }}
+  {{ $image_preview_styles = $image_preview_styles | resources.PostCSS (dict "inlineImports" true) }}
+  {{ if hugo.IsProduction }}
+    {{ $image_preview_styles = $image_preview_styles | minify | fingerprint | resources.PostProcess }}
+  {{ end }}
+  <link href="{{ $image_preview_styles.RelPermalink }}" rel="stylesheet" />
+
+  {{ if .Site.Params.enableHighlight }}
+    {{ $syntax := resources.Get "/css/syntax.css" }}
+    {{ $syntax = $syntax | resources.PostCSS (dict "inlineImports" true) }}
+    {{ if hugo.IsProduction }}
+      {{ $syntax = $syntax | minify | fingerprint | resources.PostProcess }}
+    {{ end }}
+    <link href="{{ $syntax.RelPermalink }}" rel="stylesheet" />
+  {{ end }}
+
+{{- end -}}
+{{ define "main" }}
+  {{ $metaInfo := .Site.Params.articleMeta }}
+
+  {{/* Image */}}
+  {{ if not $metaInfo.disableHero }}
+    {{ $image := resources.Get .Params.image }}
+    {{ with $image }}
+      <div id="post-feature" class="mt-22 w-full md:mt-[151px]">
+        <img
+          class="h-60 w-full object-cover md:h-120"
+          src="{{ $image.Permalink }}"
+          alt="preview image"
+          srcset="" />
+      </div>
+    {{ else }}
+      <div id="post-feature" class="mt-22 h-60 w-full md:mt-[151px] md:h-120">
+        {{- partial "random_feature_img.html" . -}}
+      </div>
+    {{ end }}
+  {{ else }}
+    <div id="post-feature" class="mt-22 md:mt-[151px]"></div>
+  {{ end }}
+
+
+  <div
+    id="single-page-container"
+    class="mx-auto my-5 w-full rounded-b-lg px-5 md:max-w-4xl">
+    <div class="flex w-full justify-between">
+      <div id="post-container" class="w-full">
+        {{/* Title */}}
+        <div
+          id="post-title"
+          data-popover-target="popover-animation"
+          data-popover-offset="0"
+          data-popover-placement="bottom"
+          class="flex flex-col py-5 pl-0 pr-1 md:py-8 md:pl-1 md:pr-3 lg:py-10 lg:pl-7 lg:pr-10">
+          <div
+            class="flex flex-row flex-wrap space-x-1 border-l-8 border-primary pb-2 pl-2 pt-1 font-Oswald text-sm font-normal tracking-wide text-gray-500/90 dark:text-gray-500">
+            <span>Posted by {{ .Date.Format "January 2 2006" }}</span>
+
+            {{ $categories := (.GetTerms "categories") }}
+            {{ $cateNums := len $categories }}
+            {{ if ge $cateNums 1 }}
+              <span class="flex flex-row space-x-1">
+                {{ range $categories }}
+                  <span class="text-red-700"> / </span>
+                  <a
+                    class="border-b-2 border-transparent hover:border-b-2 hover:border-primary hover:text-[#00adb5]"
+                    href="{{ .Permalink }}"
+                    >{{- .LinkTitle -}}</a
+                  >
+                {{ end }}
+              </span>
+            {{ end }}
+
+          </div>
+          <div
+            class="border-l-8 border-primary py-1 pl-2 text-start text-3xl font-bold tracking-wide text-black lg:text-4xl dark:text-white">
+            {{ .Title }}
+          </div>
+
+          <div
+            class="flex flex-row flex-wrap items-center space-x-1 border-l-8 border-primary pb-1 pl-2 pt-3.5 font-Oswald text-xs font-extralight tracking-wide text-gray-500/90 dark:text-gray-600">
+            <span>Updated on {{ .Lastmod.Format "January 2 2006" }}</span>
+            <div
+              class="h-1 w-1 rounded-full bg-red-700 dark:bg-red-700/50"></div>
+            <span>{{- .WordCount | printf "%d words" -}}</span>
+            <div
+              class="h-1 w-1 rounded-full bg-red-700 dark:bg-red-700/50"></div>
+            <span>{{- .ReadingTime| printf "%d minutes read" -}}</span>
+            {{ if .Site.Params.articleMeta.enablePageView }}
+              <div
+                class="h-1 w-1 rounded-full bg-red-700 dark:bg-red-700/50"></div>
+              <p>
+                <span
+                  id="twikoo_visitors"
+                  class="page-info-pageview-count"
+                  data-path="{{ .RelPermalink }}"
+                  >...</span
+                >
+                visits
+              </p>
+            {{ end }}
+          </div>
+        </div>
+
+        {{/* Content */}}
+        <div
+          id="single-content"
+          class="format mx-auto max-w-none px-1 py-5 md:format-base dark:format-invert format-figure:flex format-figure:flex-col format-figure:items-center format-img:cursor-zoom-in md:px-3 lg:px-10 dark:text-gray-300">
+          {{ .Content }}
+        </div>
+
+        {{/* tags */}}
+        <div
+          class="flex flex-col justify-start px-1 pb-5 pt-1 md:px-3 lg:flex-row lg:justify-between lg:px-10">
+          {{ $tags := (.GetTerms "tags") }}
+          {{ $tagsNums := len $tags }}
+          {{ if ge $tagsNums 1 }}
+            <div class="flex flex-row flex-wrap items-center">
+              {{ range $tags }}
+                <a
+                  class="mx-1 my-0.5 rounded-lg border border-gray-200 px-1.5 py-1 text-center text-xs text-gray-600 hover:bg-gray-100 dark:border-gray-500 dark:text-gray-200 dark:hover:bg-gray-600"
+                  href="{{ .Permalink }}"
+                  >{{ .LinkTitle }}</a
+                >
+              {{ end }}
+            </div>
+          {{ end }}
+
+        </div>
+      </div>
+    </div>
+
+    {{/* comments */}}
+    {{ if and (not .Params.disableComment) .Site.Params.comment.enable }}
+      <div id="post-comment">{{- partial "comments.html" . -}}</div>
+    {{ end }}
+  </div>
+
+  {{- partial "speed_dial.html" . -}}
+
+  {{ if .Site.Params.enableToTop }}
+    {{- partial "to_top.html" . -}}
+  {{ end }}
+
+{{ end }}
+
+{{ define "script" }}
+  {{ if not .Site.Params.articleMeta.disableToc }}
+    {{ $tocJS := resources.Get "/js/toc.js" }}
+    {{ if hugo.IsProduction }}
+      {{ $tocJS = $tocJS | minify | fingerprint }}
+    {{ end }}
+    <script src="{{ $tocJS.RelPermalink }}"></script>
+  {{ end }}
+
+  {{ if and .Site.Params.waline.serverURL .Site.Params.waline.alonePageview }}
+    <script src="https://unpkg.com/@waline/client@v2/dist/pageview.js"></script>
+    {{ $serverURL := .Site.Params.waline.serverURL }}
+    {{ $walineInfo := dict "serverURL" $serverURL }}
+    {{ $walinePageViewJS := resources.Get "/js/waline-pageview.js" | js.Build (dict "params" $walineInfo) }}
+    {{ if hugo.IsProduction }}
+      {{ $walinePageViewJS = $walinePageViewJS | minify | fingerprint }}
+    {{ end }}
+    <script src="{{ $walinePageViewJS.RelPermalink }}" defer></script>
+  {{ end }}
+
+  {{ $zoomJS := resources.Get "/js/zoom-img.js" }}
+  {{ if hugo.IsProduction }}
+    {{ $zoomJS = $zoomJS| minify | fingerprint }}
+  {{ end }}
+  <script src="{{ $zoomJS.RelPermalink }}" defer></script>
+
+  {{ $linkTopJS := resources.Get "/js/link-to-top.js" }}
+  {{ if hugo.IsProduction }}
+    {{ $linkTopJS = $linkTopJS | minify | fingerprint }}
+  {{ end }}
+  <script src="{{ $linkTopJS.RelPermalink }}" defer></script>
+
+  {{ if .Site.Params.showCodeCopyButton }}
+    {{ $codeCopyJS := resources.Get "/js/code-copy.js" }}
+    {{ if hugo.IsProduction }}
+      {{ $codeCopyJS = $codeCopyJS | minify | fingerprint }}
+    {{ end }}
+    <script src="{{ $codeCopyJS.RelPermalink }}" defer></script>
+  {{ end }}
+{{ end }}

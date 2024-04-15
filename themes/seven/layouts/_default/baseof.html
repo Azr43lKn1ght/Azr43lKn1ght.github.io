@@ -1,0 +1,43 @@
+<!doctype html>
+<html class="scroll-smooth" lang="{{ .Site.LanguageCode }}">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      id="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <title>
+      {{ block "title" . }}
+        {{- if .IsHome -}}
+          {{ .Site.Title }}
+        {{- else -}}
+          {{ .Type }} |
+          {{ .Site.Title }}
+        {{- end -}}
+      {{ end }}
+    </title>
+
+    {{- partial "head/meta.html" . -}}
+    {{- block "extra_meta" . }}{{- end }}
+    {{- partial "head/link.html" . -}}
+    {{- block "extra_link" . }}{{- end }}
+    {{- partial "head/script.html" . -}}
+    {{- block "extra_script". }}{{- end }}
+  </head>
+  <body class="flex h-screen flex-col bg-white dark:bg-[#1b1f26]">
+    {{- partial "header.html" . -}}
+
+    {{- block "main" . }}{{- end }}
+
+    {{ if .Site.Params.enableSearch }}
+      {{- partial "search.html" . -}}
+    {{ end }}
+
+    {{- partial "footer.html" . -}}
+
+    {{- partial "dark_mode.html" . -}}
+
+    {{- block "script" . }}{{- end }}
+    {{- partial "analytics.html" . -}}
+  </body>
+</html>

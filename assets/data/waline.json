@@ -1,0 +1,6 @@
+{
+  "locale": {
+    "mail": "Email"
+  },
+  "meta": ["nick", "mail"]
+}

@@ -1,0 +1,291 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.theme-aside {
+  @apply px-2 py-0.5 text-sm hover:rounded-lg hover:border-0 hover:bg-gray-100 hover:text-blue-700;
+}
+
+.theme-toc {
+  @apply my-0.5 block truncate rounded-lg border border-white px-2 py-2 text-xs text-gray-800 hover:rounded-lg hover:border-gray-200 hover:text-blue-700 dark:border-gray-800 dark:text-gray-200 dark:hover:border-gray-700 dark:hover:text-blue-500;
+}
+
+.theme-toc-active {
+  @apply my-0.5 block truncate rounded-lg border bg-gray-100 px-2 py-2 text-xs text-blue-700 dark:border-gray-500 dark:bg-gray-700 dark:text-gray-200 dark:hover:text-blue-500;
+}
+
+.theme-toc-nest-1 {
+  @apply pl-3;
+}
+
+.theme-toc-nest-2 {
+  @apply pl-4;
+}
+
+.theme-toc-nest-3 {
+  @apply pl-5;
+}
+
+.theme-toc-nest-1::before,
+.theme-toc-nest-2::before,
+.theme-toc-nest-3::before {
+  content: "- ";
+}
+
+/* Scrollbar */
+/* 整个滚动条，可以设置任意的尺寸大小，包括 0，也就是滚动条不可见 */
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+/* 可拖拽的那个滑杆 */
+*::-webkit-scrollbar-thumb {
+  background: rgba(60, 60, 67, 0.4);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: #425aef;
+  opacity: 1;
+  display: block !important;
+}
+
+/* 滚动条的轨道 */
+*::-webkit-scrollbar-track {
+  background-color: #00000000;
+}
+
+/* Fix jumping scrollbar issue */
+/* :root {
+  scrollbar-gutter: stable;
+} */
+
+html {
+  overflow-y: scroll;
+}
+
+:root {
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  /* waline */
+  --waline-bgcolor-light: #ffff;
+}
+
+:root body {
+  position: absolute;
+}
+
+.dark {
+  --waline-bgcolor: #1b1f26 !important;
+  --waline-info-bgcolor: rgb(39, 43, 49) !important;
+  --waline-bgcolor-light: rgb(55 65 81 / 0.2) !important;
+}
+
+body {
+  width: 100vw;
+}
+
+@font-face {
+  font-family: "Oswald";
+  src: url("/font/Oswald-VariableFont_wght.woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("/font/Montserrat-VariableFont_wght.woff2");
+  font-display: swap;
+}
+
+/* 导航栏高度滚动 */
+.navbar-init {
+  -webkit-transition: height 0.5s;
+  transition: height 0.5s;
+  -webkit-transition: all 0.5s ease;
+}
+
+.navbar-scroll {
+  height: 88px !important;
+}
+
+/* waline */
+.wl-panel {
+  @apply rounded-md border dark:border-gray-700;
+}
+
+.wl-header {
+  @apply rounded-tr-md border-b border-solid p-0 dark:border-gray-700;
+}
+
+.wl-meta-head {
+  @apply px-2;
+}
+
+.wl-cards {
+  @apply px-1;
+}
+
+.wl-header-item {
+  @apply border-solid border-r-[#ddd] p-0 last:border-r-0 md:border-r dark:border-r-gray-700;
+}
+
+@media (max-width: 580px) {
+  .wl-header-item:not(:last-child) {
+    @apply border-b border-solid dark:border-b-gray-700;
+  }
+}
+
+.wl-actions > a {
+  @apply hidden;
+}
+
+.wl-text-number {
+  @apply hidden;
+}
+
+.wl-editor {
+  @apply min-h-16 rounded-none transition-none;
+}
+
+.wl-input {
+  @apply transition-none;
+}
+
+.wl-panel > textarea {
+  @apply border-transparent ring-transparent placeholder:text-[#999] dark:placeholder:text-[#666];
+}
+
+.wl-reaction-img {
+  @apply h-8 w-8 !important;
+}
+
+.wl-power {
+  @apply px-2;
+}
+
+/* Code copy button */
+div.highlight,
+pre {
+  position: relative;
+}
+
+.codeblock-copy {
+  @apply absolute right-2 top-2 mx-auto flex h-7 w-7 items-center justify-center rounded-md border border-transparent duration-300 hover:border-gray-300 active:ring-2 active:ring-gray-300 dark:hover:border-gray-700 dark:active:ring-gray-700;
+}
+
+.icon-copy {
+  @apply h-5 w-5 fill-gray-300 dark:fill-gray-500;
+}
+
+.icon-copied {
+  @apply h-5 w-5;
+}
+
+/* Twikoo comment */
+.twikoo {
+  @apply w-full px-0.5 py-5 md:px-2 lg:max-w-5xl lg:px-8 dark:text-gray-400;
+}
+
+.tk-submit .tk-row .tk-avatar {
+  @apply hidden;
+}
+
+.tk-row.actions {
+  @apply mx-0 !important;
+}
+
+.tk-input.el-textarea > textarea {
+  @apply h-28 min-h-28 !important;
+}
+
+.tk-expand {
+  @apply rounded-lg dark:hover:bg-gray-600;
+}
+
+/* goods.html */
+.goods-item-hidden {
+  opacity: 0;
+  transform: translateY(6%);
+  transition:
+    opacity 0.4s ease,
+    transform 0.8s ease;
+}
+
+.slide-top {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 下面的 fixed、inset-0、z-30、bg-gray-900 及 dark:bg-gray-900 是 flowbite.css 移除后兼容 drawer 的阴影效果 */
+.fixed {
+  position: fixed;
+}
+
+.inset-0 {
+  inset: 0px;
+}
+
+.z-30 {
+  z-index: 30;
+}
+
+.bg-gray-900\/50 {
+  background-color: rgb(17 24 39 / 0.5);
+}
+
+:is(:where(.dark) .dark\:bg-gray-900\/80) {
+  background-color: rgb(17 24 39 / 0.8);
+}
+
+/* flowbite-typography 引用语法修改 */
+.format
+  :where(blockquote p:first-of-type):not(
+    :where([class~="not-format"] *)
+  )::before {
+  content: "" !important;
+}
+
+.format
+  :where(blockquote p:last-of-type):not(
+    :where([class~="not-format"] *)
+  )::after {
+  content: "" !important;
+}
+
+.format :where(blockquote):not(:where([class~="not-format"] *))::before {
+  display: none !important;
+  background-image: none !important;
+}
+
+.format
+  :where(blockquote):not(
+    :where([class~="not-format"], [class~="not-format"] *)
+  ) {
+  font-weight: 500;
+  font-style: italic;
+  color: var(--tw-format-quotes);
+  border-left-width: 0.25rem;
+  border-left-color: var(--tw-format-quote-borders);
+  quotes: "\201C" "\201D" "\2018" "\2019";
+  margin-top: 1.6em;
+  margin-bottom: 1.6em;
+  padding-left: 1em;
+}
+
+.format :where(a):not(:where([class~="not-format"] *)) {
+  color: var(--tw-format-links);
+  text-decoration: underline;
+  text-decoration-thickness: 1px !important;
+  text-underline-offset: 2px;
+  font-weight: 500;
+}
+
+.format :where(a):not(:where([class~="not-format"] *)):hover {
+  color: rgb(29 78 216);
+  text-decoration: underline !important;
+  text-decoration-color: rgb(29 78 216) !important;
+  text-decoration-thickness: 2px !important;
+}
