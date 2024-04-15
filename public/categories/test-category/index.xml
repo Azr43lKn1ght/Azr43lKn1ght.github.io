@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Test Category on Azr43lkn1ght</title>
+    <link>http://localhost:1313/categories/test-category/</link>
+    <description>Recent content in Test Category on Azr43lkn1ght</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 07 Apr 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/test-category/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Malware Development, Analysis and DFIR Series - Part I</title>
+      <link>http://localhost:1313/test-1/</link>
+      <pubDate>Sun, 07 Apr 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/test-1/</guid>
+      <description>Malware Development, Analysis and DFIR SeriesPART IIntroductionThis will be a series focussed on developing Malwares for ethical purposes only, The author is not liable for any damages caused.&#xA;before we begin, let&amp;rsquo;s know about a few things&#xA;what is a malware?Malwares are malicious softwares, that are a nefarious class of software meticulously engineered to compromise the integrity, confidentiality, or availability of computer systems. These pernicious programs are often cloaked in deceit, masquerading as legitimate software to trick unsuspecting users into granting them access.</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,1458 @@
+<!doctype html>
+<html class="scroll-smooth" lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      id="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <title>
+      Malware Development, Analysis and DFIR Series - Part I | Azr43lkn1ght
+    </title><meta name="application-name" content="Azr43lkn1ght" />
+<meta name="apple-mobile-web-app-title" content="Azr43lkn1ght" />
+
+
+  <meta name="title" content="Malware Development, Analysis and DFIR Series - Part I" />
+
+
+
+  <meta name="description" content="this is a test post description" />
+<meta name="theme-color" content="#ffffff" /><link rel="icon" href="/favicon.svg" /><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" /><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#ffffff" />
+
+
+
+
+  
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/instantsearch.css@8.0.0/themes/reset-min.css"
+    integrity="sha256-2AeJLzExpZvqLUxMfcs+4DWcMwNfpnjUeAAvEtPr0wU="
+    crossorigin="anonymous" />
+
+  
+  
+  
+  <link href="/css/search.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<link href="/css/styles.css" rel="stylesheet" />
+
+<link href="/css/custom.css" rel="stylesheet" />
+  
+  
+  
+  <link href="/css/image-preview.css" rel="stylesheet" />
+
+  
+    
+    
+    
+    <link href="/css/syntax.css" rel="stylesheet" />
+  
+<script src="/js/third-party/flowbite/v2.2.1/flowbite.min.js" defer></script>
+<script>
+  
+  if (
+    localStorage.getItem("color-theme") === "dark" ||
+    (!("color-theme" in localStorage) &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches)
+  ) {
+    document.documentElement.classList.add("dark");
+  } else {
+    document.documentElement.classList.remove("dark");
+  }
+</script>
+
+  </head>
+  <body class="flex h-screen flex-col bg-white dark:bg-[#1b1f26]"><nav
+  id="navbar"
+  class="fixed start-0 top-0 z-20 flex w-full justify-center border-b border-gray-200 bg-white/85 backdrop-blur-md md:h-38 dark:border-gray-700 dark:bg-[#1b1f26]">
+  <div
+    class="mx-auto flex w-[1280px] flex-wrap items-center justify-between place-self-center object-center p-4">
+    
+    
+    <a
+      href="http://localhost:1313/"
+      class="flex items-center justify-start space-x-3 rtl:space-x-reverse">
+      
+      <p class="dark:text-primary" style="font-size: 1.3rem">
+        
+        
+          
+        
+
+
+
+
+
+
+
+
+
+
+        <b>Azr43l</b><span>kn1ght</span>
+      </p></a>
+<div class="flex flex-col md:flex-row gap-6">
+    
+    <div class="flex items-center space-x-3 md:order-2 rtl:space-x-reverse">
+      
+      
+        <button
+          type="button"
+          id="search-icon"
+          class="bg-primary p-3 text-center text-sm font-medium text-white hover:bg-[#069096] focus:outline-none md:p-5 dark:bg-primary dark:hover:bg-[#069096]">
+          <svg
+            t="1702210633165"
+            class="icon"
+            viewBox="0 0 1024 1024"
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg"
+            p-id="4364"
+            width="16"
+            height="16">
+            <path
+              d="M426.666667 768a339.285333 339.285333 0 0 0 208.938666-72.021333l187.562667 187.562666 60.330667-60.330666-187.562667-187.562667A339.285333 339.285333 0 0 0 768 426.666667c0-188.202667-153.130667-341.333333-341.333333-341.333334s-341.333333 153.130667-341.333334 341.333334 153.130667 341.333333 341.333334 341.333333z m0-597.333333c141.184 0 256 114.816 256 256s-114.816 256-256 256-256-114.816-256-256 114.816-256 256-256z"
+              fill="#ffffff"
+              p-id="4365"></path>
+          </svg>
+        </button>
+      
+
+      
+      <button
+        data-collapse-toggle="navbar-sticky"
+        type="button"
+        class="inline-flex h-10 w-10 items-center justify-center p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none md:hidden dark:text-gray-400 dark:hover:bg-gray-700"
+        aria-controls="navbar-sticky"
+        aria-expanded="false">
+        <span class="sr-only">Open main menu</span>
+        <svg
+          class="h-5 w-5"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 17 14">
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M1 1h15M1 7h15M1 13h15" />
+        </svg>
+      </button>
+    </div>
+    <span class="flex items-center absolute md:relative top-[50px] md:top-0 right-0 left-0">
+      <div
+  class="hidden w-full items-center justify-between md:order-1 md:flex md:w-auto"
+  id="navbar-sticky">
+  <ul
+    class="mt-4 flex flex-col rounded-lg border border-gray-300 p-4 font-medium md:mt-0 md:flex-row md:space-x-8 md:border-0 md:p-0 rtl:space-x-reverse dark:border-gray-700 dark:bg-gray-900 md:dark:bg-transparent">
+    
+      <li>
+        
+          <a
+            aria-current="page"
+            class="block rounded-lg px-3 py-2 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-[#00adb5] dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent md:dark:hover:text-[#00adb5]"
+            href="/">
+            
+            Home
+          </a>
+        
+      </li>
+    
+      <li>
+        
+          <a
+            aria-current="page"
+            class="block rounded-lg px-3 py-2 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-[#00adb5] dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent md:dark:hover:text-[#00adb5]"
+            href="/posts/">
+            
+            Posts
+          </a>
+        
+      </li>
+    
+
+    
+      <button
+        id="dropdownNavbarLink-category"
+        data-dropdown-toggle="dropdownNavbar-category"
+        class="flex w-full items-center justify-between rounded-lg px-3 py-2 text-gray-900 hover:bg-gray-100 md:w-auto md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-[#00adb5] dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:focus:text-white md:dark:hover:bg-transparent md:dark:hover:text-[#00adb5]">
+        Category
+        <svg
+          class="ms-2.5 h-2.5 w-2.5"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 10 6">
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="m1 1 4 4 4-4" />
+        </svg>
+      </button>
+
+      <div
+        id="dropdownNavbar-category"
+        class="z-10 hidden w-44 divide-y divide-gray-100 rounded-lg bg-white font-normal shadow dark:divide-gray-600 dark:bg-gray-800">
+        <ul
+          class="py-2 text-sm text-gray-700 dark:text-gray-400"
+          aria-labelledby="dropdownLargeButton">
+          
+            <li>
+              <a
+                href="http://localhost:1313/categories/test-category/"
+                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                >Test Category</a
+              >
+            </li>
+          
+        </ul>
+      </div>
+    
+  </ul>
+</div>
+</span>
+  </div>
+  </div>
+</nav>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    let navbarDom = document.getElementById("navbar");
+    let isNavScrolled = false;
+
+    if (window.innerWidth >= 768) {
+      navbarDom.classList.add("navbar-init");
+
+      var scrollTop = 0;
+
+      window.addEventListener("scroll", function () {
+        scrollTop = window.pageYOffset;
+
+        if (scrollTop >= 10 && !isNavScrolled) {
+          isNavScrolled = true;
+          navbarDom.classList.add("navbar-scroll");
+        } else if (scrollTop < 10 && isNavScrolled) {
+          isNavScrolled = false;
+          navbarDom.classList.remove("navbar-scroll");
+        }
+      });
+    } else {
+      navbarDom.classList.remove("navbar-init");
+    }
+  });
+</script>
+
+  
+
+  
+  
+    
+    
+      <div id="post-feature" class="mt-22 w-full md:mt-[151px]">
+        <img
+          class="h-60 w-full object-cover md:h-120"
+          src="http://localhost:1313/images/posts/3.jpg"
+          alt="preview image"
+          srcset="" />
+      </div>
+    
+  
+
+
+  <div
+    id="single-page-container"
+    class="mx-auto my-5 w-full rounded-b-lg px-5 md:max-w-4xl">
+    <div class="flex w-full justify-between">
+      <div id="post-container" class="w-full">
+        
+        <div
+          id="post-title"
+          data-popover-target="popover-animation"
+          data-popover-offset="0"
+          data-popover-placement="bottom"
+          class="flex flex-col py-5 pl-0 pr-1 md:py-8 md:pl-1 md:pr-3 lg:py-10 lg:pl-7 lg:pr-10">
+          <div
+            class="flex flex-row flex-wrap space-x-1 border-l-8 border-primary pb-2 pl-2 pt-1 font-Oswald text-sm font-normal tracking-wide text-gray-500/90 dark:text-gray-500">
+            <span>Posted by April 7 2024</span>
+
+            
+            
+            
+              <span class="flex flex-row space-x-1">
+                
+                  <span class="text-red-700"> / </span>
+                  <a
+                    class="border-b-2 border-transparent hover:border-b-2 hover:border-primary hover:text-[#00adb5]"
+                    href="http://localhost:1313/categories/test-category/"
+                    >Test Category</a
+                  >
+                
+              </span>
+            
+
+          </div>
+          <div
+            class="border-l-8 border-primary py-1 pl-2 text-start text-3xl font-bold tracking-wide text-black lg:text-4xl dark:text-white">
+            Malware Development, Analysis and DFIR Series - Part I
+          </div>
+
+          <div
+            class="flex flex-row flex-wrap items-center space-x-1 border-l-8 border-primary pb-1 pl-2 pt-3.5 font-Oswald text-xs font-extralight tracking-wide text-gray-500/90 dark:text-gray-600">
+            <span>Updated on April 7 2024</span>
+            <div
+              class="h-1 w-1 rounded-full bg-red-700 dark:bg-red-700/50"></div>
+            <span>1137 words</span>
+            <div
+              class="h-1 w-1 rounded-full bg-red-700 dark:bg-red-700/50"></div>
+            <span>6 minutes read</span>
+            
+              <div
+                class="h-1 w-1 rounded-full bg-red-700 dark:bg-red-700/50"></div>
+              <p>
+                <span
+                  id="twikoo_visitors"
+                  class="page-info-pageview-count"
+                  data-path="/test-1/"
+                  >...</span
+                >
+                visits
+              </p>
+            
+          </div>
+        </div>
+
+        
+        <div
+          id="single-content"
+          class="format mx-auto max-w-none px-1 py-5 md:format-base dark:format-invert format-figure:flex format-figure:flex-col format-figure:items-center format-img:cursor-zoom-in md:px-3 lg:px-10 dark:text-gray-300">
+          <h1 class="group head-tag" id="malware-development-analysis-and-dfir-series">Malware Development, Analysis and DFIR Series<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#malware-development-analysis-and-dfir-series"></a></h1><h2 class="group head-tag" id="part-i">PART I<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#part-i"></a></h2><h4 class="group head-tag" id="introduction">Introduction<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#introduction"></a></h4><p><strong>This will be a series focussed on developing Malwares for ethical purposes only, The author is not liable for any damages caused.</strong></p>
+<p>before we begin, let&rsquo;s know about a few things</p>
+<h4 class="group head-tag" id="what-is-a-malware">what is a malware?<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#what-is-a-malware"></a></h4><p>Malwares are malicious softwares, that are a nefarious class of software meticulously engineered to compromise the integrity, confidentiality, or availability of computer systems. These pernicious programs are often cloaked in deceit, masquerading as  legitimate software to trick unsuspecting users into granting them access. A malware can perform harmful actions such as stealing sensitive data, causing system disruptions, or even taking control of the system.</p>
+<p>Malwares can also be used by red/purple teamers and pentesters for ethical and authorized purposes like Assessment of Defenses, Simulation of Threat Actors, Testing Incident Response Plans, Validation of Security</p>
+<h4 class="group head-tag" id="prerequisites">Prerequisites<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#prerequisites"></a></h4><ul>
+<li>Python</li>
+<li>C Programming</li>
+<li>Windows API (atleast basic understanding)</li>
+<li>Winternals (atleast basic understanding)</li>
+</ul>
+<h4 class="group head-tag" id="requirements">Requirements<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#requirements"></a></h4><ul>
+<li>
+<a
+  href="https://visualstudio.microsoft.com"
+  
+    target="_blank"
+  
+  >Visualstudio</a
+>
+</li>
+<li>
+<a
+  href="https://www.angusj.com/resourcehacker/"
+  
+    target="_blank"
+  
+  >Resource Hacker</a
+>
+</li>
+<li>
+<a
+  href="https://processhacker.sourceforge.io/downloads.php"
+  
+    target="_blank"
+  
+  >Process Hacker</a
+>
+</li>
+<li>
+<a
+  href="https://x64dbg.com"
+  
+    target="_blank"
+  
+  >x64dbg</a
+>
+</li>
+<li>
+<a
+  href="https://www.winitor.com/download"
+  
+    target="_blank"
+  
+  >PEStudio</a
+>
+</li>
+<li>
+<a
+  href="https://hex-rays.com/ida-free/"
+  
+    target="_blank"
+  
+  >ida</a
+>
+</li>
+<li>
+<a
+  href="https://github.com/rapid7/metasploit-framework/tree/master"
+  
+    target="_blank"
+  
+  >msfvenom</a
+>
+</li>
+</ul>
+<h4 class="group head-tag" id="some-c-basics">Some C basics<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#some-c-basics"></a></h4><h5 class="group head-tag" id="structs">Structs:<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#structs"></a></h5><p>Programmers can organize similar data items of multiple data kinds into a single unit by using user-defined data types called structures, also known as structs. To store information about a specific object, utilize structures. Easily accessible and manipulable hierarchies facilitate the organization of vast quantities of relevant data.</p>
+<p>To declare a struct:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">_STRUCT_NAME</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">//elements
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="n">STRUCT_NAME</span><span class="p">,</span> <span class="o">*</span><span class="n">NAME_PSTRUCT</span><span class="p">;</span>
+</span></span></code></pre></div><p>typedef keyword is to give an alias to the struct</p>
+<p>Example:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">_PEB_LDR_DATA</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">ULONG</span>                   <span class="n">Length</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">BOOLEAN</span>                 <span class="n">Initialized</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">PVOID</span>                   <span class="n">SsHandle</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">LIST_ENTRY</span>              <span class="n">InLoadOrderModuleList</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">LIST_ENTRY</span>              <span class="n">InMemoryOrderModuleList</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">LIST_ENTRY</span>              <span class="n">InInitializationOrderModuleList</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="n">PEB_LDR_DATA</span><span class="p">,</span> <span class="o">*</span><span class="n">PPEB_LDR_DATA</span><span class="p">;</span>
+</span></span></code></pre></div><p>now let&rsquo;s start with basic things first.</p>
+<h4 class="group head-tag" id="different-ways-to-store-payload">Different ways to store Payload<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#different-ways-to-store-payload"></a></h4><h5 class="group head-tag" id="text-section">.text section<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#text-section"></a></h5><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;windows.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">	<span class="kt">void</span> <span class="o">*</span> <span class="n">plmem</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">BOOL</span> <span class="n">plbufexec</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">HANDLE</span> <span class="n">run_thread</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">DWORD</span> <span class="n">oldprotect</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">pllen</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">payload</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="mh">0x90</span><span class="p">,</span>		<span class="c1">//NOP
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="mh">0x90</span><span class="p">,</span>		<span class="c1">//NOP
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="mh">0x90</span><span class="p">,</span>		<span class="c1">//NOP
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="mh">0x90</span><span class="p">,</span>		<span class="c1">//NOP
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="mh">0xcc</span><span class="p">,</span>		<span class="c1">//INT3
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="mh">0xc3</span>		<span class="c1">//RET
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="p">};</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">pllen</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">plmem</span> <span class="o">=</span> <span class="n">VirtualAlloc</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">pllen</span><span class="p">,</span> <span class="n">MEM_COMMIT</span> <span class="o">|</span> <span class="n">MEM_RESERVE</span><span class="p">,</span> <span class="n">PAGE_READWRITE</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;%s : 0x%p</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="s">&#34;payload addr&#34;</span><span class="p">,</span> <span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="n">payload</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;%s : 0x%p</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="s">&#34;plmem addr&#34;</span><span class="p">,</span> <span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="n">plmem</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">RtlMoveMemory</span><span class="p">(</span><span class="n">plmem</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">pllen</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">plbufexec</span> <span class="o">=</span> <span class="n">VirtualProtect</span><span class="p">(</span><span class="n">plmem</span><span class="p">,</span> <span class="n">pllen</span><span class="p">,</span> <span class="n">PAGE_EXECUTE_READ</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">oldprotect</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">Wanna Exec?</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">getchar</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span> <span class="n">plbufexec</span> <span class="o">!=</span> <span class="mi">0</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">run_thread</span> <span class="o">=</span> <span class="n">CreateThread</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="n">LPTHREAD_START_ROUTINE</span><span class="p">)</span> <span class="n">plmem</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Payload Execution Started!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">			<span class="n">WaitForSingleObject</span><span class="p">(</span><span class="n">run_thread</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Let&rsquo;s debug it</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="https://hackmd.io/_uploads/rkCtOi3yR.png"
+      alt="image"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="https://hackmd.io/_uploads/rJWjus310.png"
+      alt="image"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>now let&rsquo;s static analyze it with ida.</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="https://hackmd.io/_uploads/HkmDnnZlR.png"
+      alt="image"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>we can see here Src and v5 has our payload.</p>
+<p>dwSize stores the size of the payload.</p>
+<p>next up, we have VirtualAlloc</p>
+<p>
+<a
+  href="https://learn.microsoft.com/en-us/windows/win32/api/memoryapi/nf-memoryapi-virtualalloc"
+  
+    target="_blank"
+  
+  >VirtualAlloc</a
+>
+ - Reserves, commits, or changes the state of a region of pages in the virtual address space of the calling process. Memory allocated by this function is automatically initialized to zero.</p>
+<p>It&rsquo;s used to allocate new memory/buffer in virtual address space to use.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">LPVOID</span> <span class="nf">VirtualAlloc</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="n">in</span><span class="p">,</span> <span class="n">optional</span><span class="p">]</span> <span class="n">LPVOID</span> <span class="n">lpAddress</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="n">in</span><span class="p">]</span>           <span class="n">SIZE_T</span> <span class="n">dwSize</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="n">in</span><span class="p">]</span>           <span class="n">DWORD</span>  <span class="n">flAllocationType</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="n">in</span><span class="p">]</span>           <span class="n">DWORD</span>  <span class="n">flProtect</span>
+</span></span><span class="line"><span class="cl"><span class="p">);</span>
+</span></span></code></pre></div><p>now we will have a pointer to the allocated memory in lpAddress</p>
+<p>If the function succeeds, the return value is the base address of the allocated region of pages. If the function fails, the return value is NULL.</p>
+<p>then we are writing the payload into the memory using memmove</p>
+<p>next up we have VirtualProtect</p>
+<p>
+<a
+  href="https://learn.microsoft.com/en-us/windows/win32/api/memoryapi/nf-memoryapi-virtualprotect"
+  
+    target="_blank"
+  
+  >VirtualProtect</a
+>
+ - Changes the protection on a region of committed pages in the virtual address space of the calling process.</p>
+<p>It is to set permissions of a particular memory/buffer allocated.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">BOOL</span> <span class="nf">VirtualProtect</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="n">in</span><span class="p">]</span>  <span class="n">LPVOID</span> <span class="n">lpAddress</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="n">in</span><span class="p">]</span>  <span class="n">SIZE_T</span> <span class="n">dwSize</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="n">in</span><span class="p">]</span>  <span class="n">DWORD</span>  <span class="n">flNewProtect</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="n">out</span><span class="p">]</span> <span class="n">PDWORD</span> <span class="n">lpflOldProtect</span>
+</span></span><span class="line"><span class="cl"><span class="p">);</span>
+</span></span></code></pre></div><p>here we have set it as 0x20 which means PAGE_EXECUTE_READ - &ldquo;Enables execute or read-only access to the committed region of pages. An attempt to write to the committed region results in an access violation.&rdquo;</p>
+<p>if it is made executable, hHandle = (HANDLE)<em>IAT_start</em>_(0i64, 0i64, lpAddress, 0i64, 0, 0i64); gets executed , which while debugging we can figure out that it creates a thread</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="https://hackmd.io/_uploads/r13o2nzlA.png"
+      alt="image"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="https://hackmd.io/_uploads/rkhjh2MgR.png"
+      alt="image"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p><strong>we will look in into debugging later in the series</strong></p>
+<p>which returns a handle for the thread created, then we have</p>
+<p>
+<a
+  href="https://learn.microsoft.com/en-us/windows/win32/api/synchapi/nf-synchapi-waitforsingleobject"
+  
+    target="_blank"
+  
+  >WaitForSingleObject</a
+>
+ - Waits until the specified object is in the signaled state or the time-out interval elapses.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">DWORD</span> <span class="nf">WaitForSingleObject</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="n">in</span><span class="p">]</span> <span class="n">HANDLE</span> <span class="n">hHandle</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="n">in</span><span class="p">]</span> <span class="n">DWORD</span>  <span class="n">dwMilliseconds</span>
+</span></span><span class="line"><span class="cl"><span class="p">);</span>
+</span></span></code></pre></div><p>here it waits infinitly due to -1.</p>
+<p>next let&rsquo;s look into other cases.</p>
+<h5 class="group head-tag" id="data-section">.data section<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#data-section"></a></h5><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;windows.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">payload</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="mh">0x90</span><span class="p">,</span>		<span class="c1">//NOP
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="mh">0x90</span><span class="p">,</span>		<span class="c1">//NOP
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="mh">0x90</span><span class="p">,</span>		<span class="c1">//NOP
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="mh">0x90</span><span class="p">,</span>		<span class="c1">//NOP
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="mh">0xcc</span><span class="p">,</span>		<span class="c1">//INT3
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="mh">0xc3</span>		<span class="c1">//RET
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">pllen</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">	<span class="kt">void</span> <span class="o">*</span> <span class="n">plmem</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">BOOL</span> <span class="n">plbufexec</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">HANDLE</span> <span class="n">run_thread</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">DWORD</span> <span class="n">oldprotect</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">pllen</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">plmem</span> <span class="o">=</span> <span class="n">VirtualAlloc</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">pllen</span><span class="p">,</span> <span class="n">MEM_COMMIT</span> <span class="o">|</span> <span class="n">MEM_RESERVE</span><span class="p">,</span> <span class="n">PAGE_READWRITE</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;%s : 0x%p</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="s">&#34;payload addr&#34;</span><span class="p">,</span> <span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="n">payload</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;%s : 0x%p</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="s">&#34;plmem addr&#34;</span><span class="p">,</span> <span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="n">plmem</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">RtlMoveMemory</span><span class="p">(</span><span class="n">plmem</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">pllen</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">plbufexec</span> <span class="o">=</span> <span class="n">VirtualProtect</span><span class="p">(</span><span class="n">plmem</span><span class="p">,</span> <span class="n">pllen</span><span class="p">,</span> <span class="n">PAGE_EXECUTE_READ</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">oldprotect</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">Wanna Exec?</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">getchar</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span> <span class="n">plbufexec</span> <span class="o">!=</span> <span class="mi">0</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">run_thread</span> <span class="o">=</span> <span class="n">CreateThread</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="n">LPTHREAD_START_ROUTINE</span><span class="p">)</span> <span class="n">plmem</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Payload Execution Started!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">			<span class="n">WaitForSingleObject</span><span class="p">(</span><span class="n">run_thread</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Let&rsquo;s debug it</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="https://hackmd.io/_uploads/ryEr3inJ0.png"
+      alt="image"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="https://hackmd.io/_uploads/SkULho310.png"
+      alt="image"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="https://hackmd.io/_uploads/Hk7ETj2yC.png"
+      alt="image"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>now let&rsquo;s static analyze it with ida.</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="https://hackmd.io/_uploads/HJPorbmx0.png"
+      alt="image"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>the only difference here is that the payload is stored in .data section globally so we can get it from there.</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="https://hackmd.io/_uploads/H1i7I-mgC.png"
+      alt="image"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>so the memmove uses this rather than initializing it in the main function.</p>
+<h4 class="group head-tag" id="rsrc">.rsrc<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#rsrc"></a></h4><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;windows.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;resources.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="o">*</span> <span class="n">plmem</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">BOOL</span> <span class="n">plbufexec</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">HANDLE</span> <span class="n">run_thread</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">DWORD</span> <span class="n">oldprotect</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">HGLOBAL</span> <span class="n">resHandle</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">HRSRC</span> <span class="n">res</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">unsigned</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">payload</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">pllen</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">res</span> <span class="o">=</span> <span class="n">FindResource</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="n">MAKEINTRESOURCE</span><span class="p">(</span><span class="n">SHELLCODE</span><span class="p">),</span> <span class="n">RT_RCDATA</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">resHandle</span> <span class="o">=</span> <span class="n">LoadResource</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="n">res</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">payload</span> <span class="o">=</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">char</span> <span class="o">*</span><span class="p">)</span> <span class="n">LockResource</span><span class="p">(</span><span class="n">resHandle</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pllen</span> <span class="o">=</span> <span class="n">SizeofResource</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="n">res</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">plmem</span> <span class="o">=</span> <span class="n">VirtualAlloc</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">pllen</span><span class="p">,</span> <span class="n">MEM_COMMIT</span> <span class="o">|</span> <span class="n">MEM_RESERVE</span><span class="p">,</span> <span class="n">PAGE_READWRITE</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%s : 0x%p</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="s">&#34;payload addr&#34;</span><span class="p">,</span> <span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="n">payload</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%s : 0x%p</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="s">&#34;plmem addr&#34;</span><span class="p">,</span> <span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="n">plmem</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">RtlMoveMemory</span><span class="p">(</span><span class="n">plmem</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">pllen</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">plbufexec</span> <span class="o">=</span> <span class="n">VirtualProtect</span><span class="p">(</span><span class="n">plmem</span><span class="p">,</span> <span class="n">pllen</span><span class="p">,</span> <span class="n">PAGE_EXECUTE_READ</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">oldprotect</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">Wanna Exec?</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">getchar</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span> <span class="n">plbufexec</span> <span class="o">!=</span> <span class="mi">0</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">run_thread</span> <span class="o">=</span> <span class="n">CreateThread</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="n">LPTHREAD_START_ROUTINE</span><span class="p">)</span> <span class="n">plmem</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Payload Execution Started!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">WaitForSingleObject</span><span class="p">(</span><span class="n">run_thread</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Looking into Resource Hacker</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="https://hackmd.io/_uploads/rJFwYJkeC.png"
+      alt="image"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>we can easily view as well as  get it from there!</p>
+<p>Let&rsquo;s debug it</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="https://hackmd.io/_uploads/rJJX5kyeR.png"
+      alt="image"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="https://hackmd.io/_uploads/ByCZcJyg0.png"
+      alt="image"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>now let&rsquo;s static analyze it with ida.</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="https://hackmd.io/_uploads/ByWND-XlC.png"
+      alt="image"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>here there are only few differnces:</p>
+<ol>
+<li>
+<a
+  href="https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-findresourcea"
+  
+    target="_blank"
+  
+  >FindResourceA</a
+>
+ - &ldquo;Determines the location of a resource with the specified type and name in the specified module and returns handle to the resource&rsquo;s information block&rdquo;</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">HRSRC</span> <span class="nf">FindResourceA</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="n">in</span><span class="p">,</span> <span class="n">optional</span><span class="p">]</span> <span class="n">HMODULE</span> <span class="n">hModule</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="n">in</span><span class="p">]</span>           <span class="n">LPCSTR</span>  <span class="n">lpName</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="n">in</span><span class="p">]</span>           <span class="n">LPCSTR</span>  <span class="n">lpType</span>
+</span></span><span class="line"><span class="cl"><span class="p">);</span>
+</span></span></code></pre></div><ol start="2">
+<li>
+<a
+  href="https://learn.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-loadresource"
+  
+    target="_blank"
+  
+  >LoadResource</a
+>
+ - &ldquo;Retrieves a handle that can be used to obtain a pointer to the first byte of the specified resource in memory&rdquo;</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">HGLOBAL</span> <span class="nf">LoadResource</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="n">in</span><span class="p">,</span> <span class="n">optional</span><span class="p">]</span> <span class="n">HMODULE</span> <span class="n">hModule</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="n">in</span><span class="p">]</span>           <span class="n">HRSRC</span>   <span class="n">hResInfo</span>
+</span></span><span class="line"><span class="cl"><span class="p">);</span>
+</span></span></code></pre></div><ol start="3">
+<li>
+<a
+  href="https://learn.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-lockresource"
+  
+    target="_blank"
+  
+  >LockResource</a
+>
+ - &ldquo;Retrieves a pointer to the specified resource in memory&rdquo;</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">LPVOID</span> <span class="nf">LockResource</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="n">in</span><span class="p">]</span> <span class="n">HGLOBAL</span> <span class="n">hResData</span>
+</span></span><span class="line"><span class="cl"><span class="p">);</span>
+</span></span></code></pre></div><h4 class="group head-tag" id="wrapping-up">Wrapping up<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#wrapping-up"></a></h4><p>We looked into different places to load a shellcode or anyother forms of executable segmants in a PE, we also did basic analysis in ida, in upcomming posts we will look into intel x86 assembly and more.</p>
+<h4 class="group head-tag" id="contact-me">Contact me?<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#contact-me"></a></h4><p>For any doubts and queries, you can contact me through</p>
+<p>
+<a
+  href="https://twitter.com/Azr43lKn1ght"
+  
+    target="_blank"
+  
+  >X(twitter) - Azr43lKn1ght</a
+>
+
+
+<a
+  href="https://www.linkedin.com/in/azr43lkn1ght"
+  
+    target="_blank"
+  
+  >Linkedin - Nithin Chenthur Prabhu</a
+>
+
+
+<a
+  href="https://github.com/Azr43lKn1ght"
+  
+    target="_blank"
+  
+  >Github - Azr43lKn1ght</a
+>
+
+
+<a
+  href="mailto:nithinchenthur@gmail.com"
+  
+  >gmail - nithinchenthur@gmail.com</a
+>
+</p>
+
+        </div>
+
+        
+        <div
+          class="flex flex-col justify-start px-1 pb-5 pt-1 md:px-3 lg:flex-row lg:justify-between lg:px-10">
+          
+          
+          
+            <div class="flex flex-row flex-wrap items-center">
+              
+                <a
+                  class="mx-1 my-0.5 rounded-lg border border-gray-200 px-1.5 py-1 text-center text-xs text-gray-600 hover:bg-gray-100 dark:border-gray-500 dark:text-gray-200 dark:hover:bg-gray-600"
+                  href="http://localhost:1313/tags/test/"
+                  >Test</a
+                >
+              
+            </div>
+          
+
+        </div>
+      </div>
+    </div>
+
+    
+    
+  </div>
+<div data-dial-init class="group fixed bottom-24 end-8 md:end-20">
+  <div
+    id="speed-dial-menu-bottom-right"
+    class="mb-4 flex hidden flex-col items-center space-y-2">
+    
+    
+      <button
+        id="to-top-button"
+        type="button"
+        data-tooltip-target="tooltip-top"
+        data-tooltip-placement="left"
+        class="flex hidden h-[52px] w-[52px] items-center justify-center rounded-full border border-gray-200 bg-white text-gray-500 shadow-sm hover:bg-gray-50 hover:text-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-400">
+        <svg
+          class="h-5 w-5"
+          aria-hidden="true"
+          fill="currentColor"
+          viewBox="0 0 1024 1024"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M629.333333 853.333333h-234.666666c-17.066667 0-32 14.933333-32 32s14.933333 32 32 32h234.666666c17.066667 0 32-14.933333 32-32s-14.933333-32-32-32zM842.666667 360.533333L535.466667 113.066667c-12.8-8.533333-27.733333-8.533333-40.533334 0L183.466667 360.533333c-6.4 6.4-12.8 14.933333-12.8 23.466667 0 2.133333 0 6.4 2.133333 8.533333 2.133333 12.8 14.933333 21.333333 27.733333 21.333334h155.733334v236.8c0 19.2 12.8 29.866667 32 29.866666h249.6c21.333333 0 34.133333-12.8 34.133333-29.866666v-234.666667h151.466667c12.8 0 25.6-8.533333 27.733333-21.333333s0-25.6-8.533333-34.133334zM629.333333 746.666667h-234.666666c-17.066667 0-32 14.933333-32 32s14.933333 32 32 32h234.666666c17.066667 0 32-14.933333 32-32s-14.933333-32-32-32z"></path>
+        </svg>
+        <span class="sr-only">Top</span>
+      </button>
+      <div
+        id="tooltip-top"
+        role="tooltip"
+        class="tooltip invisible absolute z-10 inline-block w-auto rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700">
+        Top
+        <div class="tooltip-arrow" data-popper-arrow></div>
+      </div>
+    
+
+    
+      
+      <button
+        type="button"
+        data-tooltip-target="tooltip-toc"
+        data-tooltip-placement="left"
+        data-drawer-target="drawer-body-scrolling-toc"
+        data-drawer-show="drawer-body-scrolling-toc"
+        data-drawer-body-scrolling="true"
+        aria-controls="drawer-body-scrolling-toc"
+        class="flex h-[52px] w-[52px] items-center justify-center rounded-full border border-gray-200 bg-white text-gray-500 shadow-sm hover:bg-gray-50 hover:text-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-400">
+        <svg
+          class="h-5 w-5"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="currentColor"
+          viewBox="0 0 1024 1024"
+          version="1.1">
+          <path
+            d="M901.8 313.5H354.4c-32 0-58.2-26.2-58.2-58.2v-18.1c0-32 26.2-58.2 58.2-58.2h547.4c32 0 58.2 26.2 58.2 58.2v18.1c0 32-26.2 58.2-58.2 58.2z"></path>
+          <path
+            d="M131.3 246.2m-67.3 0a67.3 67.3 0 1 0 134.6 0 67.3 67.3 0 1 0-134.6 0Z"></path>
+          <path
+            d="M901.8 579.3H354.4c-32 0-58.2-26.2-58.2-58.2V503c0-32 26.2-58.2 58.2-58.2h547.4c32 0 58.2 26.2 58.2 58.2v18.1c0 32-26.2 58.2-58.2 58.2z"></path>
+          <path
+            d="M131.3 512m-67.3 0a67.3 67.3 0 1 0 134.6 0 67.3 67.3 0 1 0-134.6 0Z"></path>
+          <path
+            d="M901.8 845.1H354.4c-32 0-58.2-26.2-58.2-58.2v-18.1c0-32 26.2-58.2 58.2-58.2h547.4c32 0 58.2 26.2 58.2 58.2v18.1c0 32-26.2 58.2-58.2 58.2z"></path>
+          <path
+            d="M131.3 777.8m-67.3 0a67.3 67.3 0 1 0 134.6 0 67.3 67.3 0 1 0-134.6 0Z"></path>
+        </svg>
+
+        <span class="sr-only">Catelog</span>
+      </button>
+      <div
+        id="tooltip-toc"
+        role="tooltip"
+        class="tooltip invisible absolute z-10 inline-block w-auto rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700">
+        Catelog
+        <div class="tooltip-arrow" data-popper-arrow></div>
+      </div>
+
+      
+      
+    
+
+
+    
+    <button
+      type="button"
+      data-drawer-target="drawer-body-scrolling"
+      data-drawer-show="drawer-body-scrolling"
+      data-drawer-body-scrolling="true"
+      aria-controls="drawer-body-scrolling"
+      data-tooltip-target="tooltip-tags"
+      data-tooltip-placement="left"
+      class="flex h-[52px] w-[52px] items-center justify-center rounded-full border border-gray-200 bg-white text-gray-500 shadow-sm hover:bg-gray-50 hover:text-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-400">
+      <svg
+        class="h-5 w-5"
+        aria-hidden="true"
+        fill="currentColor"
+        viewBox="0 0 1024 1024"
+        version="1.1"
+        xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M96.512 454.272h839.84a78.752 78.752 0 0 1 78.752 78.752v8.704a78.752 78.752 0 0 1-78.752 78.752H96.512a78.752 78.752 0 0 1-78.752-78.752v-8.704a78.752 78.752 0 0 1 78.752-78.752zM571.872 232.672H904.32a55.424 55.424 0 0 1 0 110.848H571.872a55.424 55.424 0 0 1 0-110.848zM350.208 731.36h332.448a55.424 55.424 0 0 1 0 110.848H350.208a55.424 55.424 0 0 1 0-110.848zM128.544 177.248h221.664a55.424 55.424 0 0 1 0 110.848H128.544a55.424 55.424 0 0 1 0-110.848z"
+          p-id="22696"></path>
+      </svg>
+      <span class="sr-only">Tags</span>
+    </button>
+    <div
+      id="tooltip-tags"
+      role="tooltip"
+      class="tooltip invisible absolute z-10 inline-block w-auto rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700">
+      Tags
+      <div class="tooltip-arrow" data-popper-arrow></div>
+    </div>
+
+    
+    
+      <button
+        id="to-bottom-button"
+        type="button"
+        data-tooltip-target="tooltip-bottom"
+        data-tooltip-placement="left"
+        class="flex h-[52px] w-[52px] items-center justify-center rounded-full border border-gray-200 bg-white text-gray-500 shadow-sm hover:bg-gray-50 hover:text-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-400">
+        <svg
+          class="h-5 w-5"
+          aria-hidden="true"
+          fill="currentColor"
+          viewBox="0 0 1024 1024"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M635.733333 341.333333c19.2 0 32 12.8 32 29.866667v236.8h155.733334c12.8 0 25.6 8.533333 27.733333 21.333333 2.133333 4.266667 2.133333 6.4 2.133333 10.666667 0 8.533333-6.4 19.2-12.8 25.6L529.066667 910.933333c-12.8 8.533333-27.733333 8.533333-40.533334 0L181.333333 663.466667c-8.533333-8.533333-12.8-21.333333-8.533333-34.133334 2.133333-12.8 14.933333-21.333333 27.733333-21.333333h151.466667V371.2c0-19.2 12.8-29.866667 34.133333-29.866667h249.6z m-6.4-128c17.066667 0 32 14.933333 32 32s-14.933333 32-32 32h-234.666666c-17.066667 0-32-14.933333-32-32s14.933333-32 32-32h234.666666z m0-106.666666c17.066667 0 32 14.933333 32 32S646.4 170.666667 629.333333 170.666667h-234.666666c-17.066667 0-32-14.933333-32-32S377.6 106.666667 394.666667 106.666667h234.666666z"></path>
+        </svg>
+        <span class="sr-only">Bottom</span>
+      </button>
+      <div
+        id="tooltip-bottom"
+        role="tooltip"
+        class="tooltip invisible absolute z-10 inline-block w-auto rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700">
+        Bottom
+        <div class="tooltip-arrow" data-popper-arrow></div>
+      </div>
+    
+  </div>
+
+  <button
+    type="button"
+    data-dial-toggle="speed-dial-menu-bottom-right"
+    aria-controls="speed-dial-menu-bottom-right"
+    aria-expanded="false"
+    class="flex h-14 w-14 items-center justify-center rounded-full bg-primary text-white hover:bg-primary700 focus:outline-none focus:ring-4 focus:ring-primary dark:bg-primary dark:hover:bg-primary700 dark:focus:ring-primary700">
+    <svg
+      class="h-5 w-5 transition-transform group-hover:rotate-45"
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 18 18">
+      <path
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M9 1v16M1 9h16" />
+    </svg>
+    <span class="sr-only">Open actions menu</span>
+  </button>
+</div>
+<div
+  id="drawer-body-scrolling"
+  class="fixed left-0 top-0 z-40 h-screen w-64 -translate-x-full overflow-y-auto bg-white p-4 transition-transform md:w-80 lg:w-96 dark:bg-gray-800"
+  tabindex="-1"
+  aria-labelledby="drawer-body-scrolling-label">
+  <h5
+    id="drawer-body-scrolling-label"
+    class="text-base font-semibold uppercase text-gray-500 dark:text-gray-400">
+    TAGS
+  </h5>
+  <button
+    type="button"
+    data-drawer-hide="drawer-body-scrolling"
+    aria-controls="drawer-body-scrolling"
+    class="absolute end-2.5 top-2.5 inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white">
+    <svg
+      class="h-3 w-3"
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 14 14">
+      <path
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+    </svg>
+    <span class="sr-only">Close tags</span>
+  </button>
+
+  <div class="overflow-y-auto py-3">
+    <div class="flex flex-wrap justify-center gap-2 p-3">
+      
+        <a
+          href="http://localhost:1313/tags/test/"
+          class="group flex items-center rounded-lg border p-2 text-xs text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+          <span class="flex-1 whitespace-nowrap">Test</span>
+          <span
+            class="ms-2 inline-flex h-2 w-2 items-center justify-center rounded-full bg-blue-100 p-2 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300"
+            >1</span
+          >
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+<div
+  id="drawer-body-scrolling-toc"
+  class="fixed left-0 top-0 z-40 h-screen w-64 -translate-x-full overflow-y-auto bg-white p-4 transition-transform dark:bg-gray-800 md:w-80 lg:w-96"
+  tabindex="-1"
+  aria-labelledby="drawer-body-scrolling-toc-label">
+  <h5
+    id="drawer-body-scrolling-toc-label"
+    class="text-base font-semibold text-gray-500 dark:text-gray-400">
+    On this page
+  </h5>
+  <button
+    type="button"
+    data-drawer-hide="drawer-body-scrolling-toc"
+    aria-controls="drawer-body-scrolling-toc"
+    class="absolute end-2.5 top-2.5 inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white">
+    <svg
+      class="h-3 w-3"
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 14 14">
+      <path
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+    </svg>
+    <span class="sr-only">Close menu</span>
+  </button>
+  <div class="overflow-y-auto py-4">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#part-i">PART I</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+
+
+
+<script type="module" src="/js/to-top-or-bottom.js"></script>
+
+
+
+
+
+    
+<div
+  id="search-overlay"
+  class="fixed inset-0 z-50 hidden bg-gray-900/90 backdrop-blur-lg dark:bg-gray-900/80"></div>
+<section id="search-section" class="z-50 flex hidden h-dvh w-full flex-col">
+  
+  <div
+    class="flex h-dvh w-full flex-col overflow-auto md:mx-auto md:w-2/3 lg:max-w-2xl">
+    
+    <div
+      id="searchBoxDiv"
+      class="sticky top-[-88px] z-50 flex flex-row justify-between px-8 pt-[88px]">
+      <div id="searchBox" class="my-6 flex w-full flex-row items-center"></div>
+    </div>
+
+    
+    <div class="h-[30rem] overflow-auto">
+      <div id="searchResults" class="my-3 px-6"></div>
+      <div
+        id="NotSearchResults"
+        class="hidden flex-col items-center justify-around space-y-4 px-6 py-10">
+        <p class="font-Oswald text-lg font-bold tracking-wide text-gray-500">
+          No search content
+        </p>
+      </div>
+      <div
+        id="searchError"
+        class="hidden flex-col items-center justify-around space-y-4 px-6 py-10 text-center ">
+        <p class="font-Oswald text-lg font-bold text-red-500">
+          Oop ! Error occur ...
+        </p>
+      </div>
+      <div
+        id="searchLoading"
+        class="hidden flex-col items-center justify-around px-6 py-10">
+        <svg
+          t="1689331200868"
+          class="icon animate-spin"
+          viewBox="0 0 1024 1024"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          p-id="51409"
+          width="128"
+          height="128">
+          <path
+            d="M512 170.666667v85.333333a256 256 0 1 1-223.573333 131.2L213.930667 345.6A341.333333 341.333333 0 1 0 512 170.666667z"
+            fill="#bfbfbf"
+            opacity=".3"
+            p-id="51410"></path>
+        </svg>
+      </div>
+    </div>
+  </div>
+  
+  <div
+    class="bottom-0 flex flex-col items-center justify-center space-y-2 py-8 font-Oswald text-xs font-bold text-gray-600">
+    <div class="hidden md:block">Press ESC to cancle</div>
+    <div class="flex items-center">
+      <span class="">Powered by &nbsp;</span>
+      <img src="/images/default/algolia-logo.svg" alt="" class="h-4" />
+    </div>
+  </div>
+</section>
+
+<script
+  src="https://cdn.jsdelivr.net/npm/algoliasearch@4.17.2/dist/algoliasearch-lite.umd.js"
+  integrity="sha256-X2G+vjV8i6Jj2NSGFTvy6Z4q2AlmF5aH0HiIpWJ8eU4="
+  crossorigin="anonymous"></script>
+<script
+  src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.56.3/dist/instantsearch.production.min.js"
+  integrity="sha256-mWvjWAfZylKMOg+S3HLq+wng1HHRnl2Idr2r8NsUzIU="
+  crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+<script src="/js/search.js"></script>
+<footer
+  class="mx-auto flex w-full max-w-screen-xl flex-col-reverse items-center gap-y-3 border-t border-gray-200 py-6 md:px-12 lg:flex-row lg:justify-between dark:border-gray-700">
+  
+  <div
+    class="flex flex-col items-center justify-between space-y-3 text-xs text-gray-400 lg:items-start dark:text-gray-500">
+    
+    <div class="items-center font-Montserrat font-light">
+      &copy;
+      
+      
+      
+        2024
+      
+
+      azr43lkn1ght. All Rights Reserved
+    </div>
+  </div>
+
+  
+  <div
+    class="flex flex-row items-center font-Montserrat text-xs font-light text-gray-400 dark:text-gray-500">
+    <span>Powered By</span>
+    <a href="https://gohugo.io/" aria-label="hugo link">
+      <img
+        src="/images/default/hugo-logo-wide.svg"
+        alt="Hugo"
+        class="mx-1 h-3" />
+    </a>
+    <span> &#8739; Based on Theme</span>
+    <a
+      href="https://github.com/mrhelloboy/seven"
+      aria-label="The github address of seven theme"
+      class="">
+      <img
+        id="footer-theme-light-logo"
+        src="/images/default/seven-logo.svg"
+        alt="seven theme logo"
+        class="mx-1 h-5" />
+
+      <img
+        id="footer-theme-dark-logo"
+        src="/images/default/seven-logo-dark.svg"
+        alt="seven theme logo"
+        class="mx-1 hidden h-5" />
+    </a>
+  </div>
+
+  
+  <div
+    class="mt-4 flex space-x-5 sm:justify-center md:mt-0 rtl:space-x-reverse">
+    
+      
+        <a
+          href="mailto:linzhanqi123@gmail.com"
+          class="text-gray-400 hover:text-gray-900 dark:hover:text-white">
+          <svg
+            class="h-4 w-4"
+            aria-hidden="true"
+            fill="currentColor"
+            viewBox="0 0 1024 1024"
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M513 583.8l448.5-448.5c-11.6-4.7-24.3-7.3-37.5-7.3H100c-12.7 0-24.9 2.4-36.1 6.7L513 583.8z"
+              p-id="88208"></path>
+            <path
+              d="M513 674.3L14.6 175.9C5.3 191.1 0 208.9 0 228v568c0 55.2 44.8 100 100 100h824c55.2 0 100-44.8 100-100V228c0-18.5-5.1-35.9-13.9-50.8L513 674.3z"
+              p-id="88209"></path>
+          </svg>
+          <span class="sr-only">Email page</span>
+        </a>
+      
+      
+
+      
+
+      
+
+      
+    
+      
+      
+        <a
+          href=""
+          class="text-gray-400 hover:text-gray-900 dark:hover:text-white">
+          <svg
+            class="h-4 w-4"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            viewBox="0 0 8 19">
+            <path
+              fill-rule="evenodd"
+              d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z"
+              clip-rule="evenodd" />
+          </svg>
+          <span class="sr-only">Facebook page</span>
+        </a>
+      
+
+      
+
+      
+
+      
+    
+      
+      
+
+      
+
+      
+        <a
+          href="https://github.com/mrhelloboy/hugo-theme-seven-demo"
+          class="text-gray-400 hover:text-gray-900 dark:hover:text-white">
+          <svg
+            class="h-4 w-4"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            viewBox="0 0 20 20">
+            <path
+              fill-rule="evenodd"
+              d="M10 .333A9.911 9.911 0 0 0 6.866 19.65c.5.092.678-.215.678-.477 0-.237-.01-1.017-.014-1.845-2.757.6-3.338-1.169-3.338-1.169a2.627 2.627 0 0 0-1.1-1.451c-.9-.615.07-.6.07-.6a2.084 2.084 0 0 1 1.518 1.021 2.11 2.11 0 0 0 2.884.823c.044-.503.268-.973.63-1.325-2.2-.25-4.516-1.1-4.516-4.9A3.832 3.832 0 0 1 4.7 7.068a3.56 3.56 0 0 1 .095-2.623s.832-.266 2.726 1.016a9.409 9.409 0 0 1 4.962 0c1.89-1.282 2.717-1.016 2.717-1.016.366.83.402 1.768.1 2.623a3.827 3.827 0 0 1 1.02 2.659c0 3.807-2.319 4.644-4.525 4.889a2.366 2.366 0 0 1 .673 1.834c0 1.326-.012 2.394-.012 2.72 0 .263.18.572.681.475A9.911 9.911 0 0 0 10 .333Z"
+              clip-rule="evenodd" />
+          </svg>
+          <span class="sr-only">GitHub account</span>
+        </a>
+      
+
+      
+    
+      
+      
+
+      
+
+      
+
+      
+        <button
+          data-popover-target="wechat-popover-no-arrow"
+          type="button"
+          class="text-gray-400 hover:text-gray-900 dark:hover:text-white">
+          <svg
+            class="h-4 w-4"
+            viewBox="0 0 1184 1024"
+            fill="currentColor"
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg"
+            p-id="1495">
+            <path
+              d="M331.424 263.424q0-23.424-14.272-37.728t-37.728-14.272q-24.576 0-43.424 14.56t-18.848 37.44q0 22.272 18.848 36.864t43.424 14.56q23.424 0 37.728-14.016t14.272-37.44zM756 553.152q0-16-14.56-28.576t-37.44-12.576q-15.424 0-28.288 12.864t-12.864 28.288q0 16 12.864 28.864t28.288 12.864q22.848 0 37.44-12.576t14.56-29.152zM621.152 263.424q0-23.424-14.016-37.728t-37.44-14.272q-24.576 0-43.424 14.56t-18.848 37.44q0 22.272 18.848 36.864t43.424 14.56q23.424 0 37.44-14.016t14.016-37.44zM984 553.152q0-16-14.848-28.576t-37.152-12.576q-15.424 0-28.288 12.864t-12.864 28.288q0 16 12.864 28.864t28.288 12.864q22.272 0 37.152-12.576t14.848-29.152zM832 326.272q-17.728-2.272-40-2.272-96.576 0-177.728 44t-127.712 119.136-46.56 164.288q0 44.576 13.152 86.848-20 1.728-38.848 1.728-14.848 0-28.576-0.864t-31.424-3.712-25.44-4-31.136-6.016-28.576-6.016l-144.576 72.576 41.152-124.576q-165.728-116-165.728-280 0-96.576 55.712-177.728t150.848-127.712 207.712-46.56q100.576 0 190.016 37.728t149.728 104.288 78.016 148.864zM1170.272 646.848q0 66.848-39.136 127.712t-106.016 110.56l31.424 103.424-113.728-62.272q-85.728 21.152-124.576 21.152-96.576 0-177.728-40.288t-127.712-109.44-46.56-150.848 46.56-150.848 127.712-109.44 177.728-40.288q92 0 173.152 40.288t130.016 109.728 48.864 150.56z"
+              p-id="1496"></path>
+          </svg>
+        </button>
+
+        <div
+          data-popover
+          id="wechat-popover-no-arrow"
+          role="tooltip"
+          class="invisible absolute z-10 inline-block hidden w-52 overflow-hidden rounded-lg border border-gray-100 bg-white text-sm text-gray-500 opacity-0 shadow-sm transition-opacity duration-300 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400">
+          <ul class="text-sm text-gray-700 dark:text-gray-200">
+            
+              <li>
+                <img src="/images/society/wechat/wechat.jpg" alt="" />
+              </li>
+            
+          </ul>
+        </div>
+      
+    
+      
+      
+
+      
+        <a
+          href=""
+          class="text-gray-400 hover:text-gray-900 dark:hover:text-white">
+          <svg
+            class="h-4 w-4"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 20 20">
+            <path
+              fill="currentColor"
+              d="M12.186 8.672 18.743.947h-2.927l-5.005 5.9-4.44-5.9H0l7.434 9.876-6.986 8.23h2.927l5.434-6.4 4.82 6.4H20L12.186 8.672Zm-2.267 2.671L8.544 9.515 3.2 2.42h2.2l4.312 5.719 1.375 1.828 5.731 7.613h-2.2l-4.699-6.237Z" />
+          </svg>
+
+          <span class="sr-only">X page</span>
+        </a>
+      
+
+      
+
+      
+    
+
+    
+    
+
+  </div>
+</footer>
+
+<script>
+  var matches = document.querySelectorAll("button[data-popover-target]");
+  for (var i = 0; i < matches.length; i++) {
+    let id = matches[i].getAttribute("data-popover-target");
+
+    matches[i].addEventListener("mouseenter", function () {
+      document.getElementById(id).classList.remove("hidden");
+    });
+
+    matches[i].addEventListener("mouseleave", function () {
+      document.getElementById(id).classList.add("hidden");
+    });
+  }
+</script>
+
+
+<script src="/js/dark-mode.js" defer></script>
+
+  
+    
+    
+    <script src="/js/toc.js"></script>
+  
+
+  
+
+  
+  
+  <script src="/js/zoom-img.js" defer></script>
+
+  
+  
+  <script src="/js/link-to-top.js" defer></script>
+
+  
+    
+    
+    <script src="/js/code-copy.js" defer></script>
+  
+
+  <script
+    data-goatcounter="https://seven-demo.goatcounter.com/count"
+    async
+    src="//gc.zgo.at/count.js"></script>
+
+</body>
+</html>

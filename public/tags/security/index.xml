@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Security on Azr43lkn1ght</title>
+    <link>http://localhost:1313/tags/security/</link>
+    <description>Recent content in Security on Azr43lkn1ght</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 15 Apr 2024 05:51:15 +0530</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/security/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>微服务安全沉思录之二</title>
+      <link>http://localhost:1313/2018/05/23/service_2_service_auth/</link>
+      <pubDate>Wed, 23 May 2018 15:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/2018/05/23/service_2_service_auth/</guid>
+      <description>&lt;h2 class=&#34;group head-tag&#34; id=&#34;服务间认证与鉴权&#34;&gt;服务间认证与鉴权&lt;a data-title-of-head class=&#34;group-hover:after:content-[&#39;__#&#39;] no-underline hover:text-blue-700&#34; href=&#34;#%e6%9c%8d%e5%8a%a1%e9%97%b4%e8%ae%a4%e8%af%81%e4%b8%8e%e9%89%b4%e6%9d%83&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;除来自用户的访问请求以外，微服务应用中的各个微服务相互之间还有大量的访问，包括下述场景：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;用户间接触发的微服务之间的相互访问&lt;!-- raw HTML omitted --&gt;&#xA;例如在一个网上商店应用中，用户访问购物车微服务进行结算时，购物车微服务可能需要访问用户评级微服务获取用户的会员级别，以得到用户可以享受购物折扣。&lt;/li&gt;&#xA;&lt;li&gt;非用户触发的微服务之间的相互访问&lt;!-- raw HTML omitted --&gt;&#xA;例如数据同步或者后台定时任务导致的微服务之间的相互访问。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;根据应用系统的数据敏感程度的不同，对于系统内微服务的相互访问可能有不同的安全要求。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>微服务安全沉思录之一</title>
+      <link>http://localhost:1313/2018/05/22/user_authentication_authorization/</link>
+      <pubDate>Tue, 22 May 2018 10:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/2018/05/22/user_authentication_authorization/</guid>
+      <description>这段时间对之前微服务安全相关的一些想法进行了进一步总结和归纳，理清了在之前文章里面没有想得太清楚的地方，例如服务间的认证与鉴权以及用户身份在服务调用链中的传递。&#xA;在这一系列文章里，我将尝试分为三个部分对微服务安全进行系统阐述：用户访问认证与鉴权，服务间认证与鉴权，外部系统访问控制。&#xA;前言微服务架构的引入为软件应用带来了诸多好处：包括小开发团队，缩短开发周期，语言选择灵活性，增强服务伸缩能力等。与此同时，也引入了分布式系统的诸多复杂问题。其中一个挑战就是如何在微服务架构中实现一个灵活，安全，高效的认证和鉴权方案。&#xA;相对于传统单体应用，微服务架构下的认证和鉴权涉及到场景更为复杂，涉及到用户访问微服务应用，第三方应用访问微服务应用，应用内多个微服务之间相互访问等多种场景，每种场景下的认证和鉴权方案都需要考虑到，以保证应用程序的安全性。本系列博文将就此问题进行一次比较完整的探讨。&#xA;微服务认证和鉴权涉及到的三种场景&#xD;用户认证和鉴权用户身份认证一个完整的微服务应用是由多个相互独立的微服务进程组成的，对每个微服务的访问都需要进行用户认证。如果将用户认证的工作放到每个微服务中，存在下面一些问题：&#xA;需要在各个微服务中重复实现这部分公共逻辑。虽然我们可以使用代码库复用部分代码，但这又会导致所有微服务对特定代码库及其版本存在依赖，影响微服务语言/框架选择的灵活性。 将认证和鉴权的公共逻辑放到微服务实现中违背了单一职责原理，开发人员应重点关注微服务自身的业务逻辑。 用户需要分别登录以访问系统中不同的服务。 由于在微服务架构中以 API Gateway 作为对外提供服务的入口，因此可以在 API Gateway 处提供统一的用户认证，用户只需要登录一次，就可以访问系统中所有微服务提供的服务。&#xA;用户状态保持HTTP 是一个无状态的协议，对服务器来说，用户的每次 HTTP 请求是相互独立的。互联网是一个巨大的分布式系统，HTTP 协议作为互联网上的一个重要协议，在设计之初要考虑到大量应用访问的效率问题。无状态意味着服务端可以把客户端的请求根据需要发送到集群中的任何一个节点，HTTP 的无状态设计对负载均衡有明显的好处，由于没有状态，用户请求可以被分发到任意一个服务器，应用也可以在靠近用户的网络边缘部署缓存服务器。对于不需要身份认证的服务，例如浏览新闻网页等，这是没有任何问题的。但 HTTP 成为企业应用的一个事实标准后，企业应用需要保存用户的登录状态和身份以进行更严格的权限控制。因此需要在 HTTP 协议基础上采用一种方式保存用户的登录状态，避免用户每发起一次请求都需要进行验证。&#xA;传统方式是在服务器端采用 Cookie 来保存用户状态，由于在服务器是有状态的，对服务器的水平扩展有影响。在微服务架构下建议采用 Token 来记录用户登录状态。&#xA;Token 和 Seesion 主要的不同点是存储的地方不同。Session 是集中存储在服务器中的；而 Token 是用户自己持有的，一般以 cookie 的形式存储在浏览器中。Token 中保存了用户的身份信息，每次请求都会发送给服务器，服务器因此可以判断访问者的身份，并判断其对请求的资源有没有访问权限。&#xA;Token 用于表明用户身份，因此需要对其内容进行加密，避免被请求方或者第三者篡改。&#xD;JWT(Json Web Token)&#xD;是一个定义 Token 格式的开放标准(RFC 7519),定义了 Token 的内容，加密方式，并提供了各种语言的 lib。&#xA;JWT Token 的结构非常简单，包括三部分：&#xA;Header 头部包含类型,为固定值 JWT。然后是 JWT 使用的 Hash 算法。 {&#xD;&amp;#34;alg&amp;#34;: &amp;#34;HS256&amp;#34;,&#xD;&amp;#34;typ&amp;#34;: &amp;#34;JWT&amp;#34;&#xD;} Payload 包含发布者，过期时间，用户名等标准信息，也可以添加用户角色，用户自定义的信息。 {&#xD;&amp;#34;sub&amp;#34;: &amp;#34;1234567890&amp;#34;,&#xD;&amp;#34;name&amp;#34;: &amp;#34;John Doe&amp;#34;,&#xD;&amp;#34;admin&amp;#34;: true&#xD;} Signature Token 颁发方的签名，用于客户端验证 Token 颁发方的身份，也用于服务器防止 Token 被篡改。 签名算法 HMACSHA256(&#xD;base64UrlEncode(header) + &amp;#34;.</description>
+    </item>
+    <item>
+      <title>如何构建安全的微服务应用？</title>
+      <link>http://localhost:1313/2018/05/22/authentication-and-authorization-of-microservice/</link>
+      <pubDate>Sat, 03 Feb 2018 12:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/2018/05/22/authentication-and-authorization-of-microservice/</guid>
+      <description>&lt;h2 class=&#34;group head-tag&#34; id=&#34;前言&#34;&gt;前言&lt;a data-title-of-head class=&#34;group-hover:after:content-[&#39;__#&#39;] no-underline hover:text-blue-700&#34; href=&#34;#%e5%89%8d%e8%a8%80&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;微服务架构的引入为软件应用带来了诸多好处：包括小开发团队，缩短开发周期，语言选择灵活性，增强服务伸缩能力等。与此同时，也引入了分布式系统的诸多复杂问题。其中一个挑战就是如何在微服务架构中实现一个灵活，安全，高效的认证和鉴权方案。本文将尝试就此问题进行一次比较完整的探讨。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

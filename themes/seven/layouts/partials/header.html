@@ -9,22 +9,9 @@
       href="{{ .Site.BaseURL }}"
       class="flex items-center justify-start space-x-3 rtl:space-x-reverse">
       {{ $logoW := $logoInfo.customLogoWidth | default 130 }}
-      <p class="dark:text-primary" style="font-size: 1.3rem">
-        {{ $logoH := $logoInfo.customLogoHeight | default 56 }}
-        {{ if ge $logoH 56 }}
-          {{ $logoH = 56 }}
-        {{ end }}
-<!--        <img-->
-<!--          id="logo-light-icon"-->
-<!--          src="{{ $logoInfo.img }}"-->
-<!--          class="h-[{{ $logoH }}px]"-->
-<!--          alt="Logo" />-->
-<!--        <img-->
-<!--          id="logo-dark-icon"-->
-<!--          src="{{ $logoInfo.img_dark }}"-->
-<!--          class="hidden h-[{{ $logoH }}px]"-->
-<!--          alt="Logo" />-->
-        <b>Azr43l</b><span>kn1ght</span>
+      <p class="dark:text-primary rounded-full flex gap-3 items-center" style="font-size: 1.3rem">
+        <img src="https://raw.githubusercontent.com/Azr43lKn1ght/Azr43lKn1ght/main/h3LL.png" alt="logo" class="h-[50px] rounded-full" />
+        <b class="font-mono text-white hover:text-primary">Azr43lKn1ght</b>
       </p>
 
       {{- with $logoInfo.text -}}

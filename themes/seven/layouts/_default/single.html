@@ -43,9 +43,15 @@
 
   <div
     id="single-page-container"
-    class="mx-auto my-5 w-full rounded-b-lg px-5 md:max-w-4xl">
+    class="mx-auto my-5 w-full rounded-b-lg px-5 md:max-w-6xl">
     <div class="flex w-full justify-between">
-      <div id="post-container" class="w-full">
+      <!-- <div class="flex flex-col gap-2">
+        <h1
+          class="text-3xl font-bold text-black dark:text-white"
+          >{{ .Title }}</h1>
+
+      </div> -->
+      <div id="post-container" class="w-full flex-grow">
         {{/* Title */}}
         <div
           id="post-title"
@@ -54,7 +60,7 @@
           data-popover-placement="bottom"
           class="flex flex-col py-5 pl-0 pr-1 md:py-8 md:pl-1 md:pr-3 lg:py-10 lg:pl-7 lg:pr-10">
           <div
-            class="flex flex-row flex-wrap space-x-1 border-l-8 border-primary pb-2 pl-2 pt-1 font-Oswald text-sm font-normal tracking-wide text-gray-500/90 dark:text-gray-500">
+            class="flex flex-row flex-wrap space-x-1 border-l-8 border-primary pb-2 pl-2 pt-1 font-Oswald text-sm font-normal tracking-wide text-gray-500/90 dark:text-gray-300">
             <span>Posted by {{ .Date.Format "January 2 2006" }}</span>
 
             {{ $categories := (.GetTerms "categories") }}
@@ -62,7 +68,7 @@
             {{ if ge $cateNums 1 }}
               <span class="flex flex-row space-x-1">
                 {{ range $categories }}
-                  <span class="text-red-700"> / </span>
+                  <span class="text-primary"> / </span>
                   <a
                     class="border-b-2 border-transparent hover:border-b-2 hover:border-primary hover:text-[#00adb5]"
                     href="{{ .Permalink }}"
@@ -79,17 +85,17 @@
           </div>
 
           <div
-            class="flex flex-row flex-wrap items-center space-x-1 border-l-8 border-primary pb-1 pl-2 pt-3.5 font-Oswald text-xs font-extralight tracking-wide text-gray-500/90 dark:text-gray-600">
+            class="flex flex-row flex-wrap items-center space-x-1 border-l-8 border-primary pb-1 pl-2 pt-3.5 font-Oswald text-xs font-extralight tracking-wide text-gray-500/90 dark:text-gray-300">
             <span>Updated on {{ .Lastmod.Format "January 2 2006" }}</span>
             <div
-              class="h-1 w-1 rounded-full bg-red-700 dark:bg-red-700/50"></div>
+              class="h-1 w-1 rounded-full bg-primary"></div>
             <span>{{- .WordCount | printf "%d words" -}}</span>
             <div
-              class="h-1 w-1 rounded-full bg-red-700 dark:bg-red-700/50"></div>
+              class="h-1 w-1 rounded-full bg-primary"></div>
             <span>{{- .ReadingTime| printf "%d minutes read" -}}</span>
             {{ if .Site.Params.articleMeta.enablePageView }}
               <div
-                class="h-1 w-1 rounded-full bg-red-700 dark:bg-red-700/50"></div>
+                class="h-1 w-1 rounded-full bg-primary"></div>
               <p>
                 <span
                   id="twikoo_visitors"

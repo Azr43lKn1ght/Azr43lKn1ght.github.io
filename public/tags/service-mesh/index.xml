@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Service Mesh on Azr43lkn1ght</title>
+    <link>http://localhost:1313/tags/service-mesh/</link>
+    <description>Recent content in Service Mesh on Azr43lkn1ght</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 15 Apr 2024 05:51:15 +0530</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/service-mesh/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Everything about Setting Up My Ubuntu Desktop</title>
+      <link>http://localhost:1313/2018/05/24/set_up_my_ubuntu_desktop/</link>
+      <pubDate>Thu, 24 May 2018 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/2018/05/24/set_up_my_ubuntu_desktop/</guid>
+      <description>Generate SSH Key Pairssh-keygen -C &amp;#34;zhaohuabing@gmail.com&amp;#34; ShadowsocksInstall shadowsokcs&#xA;sudo apt-get install python3-pip&#xD;sudo pip3 install shadowsocks Create config at config/shadowsocks.json, with the following content:&#xA;{&#xD;&amp;#34;server&amp;#34;:&amp;#34;remote-shadowsocks-server-ip-addr&amp;#34;,&#xD;&amp;#34;server_port&amp;#34;:443,&#xD;&amp;#34;local_address&amp;#34;:&amp;#34;127.0.0.1&amp;#34;,&#xD;&amp;#34;local_port&amp;#34;:1080,&#xD;&amp;#34;password&amp;#34;:&amp;#34;your-passwd&amp;#34;,&#xD;&amp;#34;timeout&amp;#34;:300,&#xD;&amp;#34;method&amp;#34;:&amp;#34;aes-256-cfb&amp;#34;,&#xD;&amp;#34;fast_open&amp;#34;:false,&#xD;&amp;#34;workers&amp;#34;:1&#xD;} Start a local socks proxy&#xA;sudo sslocal -c config/shadowsocks.json -d start In case there is an openssl error, modify shadowsocks source file.&#xA;sudo vi /usr/local/lib/python3.6/dist-packages/shadowsocks/crypto/openssl.py&#xD;:%s/cleanup/reset/gc Convert shadowsocks socks proxy to http proxy&#xA;sudo apt-get install polipo&#xD;echo &amp;#34;socksParentProxy = localhost:1080&amp;#34; | sudo tee -a /etc/polipo/config&#xD;sudo service polipo restart Http proxy now is available at port 8123</description>
+    </item>
+    <item>
+      <title>微服务安全沉思录之二</title>
+      <link>http://localhost:1313/2018/05/23/service_2_service_auth/</link>
+      <pubDate>Wed, 23 May 2018 15:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/2018/05/23/service_2_service_auth/</guid>
+      <description>&lt;h2 class=&#34;group head-tag&#34; id=&#34;服务间认证与鉴权&#34;&gt;服务间认证与鉴权&lt;a data-title-of-head class=&#34;group-hover:after:content-[&#39;__#&#39;] no-underline hover:text-blue-700&#34; href=&#34;#%e6%9c%8d%e5%8a%a1%e9%97%b4%e8%ae%a4%e8%af%81%e4%b8%8e%e9%89%b4%e6%9d%83&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;除来自用户的访问请求以外，微服务应用中的各个微服务相互之间还有大量的访问，包括下述场景：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;用户间接触发的微服务之间的相互访问&lt;!-- raw HTML omitted --&gt;&#xA;例如在一个网上商店应用中，用户访问购物车微服务进行结算时，购物车微服务可能需要访问用户评级微服务获取用户的会员级别，以得到用户可以享受购物折扣。&lt;/li&gt;&#xA;&lt;li&gt;非用户触发的微服务之间的相互访问&lt;!-- raw HTML omitted --&gt;&#xA;例如数据同步或者后台定时任务导致的微服务之间的相互访问。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;根据应用系统的数据敏感程度的不同，对于系统内微服务的相互访问可能有不同的安全要求。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Istio Sidecar自动注入原理</title>
+      <link>http://localhost:1313/2018/05/23/istio-auto-injection-with-webhook/</link>
+      <pubDate>Wed, 23 May 2018 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/2018/05/23/istio-auto-injection-with-webhook/</guid>
+      <description>&lt;h2 class=&#34;group head-tag&#34; id=&#34;前言&#34;&gt;前言&lt;a data-title-of-head class=&#34;group-hover:after:content-[&#39;__#&#39;] no-underline hover:text-blue-700&#34; href=&#34;#%e5%89%8d%e8%a8%80&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;hr&gt;&#xA;&lt;p&gt;Kubernets 1.9 版本引入了 Admission Webhook(web 回调)扩展机制，通过 Webhook,开发者可以非常灵活地对 Kubernets API Server 的功能进行扩展，在 API Server 创建资源时对资源进行验证或者修改。&lt;/p&gt;&#xA;&lt;p&gt;使用 webhook 的优势是不需要对 API Server 的源码进行修改和重新编译就可以扩展其功能。插入的逻辑实现为一个独立的 web 进程，通过参数方式传入到 kubernets 中，由 kubernets 在进行自身逻辑处理时对扩展逻辑进行回调。&lt;/p&gt;&#xA;&lt;p&gt;Istio 0.7 版本就利用了 Kubernets webhook 实现了 sidecar 的自动注入。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Service Mesh 和 API Gateway的关系探讨（译文）</title>
+      <link>http://localhost:1313/2018/04/11/service-mesh-vs-api-gateway/</link>
+      <pubDate>Wed, 11 Apr 2018 09:32:00 +0000</pubDate>
+      <guid>http://localhost:1313/2018/04/11/service-mesh-vs-api-gateway/</guid>
+      <description>Service Mesh vs API Gateway在&#xD;前一篇关于 Service Mesh 的文章&#xD;中,我提到了几个关于 Service Mesh 和 API Gateway 之间关系的问题，在本篇文章中，我打算就 Service Mesh 和 API Gateway 的用途进行进一步讨论。&#xA;为了区分 API Gateway 和 Service Mesh，让我们先分别看看两者各自的关键特征。&#xA;API Gateway: 将服务作为被管理的 API 向外部暴露使用 API Gateway 的主要目的是将微服务作为被管理的 API 暴露（给外部系统）。因此，我们在 API Gateway 层开发的 API 或者边界服务对外提供了业务功能。&#xA;API/边界服务调用下游的组合或者原子微服务，通过组合/混装多个下游微服务的方式来提供业务逻辑。&#xA;在 API/Edge 服务调用下游服务时，需要采用一种可靠的通信方式，应用了断路器，超时，负载均衡/故障转移等可靠性模式。因此大部分的 API Gateway 解决方案都内置了这些特性。&#xA;API Gateway 也内置了以下特性的支持，包括：服务发现，分析（可见性：性能指标，监控，分布式日志，分布式调用追踪）和安全。&#xA;API Gateway 和 API 管理生态系统的其他组件的关系紧密，比如： API 市场/商店， API 发布门户。&#xA;Service Mesh：微服务的网络通信基础设施现在我们来看看 Service Mesh 有哪些不同。&#xA;Service Mesh 是一个网络通信基础设施， 可以用于将应用层的网络通信功能从你的服务代码中剥离出来。</description>
+    </item>
+    <item>
+      <title>谈谈微服务架构中的基础设施：Service Mesh与Istio</title>
+      <link>http://localhost:1313/2018/03/29/what-is-service-mesh-and-istio/</link>
+      <pubDate>Thu, 29 Mar 2018 12:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/2018/03/29/what-is-service-mesh-and-istio/</guid>
+      <description>微服务架构的演进作为一种架构模式，微服务将复杂系统切分为数十乃至上百个小服务，每个服务负责实现一个独立的业务逻辑。这些小服务易于被小型的软件工程师团队所理解和修改，并带来了语言和框架选择灵活性，缩短应用开发上线时间，可根据不同的工作负载和资源要求对服务进行独立缩扩容等优势。&#xA;另一方面，当应用被拆分为多个微服务进程后，进程内的方法调用变成了了进程间的远程调用。引入了对大量服务的连接、管理和监控的复杂性。&#xA;该变化带来了分布式系统的一系列问题，例如：&#xA;如何找到服务的提供方？ 如何保证远程方法调用的可靠性？ 如何保证服务调用的安全性？ 如何降低服务调用的延迟？ 如何进行端到端的调试？ 另外生产部署中的微服务实例也增加了运维的难度,例如：&#xA;如何收集大量微服务的性能指标已进行分析？ 如何在不影响上线业务的情况下对微服务进行升级？ 如何测试一个微服务集群部署的容错和稳定性？ 这些问题涉及到成百上千个服务的通信、管理、部署、版本、安全、故障转移、策略执行、遥测和监控等，要解决这些微服务架构引入的问题并非易事。&#xA;让我们来回顾一下微服务架构的发展过程。在出现服务网格之前，我们最开始在微服务应用程序内理服务之间的通讯逻辑，包括服务发现，熔断，重试，超时，加密，限流等逻辑。&#xA;在一个分布式系统中，这部分逻辑比较复杂，为了为微服务应用提供一个稳定、可靠的基础设施层，避免大家重复造轮子，并减少犯错的可能，一般会通过对这部分负责服务通讯的逻辑进行抽象和归纳，形成一个代码库供各个微服务应用程序使用，如下图所示：&#xA;公共的代码库减少了应用程序的开发和维护工作量，降低了由应用开发人员单独实现微服务通讯逻辑出现错误的机率，但还是存在下述问题：&#xA;微服务通讯逻辑对应用开发人员并不透明，应用开发人员需要理解并正确使用代码 库，不能将其全部精力聚焦于业务逻辑。 需要针对不同的语言/框架开发不同的代码库，反过来会影响微服务应用开发语言 和框架的选择，影响技术选择的灵活性。 随着时间的变化，代码库会存在不同的版本，不同版本代码库的兼容性和大量运行 环境中微服务的升级将成为一个难题。 可以将微服务之间的通讯基础设施层和 TCP/IP 协议栈进行类比。TCP/IP 协议栈为操作系统中的所有应用提供基础通信服务，但 TCP/IP 协议栈和应用程序之间并没有紧密的耦合关系，应用只需要使用 TCP/IP 协议提供的底层通讯功能,并不关心 TCP/IP 协议的实现，如 IP 如何进行路由，TCP 如何创建链接等。&#xA;同样地，微服务应用也不应该需要关注服务发现，Load balancing，Retries，Circuit Breaker 等微服务之间通信的底层细节。如果将为微服务提供通信服务的这部分逻辑从应用程序进程中抽取出来，作为一个单独的进程进行部署，并将其作为服务间的通信代理，可以得到如下图所示的架构：&#xA;因为通讯代理进程伴随应用进程一起部署，因此形象地把这种部署方式称为“sidecar”/边车（即三轮摩托的挎斗）。&#xA;应用间的所有流量都需要经过代理，由于代理以 sidecar 方式和应用部署在同一台主机上，应用和代理之间的通讯可以被认为是可靠的。由代理来负责找到目的服务并负责通讯的可靠性和安全等问题。&#xA;当服务大量部署时，随着服务部署的 sidecar 代理之间的连接形成了一个如下图所示的网格，该网格成为了微服务的通讯基础设施层，承载了微服务之间的所有流量，被称之为 Service Mesh（服务网格）。&#xA;_服务网格是一个基础设施层，用于处理服务间通信。云原生应用有着复杂的服务拓扑，服务网格保证请求可以在这些拓扑中可靠地穿梭。在实际应用当中，服务网格通常是由一系列轻量级的网络代理组成的，它们与应用程序部署在一起，但应用程序不需要知道它们的存在。&#xA;_William Morgan _&#xD;WHAT’S A SERVICE MESH? AND WHY DO I NEED ONE? _&#xA;服务网格中有数量众多的 Sidecar 代理，如果对每个代理分别进行设置，工作量将非常巨大。为了更方便地对服务网格中的代理进行统一集中控制，在服务网格上增加了控制面组件。&#xA;这里我们可以类比 SDN 的概念，控制面就类似于 SDN 网管中的控制器，负责路由策略的指定和路由规则下发；数据面类似于 SDN 网络中交换机，负责数据包的转发。</description>
+    </item>
+    <item>
+      <title>如何配置docker使用HTTP代理</title>
+      <link>http://localhost:1313/2018/03/13/use-docker-behind-http-proxy/</link>
+      <pubDate>Tue, 13 Mar 2018 18:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/2018/03/13/use-docker-behind-http-proxy/</guid>
+      <description>&lt;h2 class=&#34;group head-tag&#34; id=&#34;ubuntu&#34;&gt;Ubuntu&lt;a data-title-of-head class=&#34;group-hover:after:content-[&#39;__#&#39;] no-underline hover:text-blue-700&#34; href=&#34;#ubuntu&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h3 class=&#34;group head-tag&#34; id=&#34;设置-docker-使用-http-proxy&#34;&gt;设置 docker 使用 http proxy&lt;a data-title-of-head class=&#34;group-hover:after:content-[&#39;__#&#39;] no-underline hover:text-blue-700&#34; href=&#34;#%e8%ae%be%e7%bd%ae-docker-%e4%bd%bf%e7%94%a8-http-proxy&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo /etc/default/docker&#xD;&#xA;&#xD;&#xA;export http_proxy=&amp;#34;http://127.0.0.1:3128/&amp;#34;&#xD;&#xA;export https_proxy=&amp;#34;http://127.0.0.1:3128/&amp;#34;&#xD;&#xA;export HTTP_PROXY=&amp;#34;http://127.0.0.1:3128/&amp;#34;&#xD;&#xA;export HTTPS_PROXY=&amp;#34;http://127.0.0.1:3128/&amp;#34;&#xA;&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    <item>
+      <title>Vim Tips</title>
+      <link>http://localhost:1313/2018/02/09/vim-tips/</link>
+      <pubDate>Fri, 09 Feb 2018 11:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/2018/02/09/vim-tips/</guid>
+      <description>&lt;h2 class=&#34;group head-tag&#34; id=&#34;vim-graphical-cheat-sheet&#34;&gt;vim graphical cheat sheet&lt;a data-title-of-head class=&#34;group-hover:after:content-[&#39;__#&#39;] no-underline hover:text-blue-700&#34; href=&#34;#vim-graphical-cheat-sheet&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&#xD;&#xA;  &lt;figure class=&#34;data-image-info &#34;&gt;&#xD;&#xA;    &lt;img&#xD;&#xA;      class=&#34;data-image&#34;&#xD;&#xA;      src=&#34;//img/2018-02-09-vim-tips/vi-vim-cheat-sheet.svg&#34;&#xD;&#xA;      alt=&#34;&#34;&#xD;&#xA;      loading=&#34;lazy&#34; /&gt;&#xD;&#xA;    &lt;figcaption&gt;&lt;/figcaption&gt;&#xD;&#xA;  &lt;/figure&gt;</description>
+    </item>
+    <item>
+      <title>如何使用非root用户执行docker命令</title>
+      <link>http://localhost:1313/2018/02/09/docker-without-sudo/</link>
+      <pubDate>Fri, 09 Feb 2018 10:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/2018/02/09/docker-without-sudo/</guid>
+      <description>Add the docker group if it doesn&amp;rsquo;t already exist:sudo groupadd docker&#xA;Add the connected user &amp;ldquo;$USER&amp;rdquo; to the docker group. Change the user name to match your preferred user if you do not want to use your current user:sudo gpasswd -a $USER docker&#xA;Either do a newgrp docker or log out/in to activate the changes to groups.</description>
+    </item>
+    <item>
+      <title>如何构建安全的微服务应用？</title>
+      <link>http://localhost:1313/2018/05/22/authentication-and-authorization-of-microservice/</link>
+      <pubDate>Sat, 03 Feb 2018 12:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/2018/05/22/authentication-and-authorization-of-microservice/</guid>
+      <description>&lt;h2 class=&#34;group head-tag&#34; id=&#34;前言&#34;&gt;前言&lt;a data-title-of-head class=&#34;group-hover:after:content-[&#39;__#&#39;] no-underline hover:text-blue-700&#34; href=&#34;#%e5%89%8d%e8%a8%80&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;微服务架构的引入为软件应用带来了诸多好处：包括小开发团队，缩短开发周期，语言选择灵活性，增强服务伸缩能力等。与此同时，也引入了分布式系统的诸多复杂问题。其中一个挑战就是如何在微服务架构中实现一个灵活，安全，高效的认证和鉴权方案。本文将尝试就此问题进行一次比较完整的探讨。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Nginx开源Service Mesh组件Nginmesh安装指南</title>
+      <link>http://localhost:1313/2018/01/02/nginmesh-install/</link>
+      <pubDate>Tue, 02 Jan 2018 12:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/2018/01/02/nginmesh-install/</guid>
+      <description>&lt;h2 class=&#34;group head-tag&#34; id=&#34;前言&#34;&gt;前言&lt;a data-title-of-head class=&#34;group-hover:after:content-[&#39;__#&#39;] no-underline hover:text-blue-700&#34; href=&#34;#%e5%89%8d%e8%a8%80&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Nginmesh 是 NGINX 的 Service Mesh 开源项目，用于 Istio 服务网格平台中的数据面代理。它旨在提供七层负载均衡和服务路由功能，与 Istio 集成作为 sidecar 部署，并将以“标准，可靠和安全的方式”使得服务间通信更容易。Nginmesh 在今年底已经连续发布了 0.2 和 0.3 版本，提供了服务发现，请求转发，路由规则，性能指标收集等功能。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>如何从外部访问Kubernetes集群中的应用？</title>
+      <link>http://localhost:1313/2017/11/28/access-application-from-outside/</link>
+      <pubDate>Tue, 28 Nov 2017 12:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/2017/11/28/access-application-from-outside/</guid>
+      <description>前言我们知道，kubernetes 的 Cluster Network 属于私有网络，只能在 cluster Network 内部才能访问部署的应用，那如何才能将 Kubernetes 集群中的应用暴露到外部网络，为外部用户提供服务呢？本文探讨了从外部网络访问 kubernetes cluster 中应用的几种实现方式。&#xA;本文尽量试着写得比较容易理解，但要做到“深入浅出”，把复杂的事情用通俗易懂的语言描述出来是非常需要功力的，个人自认尚未达到此境界，唯有不断努力。此外，kubernetes 本身是一个比较复杂的系统，无法在本文中详细解释涉及的所有相关概念，否则就可能脱离了文章的主题，因此假设阅读此文之前读者对 kubernetes 的基本概念如 docker，container，pod 已有所了解。&#xA;另外此文中的一些内容是自己的理解，由于个人的知识范围有限，可能有误，如果读者对文章中的内容有疑问或者勘误，欢迎大家指证。&#xA;Pod 和 Service我们首先来了解一下 Kubernetes 中的 Pod 和 Service 的概念。&#xA;Pod(容器组),英文中 Pod 是豆荚的意思，从名字的含义可以看出，Pod 是一组有依赖关系的容器，Pod 包含的容器都会运行在同一个 host 节点上，共享相同的 volumes 和 network namespace 空间。Kubernetes 以 Pod 为基本操作单元，可以同时启动多个相同的 pod 用于 failover 或者 load balance。&#xA;Pod 的生命周期是短暂的，Kubernetes 根据应用的配置，会对 Pod 进行创建，销毁，根据监控指标进行缩扩容。kubernetes 在创建 Pod 时可以选择集群中的任何一台空闲的 Host，因此其网络地址是不固定的。由于 Pod 的这一特点，一般不建议直接通过 Pod 的地址去访问应用。&#xA;为了解决访问 Pod 不方便直接访问的问题，Kubernetes 采用了 Service 的概念，Service 是对后端提供服务的一组 Pod 的抽象，Service 会绑定到一个固定的虚拟 IP 上，该虚拟 IP 只在 Kubernetes Cluster 中可见，但其实该 IP 并不对应一个虚拟或者物理设备，而只是 IPtable 中的规则，然后再通过 IPtable 将服务请求路由到后端的 Pod 中。通过这种方式，可以确保服务消费者可以稳定地访问 Pod 提供的服务，而不用关心 Pod 的创建、删除、迁移等变化以及如何用一组 Pod 来进行负载均衡。</description>
+    </item>
+  </channel>
+</rss>

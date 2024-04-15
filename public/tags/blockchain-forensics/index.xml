@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blockchain Forensics on Azr43lkn1ght</title>
+    <link>http://localhost:1313/tags/blockchain-forensics/</link>
+    <description>Recent content in Blockchain Forensics on Azr43lkn1ght</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 07 Mar 2024 00:43:38 +0530</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/blockchain-forensics/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Batman Investigation II - Gotham Underground Corruption bi0sCTF 2024 Writeup</title>
+      <link>http://localhost:1313/Batman%20Investigation%20II%20-%20Gotham%20Underground%20Corruption/</link>
+      <pubDate>Thu, 07 Mar 2024 00:43:38 +0530</pubDate>
+      <guid>http://localhost:1313/Batman%20Investigation%20II%20-%20Gotham%20Underground%20Corruption/</guid>
+      <description>Challenge Points: 1000&#xA;No. of solves: 0&#xA;Challenge Author: Azr43lKn1ght&#xD;Challenge DescriptionAfter getting in hold of Carmine Falcone&amp;rsquo;s Laptop, Bruce Wayne has to investigate his laptop but unfortnatly he can&amp;rsquo;t get the files nor the encrypted disk and its key, so he went ahead to get the memory dumped. After investigating and getting the data from the guy hired by Falcone for analysis, it seems corrupted!. Now He have to find and solve the things uncovering the Gotham&amp;rsquo;s underground secrets, Help him solve the case of biggest Gotham corruption that is yet to happen!</description>
+    </item>
+  </channel>
+</rss>

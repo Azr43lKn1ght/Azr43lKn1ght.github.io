@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on Azr43lkn1ght</title>
+    <link>http://localhost:1313/categories/</link>
+    <description>Recent content in Categories on Azr43lkn1ght</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 16 Apr 2024 00:43:38 +0530</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>DFIR</title>
+      <link>http://localhost:1313/categories/dfir/</link>
+      <pubDate>Tue, 16 Apr 2024 00:43:38 +0530</pubDate>
+      <guid>http://localhost:1313/categories/dfir/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Malware Analysis</title>
+      <link>http://localhost:1313/categories/malware-analysis/</link>
+      <pubDate>Tue, 16 Apr 2024 00:43:38 +0530</pubDate>
+      <guid>http://localhost:1313/categories/malware-analysis/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Malware Development</title>
+      <link>http://localhost:1313/categories/malware-development/</link>
+      <pubDate>Tue, 16 Apr 2024 00:43:38 +0530</pubDate>
+      <guid>http://localhost:1313/categories/malware-development/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Bi0sCTF</title>
+      <link>http://localhost:1313/categories/bi0sctf/</link>
+      <pubDate>Sat, 09 Mar 2024 00:43:38 +0530</pubDate>
+      <guid>http://localhost:1313/categories/bi0sctf/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>CTF Writeups</title>
+      <link>http://localhost:1313/categories/ctf-writeups/</link>
+      <pubDate>Sat, 09 Mar 2024 00:43:38 +0530</pubDate>
+      <guid>http://localhost:1313/categories/ctf-writeups/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Ransomware</title>
+      <link>http://localhost:1313/categories/ransomware/</link>
+      <pubDate>Sat, 09 Mar 2024 00:43:38 +0530</pubDate>
+      <guid>http://localhost:1313/categories/ransomware/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Azr43lkn1ght</title>
+    <link>http://localhost:1313/tags/</link>
+    <description>Recent content in Tags on Azr43lkn1ght</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 16 Apr 2024 00:43:38 +0530</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>DFIR</title>
+      <link>http://localhost:1313/tags/dfir/</link>
+      <pubDate>Tue, 16 Apr 2024 00:43:38 +0530</pubDate>
+      <guid>http://localhost:1313/tags/dfir/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Malware</title>
+      <link>http://localhost:1313/tags/malware/</link>
+      <pubDate>Tue, 16 Apr 2024 00:43:38 +0530</pubDate>
+      <guid>http://localhost:1313/tags/malware/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Malware Analyis</title>
+      <link>http://localhost:1313/tags/malware-analyis/</link>
+      <pubDate>Tue, 16 Apr 2024 00:43:38 +0530</pubDate>
+      <guid>http://localhost:1313/tags/malware-analyis/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Malware Development</title>
+      <link>http://localhost:1313/tags/malware-development/</link>
+      <pubDate>Tue, 16 Apr 2024 00:43:38 +0530</pubDate>
+      <guid>http://localhost:1313/tags/malware-development/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Bi0sCTF</title>
+      <link>http://localhost:1313/tags/bi0sctf/</link>
+      <pubDate>Sat, 09 Mar 2024 00:43:38 +0530</pubDate>
+      <guid>http://localhost:1313/tags/bi0sctf/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Bi0sctf2024</title>
+      <link>http://localhost:1313/tags/bi0sctf2024/</link>
+      <pubDate>Sat, 09 Mar 2024 00:43:38 +0530</pubDate>
+      <guid>http://localhost:1313/tags/bi0sctf2024/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Browser Forensics</title>
+      <link>http://localhost:1313/tags/browser-forensics/</link>
+      <pubDate>Sat, 09 Mar 2024 00:43:38 +0530</pubDate>
+      <guid>http://localhost:1313/tags/browser-forensics/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>File Forensics</title>
+      <link>http://localhost:1313/tags/file-forensics/</link>
+      <pubDate>Sat, 09 Mar 2024 00:43:38 +0530</pubDate>
+      <guid>http://localhost:1313/tags/file-forensics/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Incident Response</title>
+      <link>http://localhost:1313/tags/incident-response/</link>
+      <pubDate>Sat, 09 Mar 2024 00:43:38 +0530</pubDate>
+      <guid>http://localhost:1313/tags/incident-response/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Malware Analysis</title>
+      <link>http://localhost:1313/tags/malware-analysis/</link>
+      <pubDate>Sat, 09 Mar 2024 00:43:38 +0530</pubDate>
+      <guid>http://localhost:1313/tags/malware-analysis/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Process Memory Analysis</title>
+      <link>http://localhost:1313/tags/process-memory-analysis/</link>
+      <pubDate>Sat, 09 Mar 2024 00:43:38 +0530</pubDate>
+      <guid>http://localhost:1313/tags/process-memory-analysis/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Ransomware</title>
+      <link>http://localhost:1313/tags/ransomware/</link>
+      <pubDate>Sat, 09 Mar 2024 00:43:38 +0530</pubDate>
+      <guid>http://localhost:1313/tags/ransomware/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Ransomware Analysis</title>
+      <link>http://localhost:1313/tags/ransomware-analysis/</link>
+      <pubDate>Sat, 09 Mar 2024 00:43:38 +0530</pubDate>
+      <guid>http://localhost:1313/tags/ransomware-analysis/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Ransomware Investigation</title>
+      <link>http://localhost:1313/tags/ransomware-investigation/</link>
+      <pubDate>Sat, 09 Mar 2024 00:43:38 +0530</pubDate>
+      <guid>http://localhost:1313/tags/ransomware-investigation/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Ransomware Recovery</title>
+      <link>http://localhost:1313/tags/ransomware-recovery/</link>
+      <pubDate>Sat, 09 Mar 2024 00:43:38 +0530</pubDate>
+      <guid>http://localhost:1313/tags/ransomware-recovery/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Reverse Engineering</title>
+      <link>http://localhost:1313/tags/reverse-engineering/</link>
+      <pubDate>Sat, 09 Mar 2024 00:43:38 +0530</pubDate>
+      <guid>http://localhost:1313/tags/reverse-engineering/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Threat Hunting</title>
+      <link>http://localhost:1313/tags/threat-hunting/</link>
+      <pubDate>Sat, 09 Mar 2024 00:43:38 +0530</pubDate>
+      <guid>http://localhost:1313/tags/threat-hunting/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>WinDBG Dump Debugging</title>
+      <link>http://localhost:1313/tags/windbg-dump-debugging/</link>
+      <pubDate>Sat, 09 Mar 2024 00:43:38 +0530</pubDate>
+      <guid>http://localhost:1313/tags/windbg-dump-debugging/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Windows Forensics</title>
+      <link>http://localhost:1313/tags/windows-forensics/</link>
+      <pubDate>Sat, 09 Mar 2024 00:43:38 +0530</pubDate>
+      <guid>http://localhost:1313/tags/windows-forensics/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Blockchain Forensics</title>
+      <link>http://localhost:1313/tags/blockchain-forensics/</link>
+      <pubDate>Thu, 07 Mar 2024 00:43:38 +0530</pubDate>
+      <guid>http://localhost:1313/tags/blockchain-forensics/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>MAC Artefact Analysis</title>
+      <link>http://localhost:1313/tags/mac-artefact-analysis/</link>
+      <pubDate>Thu, 07 Mar 2024 00:43:38 +0530</pubDate>
+      <guid>http://localhost:1313/tags/mac-artefact-analysis/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Memory Forensics</title>
+      <link>http://localhost:1313/tags/memory-forensics/</link>
+      <pubDate>Thu, 07 Mar 2024 00:43:38 +0530</pubDate>
+      <guid>http://localhost:1313/tags/memory-forensics/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Password Retrieval</title>
+      <link>http://localhost:1313/tags/password-retrieval/</link>
+      <pubDate>Thu, 07 Mar 2024 00:43:38 +0530</pubDate>
+      <guid>http://localhost:1313/tags/password-retrieval/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

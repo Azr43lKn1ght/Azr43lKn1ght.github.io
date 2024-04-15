@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Kubernetes on Azr43lkn1ght</title>
+    <link>http://localhost:1313/tags/kubernetes/</link>
+    <description>Recent content in Kubernetes on Azr43lkn1ght</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 15 Apr 2024 05:51:15 +0530</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Istio Sidecar自动注入原理</title>
+      <link>http://localhost:1313/2018/05/23/istio-auto-injection-with-webhook/</link>
+      <pubDate>Wed, 23 May 2018 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/2018/05/23/istio-auto-injection-with-webhook/</guid>
+      <description>&lt;h2 class=&#34;group head-tag&#34; id=&#34;前言&#34;&gt;前言&lt;a data-title-of-head class=&#34;group-hover:after:content-[&#39;__#&#39;] no-underline hover:text-blue-700&#34; href=&#34;#%e5%89%8d%e8%a8%80&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;hr&gt;&#xA;&lt;p&gt;Kubernets 1.9 版本引入了 Admission Webhook(web 回调)扩展机制，通过 Webhook,开发者可以非常灵活地对 Kubernets API Server 的功能进行扩展，在 API Server 创建资源时对资源进行验证或者修改。&lt;/p&gt;&#xA;&lt;p&gt;使用 webhook 的优势是不需要对 API Server 的源码进行修改和重新编译就可以扩展其功能。插入的逻辑实现为一个独立的 web 进程，通过参数方式传入到 kubernets 中，由 kubernets 在进行自身逻辑处理时对扩展逻辑进行回调。&lt;/p&gt;&#xA;&lt;p&gt;Istio 0.7 版本就利用了 Kubernets webhook 实现了 sidecar 的自动注入。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Helm介绍</title>
+      <link>http://localhost:1313/2018/04/16/using-helm-to-deploy-to-kubernetes/</link>
+      <pubDate>Mon, 16 Apr 2018 15:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/2018/04/16/using-helm-to-deploy-to-kubernetes/</guid>
+      <description>前言 Helm 是 Kubernetes 生态系统中的一个软件包管理工具。本文将介绍为何要使用 Helm 进行 Kubernetes 软件包管理，澄清 Helm 中使用到的相关概念，并通过一个具体的示例学习如何使用 Helm 打包，分发，安装，升级及回退 Kubernetes 应用。&#xA;Kubernetes 应用部署的挑战 让我们首先来看看 Kubernetes，kubernetes 提供了基于容器的应用集群管理，为容器化应用提供了部署运行、资源调度、服务发现和动态伸缩等一系列完整功能。&#xA;kubernetes 的核心设计理念是: 用户定义应用程序的规格，而 kubernetes 则负责按照定义的规则部署并运行应用程序，如果应用系统出现问题导致偏离了定义的规格，kubernetes 负责对其进行自动修正。例如应用规格要求部署两个实例，其中一个实例异常终止了，kubernetes 会检查到并重新启动一个新的实例。&#xA;用户通过使用 kubernetes API 对象来描述应用程序规格，包括 Pod，Service，Volume，Namespace，ReplicaSet，Deployment，Job 等等。一般这些对象需要写入一系列的 yaml 文件中，然后通过 kubernetes 命令行工具 kubectl 进行部署。&#xA;以下面的 wordpress 应用程序为例，涉及到多个 kubernetes API 对象，这些 kubernetes API 对象分散在多个 yaml 文件中。&#xA;图 1： Wordpress 应用程序中涉及到的 kubernetes API 对象&#xD;可以看到，在进行 kubernetes 软件部署时，我们面临下述问题：&#xA;如何管理，编辑和更新这些这些分散的 kubernetes 应用配置文件？ 如何把一套的相关配置文件作为一个应用进行管理？ 如何分发和重用 kubernetes 的应用配置？ Helm 的引入很好地解决上面这些问题。&#xA;Helm 是什么？ 很多人都使用过 Ubuntu 下的 ap-get 或者 CentOS 下的 yum, 这两者都是 Linux 系统下的包管理工具。采用 apt-get/yum,应用开发者可以管理应用包之间的依赖关系，发布应用；用户则可以以简单的方式查找、安装、升级、卸载应用程序。</description>
+    </item>
+    <item>
+      <title>如何从外部访问Kubernetes集群中的应用？</title>
+      <link>http://localhost:1313/2017/11/28/access-application-from-outside/</link>
+      <pubDate>Tue, 28 Nov 2017 12:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/2017/11/28/access-application-from-outside/</guid>
+      <description>前言我们知道，kubernetes 的 Cluster Network 属于私有网络，只能在 cluster Network 内部才能访问部署的应用，那如何才能将 Kubernetes 集群中的应用暴露到外部网络，为外部用户提供服务呢？本文探讨了从外部网络访问 kubernetes cluster 中应用的几种实现方式。&#xA;本文尽量试着写得比较容易理解，但要做到“深入浅出”，把复杂的事情用通俗易懂的语言描述出来是非常需要功力的，个人自认尚未达到此境界，唯有不断努力。此外，kubernetes 本身是一个比较复杂的系统，无法在本文中详细解释涉及的所有相关概念，否则就可能脱离了文章的主题，因此假设阅读此文之前读者对 kubernetes 的基本概念如 docker，container，pod 已有所了解。&#xA;另外此文中的一些内容是自己的理解，由于个人的知识范围有限，可能有误，如果读者对文章中的内容有疑问或者勘误，欢迎大家指证。&#xA;Pod 和 Service我们首先来了解一下 Kubernetes 中的 Pod 和 Service 的概念。&#xA;Pod(容器组),英文中 Pod 是豆荚的意思，从名字的含义可以看出，Pod 是一组有依赖关系的容器，Pod 包含的容器都会运行在同一个 host 节点上，共享相同的 volumes 和 network namespace 空间。Kubernetes 以 Pod 为基本操作单元，可以同时启动多个相同的 pod 用于 failover 或者 load balance。&#xA;Pod 的生命周期是短暂的，Kubernetes 根据应用的配置，会对 Pod 进行创建，销毁，根据监控指标进行缩扩容。kubernetes 在创建 Pod 时可以选择集群中的任何一台空闲的 Host，因此其网络地址是不固定的。由于 Pod 的这一特点，一般不建议直接通过 Pod 的地址去访问应用。&#xA;为了解决访问 Pod 不方便直接访问的问题，Kubernetes 采用了 Service 的概念，Service 是对后端提供服务的一组 Pod 的抽象，Service 会绑定到一个固定的虚拟 IP 上，该虚拟 IP 只在 Kubernetes Cluster 中可见，但其实该 IP 并不对应一个虚拟或者物理设备，而只是 IPtable 中的规则，然后再通过 IPtable 将服务请求路由到后端的 Pod 中。通过这种方式，可以确保服务消费者可以稳定地访问 Pod 提供的服务，而不用关心 Pod 的创建、删除、迁移等变化以及如何用一组 Pod 来进行负载均衡。</description>
+    </item>
+  </channel>
+</rss>

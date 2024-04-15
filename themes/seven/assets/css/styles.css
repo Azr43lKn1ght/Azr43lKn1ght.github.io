@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 .theme-aside {
   @apply px-2 py-0.5 text-sm hover:rounded-lg hover:border-0 hover:bg-gray-100 hover:text-blue-700;
 }

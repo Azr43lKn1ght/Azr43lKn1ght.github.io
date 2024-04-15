@@ -11,7 +11,8 @@ module.exports = {
     extend: {
       colors: {
         primary: '#00adb5',
-        primary700: '#069096'
+        primary700: '#069096',
+        background: 'rgb(27, 31, 38)'
       },
       typography: {
         DEFAULT: {
