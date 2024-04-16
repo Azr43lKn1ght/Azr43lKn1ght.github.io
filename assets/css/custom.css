@@ -13,3 +13,7 @@ h4 {
 .border-primary {
   border-color: #00adb5;
 }
+
+body > code {
+  font-size: 12px !important;
+}

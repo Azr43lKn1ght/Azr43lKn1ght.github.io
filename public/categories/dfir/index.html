@@ -926,35 +926,6 @@
 
   
   <div
-    class="flex flex-row items-center font-Montserrat text-xs font-light text-gray-400 dark:text-gray-500">
-    <span>Powered By</span>
-    <a href="https://gohugo.io/" aria-label="hugo link">
-      <img
-        src="/images/default/hugo-logo-wide.svg"
-        alt="Hugo"
-        class="mx-1 h-3" />
-    </a>
-    <span> &#8739; Based on Theme</span>
-    <a
-      href="https://github.com/mrhelloboy/seven"
-      aria-label="The github address of seven theme"
-      class="">
-      <img
-        id="footer-theme-light-logo"
-        src="/images/default/seven-logo.svg"
-        alt="seven theme logo"
-        class="mx-1 h-5" />
-
-      <img
-        id="footer-theme-dark-logo"
-        src="/images/default/seven-logo-dark.svg"
-        alt="seven theme logo"
-        class="mx-1 hidden h-5" />
-    </a>
-  </div>
-
-  
-  <div
     class="mt-4 flex space-x-5 sm:justify-center md:mt-0 rtl:space-x-reverse">
     
       
@@ -1068,5 +1039,10 @@
     async
     src="//gc.zgo.at/count.js"></script>
 
-</body>
+<script>
+      document.querySelectorAll('pre > code').forEach((codeblock) => {
+        codeblock.style = "font-size: larger;";
+      });
+    </script>
+  </body>
 </html>

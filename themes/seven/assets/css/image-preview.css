@@ -10,3 +10,7 @@
 .modal > img {
   @apply absolute m-0 p-0;
 }
+
+code {
+  font-size: large !important;
+}

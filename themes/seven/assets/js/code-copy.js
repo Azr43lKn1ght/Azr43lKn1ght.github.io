@@ -16,6 +16,7 @@ xmlns="http://www.w3.org/2000/svg">
   d="M863.5 265.499a8 8 0 0 0-11.314 0L439.274 678.411 263.912 503.049a8 8 0 0 0-11.314 0l-45.255 45.255a8 8 0 0 0 0 11.314l181.019 181.019 16.971 16.97 0.078 0.078 11.236 11.236c12.496 12.497 32.758 12.497 45.254 0l446.853-446.853a7.999 7.999 0 0 0 0-11.314L863.5 265.499z"></path>
 </svg>`;
 
+
 document.querySelectorAll('pre > code').forEach((codeblock) => {
   const container = codeblock.parentNode.parentNode;
 

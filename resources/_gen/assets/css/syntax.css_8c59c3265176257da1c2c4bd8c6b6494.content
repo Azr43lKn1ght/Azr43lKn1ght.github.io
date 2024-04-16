@@ -1,3 +1,6 @@
+code {
+  font-size: 12px !important;
+}
 /* Background */
 .bg {
   background-color: #f8f8f8;
@@ -464,7 +467,7 @@
 }
 /* Keyword */
 :is(:where(.dark) .chroma .k) {
-  color: #ff7b72;
+  color: #46bfc4;
 }
 /* KeywordConstant */
 :is(:where(.dark) .chroma .kc) {
@@ -472,11 +475,11 @@
 }
 /* KeywordDeclaration */
 :is(:where(.dark) .chroma .kd) {
-  color: #ff7b72;
+  color: #46bfc4;
 }
 /* KeywordNamespace */
 :is(:where(.dark) .chroma .kn) {
-  color: #ff7b72;
+  color: #46bfc4;
 }
 /* KeywordPseudo */
 :is(:where(.dark) .chroma .kp) {
@@ -484,14 +487,15 @@
 }
 /* KeywordReserved */
 :is(:where(.dark) .chroma .kr) {
-  color: #ff7b72;
+  color: #46bfc4;
 }
 /* KeywordType */
 :is(:where(.dark) .chroma .kt) {
-  color: #ff7b72;
+  color: #46bfc4;
 }
 /* Name */
 :is(:where(.dark) .chroma .n) {
+  color: #c1c9d2 !important;
 }
 /* NameAttribute */
 .chroma .na {
@@ -541,7 +545,7 @@
 }
 /* NameNamespace */
 :is(:where(.dark) .chroma .nn) {
-  color: #ff7b72;
+  color: #46bfc4;
 }
 /* NameOther */
 :is(:where(.dark) .chroma .nx) {
@@ -572,7 +576,7 @@
 }
 /* Literal */
 :is(:where(.dark) .chroma .l) {
-  color: #a5d6ff;
+  color: #568aca;
 }
 /* LiteralDate */
 :is(:where(.dark) .chroma .ld) {
@@ -580,7 +584,7 @@
 }
 /* LiteralString */
 :is(:where(.dark) .chroma .s) {
-  color: #a5d6ff;
+  color: #568aca;
 }
 /* LiteralStringAffix */
 :is(:where(.dark) .chroma .sa) {
@@ -588,11 +592,11 @@
 }
 /* LiteralStringBacktick */
 :is(:where(.dark) .chroma .sb) {
-  color: #a5d6ff;
+  color: #568aca;
 }
 /* LiteralStringChar */
 :is(:where(.dark) .chroma .sc) {
-  color: #a5d6ff;
+  color: #568aca;
 }
 /* LiteralStringDelimiter */
 :is(:where(.dark) .chroma .dl) {
@@ -600,11 +604,11 @@
 }
 /* LiteralStringDoc */
 :is(:where(.dark) .chroma .sd) {
-  color: #a5d6ff;
+  color: #568aca;
 }
 /* LiteralStringDouble */
 :is(:where(.dark) .chroma .s2) {
-  color: #a5d6ff;
+  color: #568aca;
 }
 /* LiteralStringEscape */
 :is(:where(.dark) .chroma .se) {
@@ -616,11 +620,11 @@
 }
 /* LiteralStringInterpol */
 :is(:where(.dark) .chroma .si) {
-  color: #a5d6ff;
+  color: #568aca;
 }
 /* LiteralStringOther */
 :is(:where(.dark) .chroma .sx) {
-  color: #a5d6ff;
+  color: #568aca;
 }
 /* LiteralStringRegex */
 :is(:where(.dark) .chroma .sr) {
@@ -628,48 +632,48 @@
 }
 /* LiteralStringSingle */
 :is(:where(.dark) .chroma .s1) {
-  color: #a5d6ff;
+  color: #568aca;
 }
 /* LiteralStringSymbol */
 :is(:where(.dark) .chroma .ss) {
-  color: #a5d6ff;
+  color: #568aca;
 }
 /* LiteralNumber */
 :is(:where(.dark) .chroma .m) {
-  color: #a5d6ff;
+  color: #568aca;
 }
 /* LiteralNumberBin */
 :is(:where(.dark) .chroma .mb) {
-  color: #a5d6ff;
+  color: #568aca;
 }
 /* LiteralNumberFloat */
 :is(:where(.dark) .chroma .mf) {
-  color: #a5d6ff;
+  color: #568aca;
 }
 /* LiteralNumberHex */
 :is(:where(.dark) .chroma .mh) {
-  color: #a5d6ff;
+  color: #568aca;
 }
 /* LiteralNumberInteger */
 :is(:where(.dark) .chroma .mi) {
-  color: #a5d6ff;
+  color: #568aca;
 }
 /* LiteralNumberIntegerLong */
 :is(:where(.dark) .chroma .il) {
-  color: #a5d6ff;
+  color: #568aca;
 }
 /* LiteralNumberOct */
 :is(:where(.dark) .chroma .mo) {
-  color: #a5d6ff;
+  color: #568aca;
 }
 /* Operator */
 :is(:where(.dark) .chroma .o) {
-  color: #ff7b72;
+  color: #46bfc4;
   font-weight: bold;
 }
 /* OperatorWord */
 :is(:where(.dark) .chroma .ow) {
-  color: #ff7b72;
+  color: #46bfc4;
   font-weight: bold;
 }
 /* Punctuation */
@@ -757,7 +761,7 @@
 }
 /* GenericTraceback */
 :is(:where(.dark) .chroma .gt) {
-  color: #ff7b72;
+  color: #46bfc4;
 }
 /* GenericUnderline */
 :is(:where(.dark) .chroma .gl) {
