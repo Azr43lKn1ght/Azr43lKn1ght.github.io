@@ -32,15 +32,22 @@
     <item>
       <title>Bi0sCTF</title>
       <link>http://localhost:1313/categories/bi0sctf/</link>
-      <pubDate>Sat, 09 Mar 2024 00:43:38 +0530</pubDate>
+      <pubDate>Wed, 10 Apr 2024 19:26:50 +0530</pubDate>
       <guid>http://localhost:1313/categories/bi0sctf/</guid>
       <description></description>
     </item>
     <item>
       <title>CTF Writeups</title>
       <link>http://localhost:1313/categories/ctf-writeups/</link>
-      <pubDate>Sat, 09 Mar 2024 00:43:38 +0530</pubDate>
+      <pubDate>Wed, 10 Apr 2024 19:26:50 +0530</pubDate>
       <guid>http://localhost:1313/categories/ctf-writeups/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Rootkit Analysis</title>
+      <link>http://localhost:1313/categories/rootkit-analysis/</link>
+      <pubDate>Wed, 10 Apr 2024 19:26:50 +0530</pubDate>
+      <guid>http://localhost:1313/categories/rootkit-analysis/</guid>
       <description></description>
     </item>
     <item>

