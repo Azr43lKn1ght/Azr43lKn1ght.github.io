@@ -24,7 +24,9 @@ URL: "/Batman Investigation IV - The Last J0ke/"
 ---
 
 **Challenge Points**: 1000
+
 **No. of solves**: 0
+
 **Challenge Authors**: [Azr43lKn1ght](https://twitter.com/Azr43lKn1ght), [Jl_24](https://twitter.com/j0hith),[sp3p3x](https://twitter.com/sp3p3x), [gh0stkn1ght](https://twitter.com/mspr75)
 
 
