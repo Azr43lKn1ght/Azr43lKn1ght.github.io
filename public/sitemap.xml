@@ -3,85 +3,88 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://localhost:1313/</loc>
-    <lastmod>2024-04-17T21:18:53+05:30</lastmod>
+    <lastmod>2024-05-05T02:01:09+05:30</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/</loc>
-    <lastmod>2024-04-17T21:18:53+05:30</lastmod>
+    <lastmod>2024-05-05T02:01:09+05:30</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/dfir/</loc>
-    <lastmod>2024-04-16T01:15:43+05:30</lastmod>
+    <lastmod>2024-05-05T02:01:09+05:30</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/dfir/</loc>
-    <lastmod>2024-04-17T21:18:53+05:30</lastmod>
+    <lastmod>2024-05-05T02:01:09+05:30</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/malware/</loc>
-    <lastmod>2024-04-16T01:15:43+05:30</lastmod>
+    <lastmod>2024-05-05T02:01:09+05:30</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/malware-analyis/</loc>
-    <lastmod>2024-04-16T01:15:43+05:30</lastmod>
+    <lastmod>2024-05-05T02:01:09+05:30</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/malware-analysis/</loc>
-    <lastmod>2024-04-17T21:18:53+05:30</lastmod>
+    <lastmod>2024-05-05T02:01:09+05:30</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/malware-development/</loc>
-    <lastmod>2024-04-16T01:15:43+05:30</lastmod>
+    <lastmod>2024-05-05T02:01:09+05:30</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/malware-development/</loc>
-    <lastmod>2024-04-16T01:15:43+05:30</lastmod>
+    <lastmod>2024-05-05T02:01:09+05:30</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/Malware%20Development,%20Analysis%20and%20DFIR%20Series%20-%20Part%20II/</loc>
+    <lastmod>2024-05-05T02:01:09+05:30</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/</loc>
+    <lastmod>2024-05-05T02:01:09+05:30</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/</loc>
+    <lastmod>2024-05-05T02:01:09+05:30</lastmod>
   </url><url>
     <loc>http://localhost:1313/Malware%20Development,%20Analysis%20and%20DFIR%20Series%20-%20Part%20I/</loc>
     <lastmod>2024-04-16T01:15:43+05:30</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/</loc>
-    <lastmod>2024-04-17T21:18:53+05:30</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/</loc>
-    <lastmod>2024-04-17T21:18:53+05:30</lastmod>
-  </url><url>
     <loc>http://localhost:1313/Batman%20Investigation%20IV%20-%20The%20Last%20J0ke/</loc>
-    <lastmod>2024-04-17T21:18:53+05:30</lastmod>
+    <lastmod>2024-04-17T21:22:32+05:30</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/bi0sctf/</loc>
-    <lastmod>2024-04-17T21:18:53+05:30</lastmod>
+    <lastmod>2024-04-17T21:22:32+05:30</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/bi0sctf/</loc>
-    <lastmod>2024-04-17T21:18:53+05:30</lastmod>
+    <lastmod>2024-04-17T21:22:32+05:30</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/ctf-writeups/</loc>
-    <lastmod>2024-04-17T21:18:53+05:30</lastmod>
+    <lastmod>2024-04-17T21:22:32+05:30</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/incident-response/</loc>
-    <lastmod>2024-04-17T21:18:53+05:30</lastmod>
+    <lastmod>2024-04-17T21:22:32+05:30</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/malware-analysis/</loc>
-    <lastmod>2024-04-17T21:18:53+05:30</lastmod>
+    <lastmod>2024-04-17T21:22:32+05:30</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/ransomware/</loc>
-    <lastmod>2024-04-17T21:18:53+05:30</lastmod>
+    <lastmod>2024-04-17T21:22:32+05:30</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/ransomware-analysis/</loc>
-    <lastmod>2024-04-17T21:18:53+05:30</lastmod>
+    <lastmod>2024-04-17T21:22:32+05:30</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/ransomware-investigtion/</loc>
-    <lastmod>2024-04-17T21:18:53+05:30</lastmod>
+    <lastmod>2024-04-17T21:22:32+05:30</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/ransomware-recovery/</loc>
-    <lastmod>2024-04-17T21:18:53+05:30</lastmod>
+    <lastmod>2024-04-17T21:22:32+05:30</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/reverse-engineering/</loc>
-    <lastmod>2024-04-17T21:18:53+05:30</lastmod>
+    <lastmod>2024-04-17T21:22:32+05:30</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/rootkit-analysis/</loc>
-    <lastmod>2024-04-17T21:18:53+05:30</lastmod>
+    <lastmod>2024-04-17T21:22:32+05:30</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/rootkit-analysis/</loc>
-    <lastmod>2024-04-17T21:18:53+05:30</lastmod>
+    <lastmod>2024-04-17T21:22:32+05:30</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/threat-hunting/</loc>
-    <lastmod>2024-04-17T21:18:53+05:30</lastmod>
+    <lastmod>2024-04-17T21:22:32+05:30</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/windows-forensics/</loc>
-    <lastmod>2024-04-17T21:18:53+05:30</lastmod>
+    <lastmod>2024-04-17T21:22:32+05:30</lastmod>
   </url><url>
     <loc>http://localhost:1313/Batman%20Investigation%20III%20-%20Th3%20Sw0rd%200f%20Azr43l/</loc>
     <lastmod>2024-04-16T01:15:43+05:30</lastmod>

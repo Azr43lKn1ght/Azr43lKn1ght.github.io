@@ -6,8 +6,15 @@
     <description>Recent content in DFIR on Azr43lkn1ght</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 17 Apr 2024 21:18:53 +0530</lastBuildDate>
+    <lastBuildDate>Sun, 05 May 2024 02:01:09 +0530</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/dfir/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Malware Development, Analysis and DFIR Series - Part II</title>
+      <link>http://localhost:1313/Malware%20Development,%20Analysis%20and%20DFIR%20Series%20-%20Part%20II/</link>
+      <pubDate>Sun, 05 May 2024 02:01:09 +0530</pubDate>
+      <guid>http://localhost:1313/Malware%20Development,%20Analysis%20and%20DFIR%20Series%20-%20Part%20II/</guid>
+      <description>Malware Development, Analysis and DFIR SeriesPART IIIntroductionIn this blog, we will cover the important topics in x86 assembly.&#xA;It&amp;rsquo;s not really a languauge, it doesn&amp;rsquo;t have higher level of abstraction or almost no abstraction at all, it&amp;rsquo;s basically machine code that is in human readable form, gives more direct control over the processor, but it indeed requires more writing due to very less abstraction and it&amp;rsquo;s not easily portable.&#xA;There are only 3 possible datatypes in the processor level, depending on the number of bytes the processor accesses: Byte(8 bits), Word(16 bits) and Double Word(32 bits).</description>
+    </item>
     <item>
       <title>Malware Development, Analysis and DFIR Series - Part I</title>
       <link>http://localhost:1313/Malware%20Development,%20Analysis%20and%20DFIR%20Series%20-%20Part%20I/</link>
@@ -20,7 +27,7 @@
       <link>http://localhost:1313/Batman%20Investigation%20IV%20-%20The%20Last%20J0ke/</link>
       <pubDate>Wed, 10 Apr 2024 19:26:50 +0530</pubDate>
       <guid>http://localhost:1313/Batman%20Investigation%20IV%20-%20The%20Last%20J0ke/</guid>
-      <description>Challenge Points: 1000&#xA;No. of solves: 0&#xA;Challenge Authors:&#xA;Azr43lKn1ght&#xD;,&#xA;Jl_24&#xD;,&#xA;sp3p3x&#xD;,&#xA;gh0stkn1ght&#xD;Challenge Description:Bruce Wayne was alerted that Joker have escaped from Arkham Asylum, Joker with all the Gotham outlaws crafts a letter for Bruce, He wants to make it go all crazy x_0!,and now Batman gets a message sent to Him with a letter, but apparently as Damain was in the Desktop, he opens it and everything goes crazy, the letter is now distributed to everyone in gotham, if Batman doesn&amp;rsquo;t find a fix, There is no stopping the chaos.</description>
+      <description>Challenge Points: 1000&#xA;No. of solves: 0&#xA;Challenge Authors: Azr43lKn1ght&#xD;, Jl_24&#xD;,&#xD;sp3p3x&#xD;, gh0stkn1ght&#xD;Challenge Description:Bruce Wayne was alerted that Joker have escaped from Arkham Asylum, Joker with all the Gotham outlaws crafts a letter for Bruce, He wants to make it go all crazy x_0!,and now Batman gets a message sent to Him with a letter, but apparently as Damain was in the Desktop, he opens it and everything goes crazy, the letter is now distributed to everyone in gotham, if Batman doesn&amp;rsquo;t find a fix, There is no stopping the chaos.</description>
     </item>
     <item>
       <title>Batman Investigation III - Th3 Sw0rd 0f Azr43l bi0sCTF 2024 Writeup</title>
