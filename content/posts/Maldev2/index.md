@@ -52,13 +52,13 @@ Processors or CPU has built-in limited local storage with limited numbers to sto
 
 The internals of almost all modern computer architectures including x86 follows the Von Neumann architecture
 
-![image](https://hackmd.io/_uploads/ByvTsaCeA.png)
+![alt text](image.png)
 
 The CPU is to execute code, main memory is to store the code, data, modules and all required and ALU performs arithmatic operations.
 
 #### Main Memory
 
-![images](https://hackmd.io/_uploads/B10y66CxA.png)
+![alt text](image-1.png)
 
 The text section contains the code execution.
 
@@ -110,7 +110,7 @@ Multiplication and division instructions always use EAX and EDX
 
 EAX generally contains the return value after a function call. Hence, if EAX is used right after a function call, the return value is playing a vital role.
 
-![alt img](https://hackmd.io/_uploads/SkmTnkebC.png)
+![alt text](image-2.png)
 
 Flags:
 
@@ -136,7 +136,7 @@ EIP - program counter or instruction pointer is a register that contains the mem
 
 #### Stack
 
-It's a LIFO(last in first out) based data structure where we can push value to store and pop. It's more like a stack of vinyls where you can only take the top vinyl to get the next one. It's implemented as a contagious array in memory. push and pop heppens by moving an index or a pointer and it always points to the top of the stack and it's called as the stack pointer. The stack point is also a register and it is possible to alter it when needed and one main thing to note is that we have random access to memory but we are limited to push and pop. The x86 architecture has built-in support for a stack mechanism. The register support includes the ESP and EBP registers. ESP is the stack pointer and typically contains a memory address that points to the top of stack. The value of this register changes as items are pushed on and popped off the stack. EBP is the base pointer that stays consistent within a given function, so that the program can use it as a placeholder to keep track of the location of local variables and parameters
+It's a LIFO(last in first out) based data structure where we can push value to store and pop. It's more like a stack of vinyls where you can only take the top vinyl to get the next one. It's implemented as a contagious array in memory. push and pop happens by moving an index or a pointer and it always points to the top of the stack and it's called as the stack pointer. The stack point is also a register and it is possible to alter it when needed and one main thing to note is that we have random access to memory but we are limited to push and pop. The x86 architecture has built-in support for a stack mechanism. The register support includes the ESP and EBP registers. ESP is the stack pointer and typically contains a memory address that points to the top of stack. The value of this register changes as items are pushed on and popped off the stack. EBP is the base pointer that stays consistent within a given function, so that the program can use it as a placeholder to keep track of the location of local variables and parameters
 
 #### Instructions
 
@@ -246,7 +246,7 @@ gcc -m32 test.o -o test.out
 ./test.out
 ```
 
-![image](https://hackmd.io/_uploads/B1RfJ4VGC.png)
+![alt text](image-3.png)
 
 
 Example:
@@ -309,7 +309,7 @@ ret instruction - pops the location stored top of the stack and jumping to it, w
 
 but what if we push something onto the stack!, the return will take us to a different address and function flow is messed up or we will get a invalid memory location error.
 
-to return to location that should be on top of the stack and that is thereturn address, we have to preserve the stack's layout.
+to return to location that should be on top of the stack and that is the return address, we have to preserve the stack's layout.
 
 This can be done by use the base pointer and the stack pointer.
 
