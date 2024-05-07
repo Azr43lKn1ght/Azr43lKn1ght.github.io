@@ -1,7 +1,7 @@
 ---
 title: "Malware Development, Analysis and DFIR Series - Part II"
 subtitle: "series1"
-description: "2st post of Malware Development, Analysis and DFIR Series. This post will be about intel x86 assembly"
+description: "2nd post of Malware Development, Analysis and DFIR Series. This post will be about intel x86 assembly"
 excerpt: "Malware Development, Analysis and DFIR Series - Part II"
 date: 2024-05-05T02:01:09+05:30
 author: "Azr43lKn1ght"
