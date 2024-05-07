@@ -125,13 +125,13 @@ int main(void) {
 ```
 Let's debug it
 
-![image](https://hackmd.io/_uploads/rkCtOi3yR.png)
+![alt text](image.png)
 
-![image](https://hackmd.io/_uploads/rJWjus310.png)
+![alt text](image-1.png)
 
 now let's static analyze it with ida.
 
-![image](https://hackmd.io/_uploads/HkmDnnZlR.png)
+![alt text](image-2.png)
 
 we can see here Src and v5 has our payload.
 
@@ -177,10 +177,9 @@ here we have set it as 0x20 which means PAGE_EXECUTE_READ - "Enables execute or 
 
 if it is made executable, hHandle = (HANDLE)_IAT_start__(0i64, 0i64, lpAddress, 0i64, 0, 0i64); gets executed , which while debugging we can figure out that it creates a thread
 
-![image](https://hackmd.io/_uploads/r13o2nzlA.png)
+![alt text](image-3.png)
 
-![image](https://hackmd.io/_uploads/rkhjh2MgR.png)
-
+![alt text](image-4.png)
 **we will look in into debugging later in the series**
 
 which returns a handle for the thread created, then we have
@@ -244,19 +243,19 @@ int main(void) {
 
 Let's debug it
 
-![image](https://hackmd.io/_uploads/ryEr3inJ0.png)
+![alt text](image-5.png)
 
-![image](https://hackmd.io/_uploads/SkULho310.png)
+![alt text](image-6.png)
 
-![image](https://hackmd.io/_uploads/Hk7ETj2yC.png)
+![alt text](image-7.png)
 
 now let's static analyze it with ida.
 
-![image](https://hackmd.io/_uploads/HJPorbmx0.png)
+![alt text](image-8.png)
 
 the only difference here is that the payload is stored in .data section globally so we can get it from there.
 
-![image](https://hackmd.io/_uploads/H1i7I-mgC.png)
+![alt text](image-9.png)
 
 so the memmove uses this rather than initializing it in the main function.
 
@@ -305,19 +304,19 @@ int main(void) {
 ```
 Looking into Resource Hacker
 
-![image](https://hackmd.io/_uploads/rJFwYJkeC.png)
+![alt text](image-10.png)
 
 we can easily view as well as  get it from there!
 
 Let's debug it
 
-![image](https://hackmd.io/_uploads/rJJX5kyeR.png)
+![alt text](image-11.png)
 
-![image](https://hackmd.io/_uploads/ByCZcJyg0.png)
+![alt text](image-12.png)
 
 now let's static analyze it with ida.
 
-![image](https://hackmd.io/_uploads/ByWND-XlC.png)
+![alt text](image-13.png)
 
 here there are only few differnces:
 
