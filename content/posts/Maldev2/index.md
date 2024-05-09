@@ -119,7 +119,7 @@ EFLAGS is 32 bit in size as other other x86 registers, but each of its bit is a 
 ZF The zero flag is 1 when the result of an operation is equal to 0 else it is 0.
 
 CF The carry flag is 1 when the result of an operation is too large or
-too small for the destination operand else it is 1.
+too small for the destination operand else it is 0.
 
 TF The trap flag is used for debugging. Processor will only execute
 one instruction at once if this flag is high.
@@ -148,11 +148,13 @@ mov - move data into registers or memory
 
 operands surrounded by brackets are treated as memory references to data. if we have [eax] and eax stores an memory address, it dereferences and gives us the value in that particular memory address.
 
+```
 register - mov eax, ebx
 immediate - mov eax, 0x33
 memory - mov eax, [ebx]
 memory - mov eax,[0x100ff0]
 memory - mov eax, [ebx+esi*2]
+```
 
 but mov eax, ebs+esi*8 is invalid if it's not inside the brackets as address dereference
 
