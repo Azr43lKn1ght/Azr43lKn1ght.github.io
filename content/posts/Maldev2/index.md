@@ -125,8 +125,7 @@ TF The trap flag is used for debugging. Processor will only execute
 one instruction at once if this flag is high.
 
 SF The sign flag is 1 when the result of an operation is negative or
-0 when the result is positive. This flag is also set when the most sig-
-nificant bit is set after an arithmetic operation.
+0 when the result is positive. This flag is also set when the most significant bit is set after an arithmetic operation.
 
 PF The parity bit is 1 if the least significant 8-bit of the result contains an even number of 1s
 
