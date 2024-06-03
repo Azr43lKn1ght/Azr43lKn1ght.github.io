@@ -266,4 +266,10 @@ Azr43lKn1ght | [twitter](https://twitter.com/Azr43lKn1ght) | [Linkedin](https://
 
 #### References
 
-The Art of Memory Forensics,Microsoft Windows Internals and MSDN, The Malware Cookbook, bsodtutorials, sysforensics, volatility Labs, etc..
+- The Art of Memory Forensics,
+- Microsoft Windows Internals and MSDN,
+- The Malware Cookbook,
+- bsodtutorials,
+- Practical Malware Analysis,
+- sysforensics,
+- volatility Labs.
