@@ -1,7 +1,7 @@
 ---
 title: "Malware Development, Analysis and DFIR Series - Part III"
 subtitle: "series1"
-description: "Dwelve into windows memory internals! here is the 3rd post of Malware Development, Analysis and DFIR Series."
+description: "Delve into windows memory internals! here is the 3rd post of Malware Development, Analysis and DFIR Series."
 excerpt: "Malware Development, Analysis and DFIR Series - Part III"
 date: 2024-06-03T13:03:00+05:30
 author: "Azr43lKn1ght"
