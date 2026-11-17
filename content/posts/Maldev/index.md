@@ -43,6 +43,7 @@ Malwares can also be used by red/purple teamers and pentesters for ethical and a
 
 - [Visualstudio](https://visualstudio.microsoft.com)
 - [Resource Hacker](https://www.angusj.com/resourcehacker/)
+- [Resource Cracker](https://www.pelock.com/products/resource-cracker)
 - [Process Hacker](https://processhacker.sourceforge.io/downloads.php)
 - [x64dbg](https://x64dbg.com)
 - [PEStudio](https://www.winitor.com/download)
@@ -302,7 +303,7 @@ int main(void) {
     return 0;
 }
 ```
-Looking into Resource Hacker
+Looking into Resource Hacker or [Resource Cracker](https://www.pelock.com/products/resource-cracker)
 
 ![alt text](image-10.png)
 
